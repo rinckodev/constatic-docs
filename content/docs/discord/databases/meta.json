@@ -1,0 +1,5 @@
+{
+    "title": "Databases",
+    "icon": "FaDatabase",
+    "pages": ["mongodb", "firestore"]
+}

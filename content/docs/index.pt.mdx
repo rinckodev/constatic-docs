@@ -1,0 +1,70 @@
+---
+title: Início
+icon: TiHome
+---
+
+## Seja bem vindo a documentação Constatic.
+
+Aqui você será capaz de entender como usar a base de bots de discord gerada pela CLI criada por [Rincko Dev](https://github.com/rinckodev) para desenvolver bots modernos.
+
+---
+
+import { FaClipboard, FaHandshake, FaDatabase, FaGlobe } from "react-icons/fa";
+import { HiMiniCommandLine } from "react-icons/hi2";
+import { BsFillReplyFill } from "react-icons/bs";
+import { RiCalendarEventFill } from "react-icons/ri";
+
+## Base de bots de discord
+
+<div className="flex flex-col gap-4">
+	<div className="grid grid-cols-2 gap-4">
+		<Card
+		href="/discord/start"
+		title="Começando"
+		icon={<FaClipboard/>}
+		description="Veja como iniciar um novo projeto com essa base"
+		/>
+		<Card
+			href="/discord/conventions"
+			title="Convenções"
+			icon={<FaHandshake/>}
+			description="Entenda as convenções desse projeto para o desenvolvimento"
+		/>
+	</div>
+	<div className="grid grid-cols-3 gap-4">
+		<Card
+			href="/discord/commands"
+			title="Comandos"
+			icon={<HiMiniCommandLine/>}
+			description="Veja como criar e responder comandos do discord"
+		/>
+		<Card
+			href="/discord/responders"
+			title="Responders"
+			icon={<BsFillReplyFill/>}
+			description="Conheça esse recurso incrível dessa base para responder modais e componentes"
+		/>
+		<Card
+			href="/discord/events"
+			title="Eventos"
+			icon={<RiCalendarEventFill/>}
+			description="Veja como os eventos funcionam nessa base e como criar ouvintes"
+		/>
+	</div>
+	<div className="grid grid-cols-1 gap-4">
+		<Card
+			href="/discord/databases"
+			title="Banco de dados"
+			icon={<FaDatabase/>}
+			description="Veja como integrar banco de dados no projeto"
+		/>
+		{/* <Card
+			href="/discord/servers"
+			title="Servidores de API"
+			icon={<FaGlobe/>}
+			description="De uma olhada sobre os servidores de api criados em um projeto de bot"
+		/> */}
+	</div>
+</div>
+
+---

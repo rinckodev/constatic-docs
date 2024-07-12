@@ -1,0 +1,6 @@
+{
+    "title": "Commands",
+    "defaultOpen": true,
+    "icon": "HiMiniCommandLine",
+    "pages": ["slash", "context", "autocomplete"]
+}

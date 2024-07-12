@@ -1,0 +1,92 @@
+---
+title: Get started
+icon: FaClipboard
+---
+import { FaStar } from "react-icons/fa";
+
+## Generating the project
+
+To start a new discord bot project you can use the CLI.
+
+<Steps>
+  <Step>
+    Create a new folder for your project and open it on your terminal
+  </Step>
+  <Step>
+    Use the command below to start cli
+    ```bash
+    npx constatic@latest
+    ```
+  </Step>
+  <Step>
+    Select `Init discord bot project`
+  </Step>
+  <Step>
+    Enter the project name
+    <Callout title="Dica" icon={<FaStar/>}>
+        Enter `.` to create the project in the current directory and use its name
+    </Callout>
+  </Step>
+  <Step>
+    Select a database preset (optional)
+  </Step>
+  <Step>
+    Select extra features (optional)
+  </Step>
+  <Step>
+    Select your package manager to install dependencies (optional)
+  </Step>
+  <Step>
+    Ready! Your project has been generated and you can start developing your bot.
+  </Step>
+</Steps>
+
+## Setup the project
+
+With the project generated, place your bot token in the `.env` file that is at the project root.
+<Callout>
+    [See how to create a bot application and get token on the discord developer portal](/discord/guides/application)
+</Callout>
+
+After placing the token you can execute the project in development mode using the command below:
+```
+npm run dev
+```
+
+After that your bot should be online and you can start development!
+
+## Developing your bot
+
+Below are some concepts of this bots base you can use to build modern bots:
+
+import { RiCalendarEventFill } from "react-icons/ri";
+import { BsFillReplyFill } from "react-icons/bs";
+import { FaDatabase } from "react-icons/fa";
+import { HiMiniCommandLine } from "react-icons/hi2";
+
+<Cards>
+  <Card
+    href="/discord/commands"
+    title="Commands"
+    icon={<HiMiniCommandLine/>}
+    description="They are essential in any bot to allow users to perform actions and receive messages"
+  />
+  <Card
+    href="/discord/events"
+    title="Events"
+    icon={<RiCalendarEventFill/>}
+    description="They are useful for executing code when certain actions occur in your bot"
+  />
+  <Card
+    href="/discord/responders"
+    title="Responders"
+    icon={<BsFillReplyFill/>}
+    description="It is an exclusive structure of this project that allows the bot to respond to fixed components and modals"
+  />
+  <Card
+    href="/discord/databases"
+    title="Databases"
+    icon={<FaDatabase/>}
+    description="See how to create and configure databases in projects created with this database"
+  />
+</Cards>
