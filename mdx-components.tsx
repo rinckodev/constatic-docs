@@ -15,5 +15,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Step, Steps,
     Card, Cards,
     Callout,
+    a({href, children, title }){
+      return <><a className="text-[#376DFF]" href={href} title={title}>{children}</a></>
+    },
+    blockquote: (props) => <Callout>{props.children}</Callout>,
   };
 }
