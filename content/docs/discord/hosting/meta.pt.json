@@ -1,7 +1,7 @@
 {
     "title": "Hospedando",
     "icon": "FaCloudUploadAlt",
-    "defaultOpen": true,
+    "defaultOpen": false,
     "pages": [
         "pm2",
         "docker",
