@@ -21,9 +21,10 @@ import * as ti from "react-icons/ti";
 
 import { createElement } from "react";
 import { languages } from "./i18n";
+import { LocalIcons } from "@/svgs";
 
 export const icons: Record<string, string> = Object.assign(
-  {}, ri, bi, lu, pi, si, md, im, hi, ti, fa6, io, fa, bs, go, hi2, tb
+  {}, ri, bi, lu, pi, si, md, im, hi, ti, fa6, io, fa, bs, go, hi2, tb, LocalIcons
 )
 export const { getPage, getPages, getLanguages, pageTree } = loader({
   baseUrl: "/", 

@@ -43,7 +43,9 @@ export default function Layout({ children, params }: LayoutProps) {
         url: `/${params.lang}`,
         enabled: true,
       }}
-      sidebar={{}}
+      sidebar={{
+        
+      }}
     >
       {children}
     </DocsLayout>

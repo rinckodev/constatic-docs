@@ -1,0 +1,10 @@
+{
+    "title": "Hospedando",
+    "icon": "FaCloudUploadAlt",
+    "defaultOpen": true,
+    "pages": [
+        "pm2",
+        "docker",
+        "discloud"
+    ]
+}

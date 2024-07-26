@@ -19,5 +19,11 @@
     "brilliance": "#f07d5f",
     "nitro": "#ff6bfa",
     "bravery": "#9c84ef"
+  },
+  "links":{
+    "discloud":{
+      "get_token": "https://docs.discloud.com/suporte/comandos/api",
+      "how_to_host": "https://docs.discloud.com/suporte/hospedar"
+    }
   }
 }
