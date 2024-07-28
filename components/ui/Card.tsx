@@ -47,9 +47,3 @@ export function Card({
     </Link>
   );
 }
-
-{/* <div class="rounded-3xl p-px bg-gradient-to-b from-gray-200 to-transparent">
-    <div class="bg-gray-50 p-10">
-
-    </div>
-</div> */}
