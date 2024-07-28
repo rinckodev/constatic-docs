@@ -25,6 +25,13 @@ RUN npm run build
 CMD [ "npm", "start" ]
 ```
 
+Crie um arquivo `.dockerignore` na raiz do projeto com o seguinte conteúdo:
+
+```yml title=".dockerignore"
+build
+node_modules
+```
+
 Depois execute o comando abaixo:
 ```bash
 docker build --pull --rm -f Dockerfile -t discord-bot .
