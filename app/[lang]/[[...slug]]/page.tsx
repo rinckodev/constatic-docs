@@ -20,6 +20,12 @@ export default async function Page({
       full={page.data.full}
     >
       <DocsBody>
+        <div className="relative z-[-1] flex place-items-center
+        before:absolute before:w-[240px] before:h-[600px] before:rounded-full before:content-['']
+        before:translate-x-[600px] before:translate-y-[-10px] before:rotate-[-32deg]
+        before:bg-gradient-to-r before:from-[#0141ff] before:to-[#60c5ff] 
+        before:blur-[100px] before:opacity-20
+        " />
         <h1>{page.data.title}</h1>
         <MDX />
       </DocsBody>
