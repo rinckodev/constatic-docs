@@ -21,11 +21,25 @@ export default async function Page({
     >
       <DocsBody>
         <div className="relative z-[-1] flex place-items-center
-        before:absolute before:w-[240px] before:h-[600px] before:rounded-full before:content-['']
-        before:translate-x-[600px] before:translate-y-[-10px] before:rotate-[-32deg]
+        before:absolute before:rounded-full before:content-['']
+        before:rotate-[-32deg]
         before:bg-gradient-to-r before:from-[#0141ff] before:to-[#60c5ff] 
         before:blur-[100px] before:opacity-20
+
+        before:w-[140px] before:h-[400px]
+        lg:before:w-[240px] lg:before:h-[600px]
+
+        before:translate-x-1 lg:before:translate-x-[600px] 
+        before:translate-y-[-10px] 
         " />
+        {/* <div className="relative z-[-1] flex place-items-center 
+        
+        before:absolute before:h-[600px] before:w-full before:-translate-x-[-400px] before:-translate-y-[-100px] before:rounded-full before:bg-gradient-radial before:from-[#0141ff] before:to-transparent before:blur-2xl before:content-[''] 
+        
+        after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 
+        sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]
+        ">
+        </div> */}
         <h1>{page.data.title}</h1>
         <MDX />
       </DocsBody>
