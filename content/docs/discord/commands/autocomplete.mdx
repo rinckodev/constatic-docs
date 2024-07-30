@@ -3,11 +3,11 @@ title: Autocomplete
 icon: MdAutoFixHigh
 ---
 import { settings } from "@/app";
-import { IoIosWarning } from "react-icons/io";
+import { Icon } from "@/components"
 
-<Callout icon={<IoIosWarning size={20} color={settings.colors.warning}/>}>
+<Blockquote icon={Icon.warn} color="warn">
 	It's required have a [slash command](/discord/commands/slash) to create an autocomplete option
-</Callout>
+</Blockquote>
 
 You can create an autocomplete option in your command and respond to it using the `autocomplete` method above `run`
 

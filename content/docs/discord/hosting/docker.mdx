@@ -2,12 +2,13 @@
 title: Docker
 icon: FaDocker
 ---
+import { Icon } from "@/components"
 
 Docker is an open-source platform that simplifies the creation, testing, and deployment of applications in containers, which are isolated and lightweight environments containing everything needed to run an application, ensuring consistency and portability across different development and production environments.
 
-<Callout type="warn">
+<Blockquote icon={Icon.warn} color="warn">
     You must have [Docker installed](https://www.docker.com/) and [basic knowledge of Docker.](https://docs.docker.com/guides/) to follow this guide!
-</Callout>
+</Blockquote>
 
 Create a `Dockerfile` in the project root with the following contents:
 
@@ -38,14 +39,18 @@ Then run the command below:
 docker build --pull --rm -f Dockerfile -t discord-bot .
 ```
 
-> The `-t` flag set a name for the image, in this case it will be **discord-bot**
+<Blockquote icon={Icon.info} color="info">
+    The `-t` flag set a name for the image, in this case it will be **discord-bot**
+</Blockquote>
 
 After that, just run a container with this image.
 
 ```bash
 docker run -d --name my-bot discord-bot
 ```
-> The `--name` flag set a name for the container, in this case it will be **my-bot**
+<Blockquote icon={Icon.info} color="info">
+    The `--name` flag set a name for the container, in this case it will be **my-bot**
+</Blockquote>
 
 That's enough, your application will be online in moments.
 

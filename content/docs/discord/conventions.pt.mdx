@@ -2,8 +2,7 @@
 title: Convenções
 icon: FaHandshake
 ---
-import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
-import { ProjectStructure } from "@/components";
+import { ProjectStructure, Icon } from "@/components";
 
 Você pode seguir algumas convenções deste projeto para desenvolver seu bot de discord
 
@@ -64,9 +63,9 @@ Nessa pasta fica toda a configuração e modelos do banco de dados escolhido na 
 ---
 ## ES6 Modules
 
-<Callout type="warn">
+<Blockquote color="warn" icon={Icon.warn}>
   Essa base usa o `"type": "module"` no package.json. É importando lembrar de usar a extensão `.js` quando importar arquivos de caminhos relativos (mesmo que seja arquivos typescript).
-</Callout>
+</Blockquote>
 
 Se você exportar uma função de algum arquivo typescript
 ```ts title="src/functions/math/mycustumfunc.ts"
@@ -219,8 +218,8 @@ Object.assign(globalThis, {
  // ...
 });
 
-declarar global {
- var ephemeral: verdadeiro;
+declare global {
+ const ephemeral: verdadeiro;
  // ...
 }
 ```

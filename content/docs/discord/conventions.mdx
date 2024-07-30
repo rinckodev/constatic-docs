@@ -2,8 +2,7 @@
 title: Conventions
 icon: FaHandshake
 ---
-import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
-import { ProjectStructure } from "@/components";
+import { ProjectStructure, Icon } from "@/components";
 
 You can follow some conventions from this project to develop your discord bot
 
@@ -60,9 +59,9 @@ This folder contains all the configuration and models of the database chosen whe
 ---
 ## ES6 Modules
 
-<Callout type="warn">
+<Blockquote color="warn" icon={Icon.warn}>
     This base uses `"type": "module"` in package.json. It is important to remember to use the `.js` extension when importing files with relative paths (even if they are typescript files).
-</Callout>
+</Blockquote>
 
 If you export a function from some typescript file
 ```ts title="src/functions/math/mycustumfunc.ts"
@@ -215,8 +214,8 @@ Object.assign(globalThis, {
  // ...
 });
 
-declarar global {
- var ephemeral: verdadeiro;
+declare global {
+ const ephemeral: true;
  // ...
 }
 ```

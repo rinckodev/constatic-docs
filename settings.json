@@ -2,12 +2,13 @@
   "colors": {
     "default": "#2B2D31",
     
-    "primary": "#3b82f6",
+    "primary": "#2C54C0",
     "secondary": "#4f545c",
     "success": "#22c55e",
     "danger": "#ED4245",
-    "info": "#FEE75C",
-    "warning": "#fbbd23",
+    "info": "#2a8dff",
+    "tip": "#FEE75C",
+    "warn": "#ff9d15",
 
     "magic": "#c026d3",
     "green": "#57F287",

@@ -5,7 +5,7 @@ import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import { Step, Steps } from "fumadocs-ui/components/steps";
 import { Callout } from "fumadocs-ui/components/callout";
 import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
-import { Card, Cards, Link } from "@/components";
+import { Card, Cards, Link, Blockquote } from "@/components";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -21,5 +21,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Link,
     a: props => <Link {...props}/>,
     blockquote: ({ children }) => <Callout>{children}</Callout>,
+    Blockquote,
   };
 }

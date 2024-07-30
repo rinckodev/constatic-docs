@@ -2,6 +2,7 @@
 title: PM2
 icon: SiPm2
 ---
+import { Icon } from "@/components"
 
 PM2 is a daemon process manager that will help you manage and keep your application online.
 
@@ -27,7 +28,10 @@ Then you can start your application using this command:
 ```bash
 pm2 start --name my-bot ./pm2.start.mjs
 ```
-> You can set a custom name for your process using the `--name` flag
+
+<Blockquote icon={Icon.info} color="info">
+    You can set a custom name for your process using the `--name` flag
+</Blockquote>
 
 Done, your application will run in the background on the machine.
 

@@ -2,8 +2,8 @@
 title: Discloud
 icon: LocalDiscloudWhite
 ---
-
-import settings from "@/settings.json"
+import { Icon } from "@/components"
+import { settings } from "@/app"
 
 [Discloud](https://discloud.com/) is a cloud application hosting service.
 
@@ -77,12 +77,12 @@ Then just click on `Upload Discloud` in the bottom bar of Visual Studio Code.
 
 If your project does not contain any errors, it will start in a few moments.
 
-<Callout>
+<Blockquote icon={Icon.info} color="warn">
     If you don't want to use the Visual Studio Code extension, there are other [ways to host and you can check them out here](https://docs.discloud.com/suporte/hospedar). Just remember to follow the requirements below:
     - The folder that must be sent is `build`, not `src` ([That's why you need to build first](/discord/hosting/discloud#build)).
     - The files and folders that must be sent are `build`, `.env`, `package.json` and `discloud.config`
     - Do not send the `node_modules` folder.
     - It is necessary to set that the script to start is `npm run start`.
-</Callout>
+</Blockquote>
 
 ---

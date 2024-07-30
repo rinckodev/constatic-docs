@@ -3,6 +3,8 @@ title: Parâmetros
 icon: PiBracketsCurlyFill
 ---
 
+import { Icon } from "@/components"
+
 Você pode usar um recurso desa base chamado `Custom Id Params` para responder qualquer componente ou modal dinamicamente, veja:
 
 Primeiro vamos criar um comando de contexto de usuário:
@@ -80,7 +82,6 @@ new Responder({
     },
 });
 ```
-
-<Callout>
+<Blockquote icon={Icon.danger} color="danger">
     Você pode usar esse recurso com qualquer tipo de `Responder`, mas não esqueça que o discord tem um limite de 100 caracteres nos customIds.
-</Callout>
+</Blockquote>

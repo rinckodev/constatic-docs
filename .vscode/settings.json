@@ -38,4 +38,7 @@
   "typescript.suggest.autoImports": true,
   "window.title": "${rootName}${separator}${appName}",
   "files.autoSave": "afterDelay",
+  "mdx.server.enable": true,
+  "html.autoClosingTags": true,
+  "typescript.autoClosingTags": true
 }

@@ -2,20 +2,19 @@
 title: Get started
 icon: FaClipboard
 ---
-import { FaStar } from "react-icons/fa";
+import { Icon } from "@/components";
+import { settings } from "@/app";
 
 ## Requirements
 
-import { settings } from "@/app";
-
-<Callout type="warn">
+<Blockquote color="warn" icon={Icon.warn}>
 You must follow these requirements before you begin
   - A code editor (preferably [Visual Studio Code](https://code.visualstudio.com/))
   - Requires [NodeJs](https://nodejs.org/) 20.11 or higher installed (or [Bun](https://bun.sh/))
   - Basic knowledge of programming logic
   - Basic knowledge of [javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) and [typescript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
   - Basic knowledge of [discord.js](https://discordjs.guide/)
-</Callout>
+</Blockquote>
 
 import image01 from "@/public/guides/cli/bot-init.svg";
 import image02 from "@/public/guides/cli/bot-name.svg";
@@ -43,9 +42,9 @@ To start a new discord bot project you can use the CLI.
   </Step>
   <Step>
     Enter the project name
-    <Callout title="Tip" icon={<FaStar/>}>
+    <Blockquote title="Tip" color="tip" icon={Icon.star}>
         Enter `.` to create the project in the current directory and use its name
-    </Callout>
+    </Blockquote>
     <ImageZoom src={image02} alt="Bot name" width="400" />
   </Step>
   <Step>
@@ -68,9 +67,9 @@ To start a new discord bot project you can use the CLI.
 ## Setup the project
 
 With the project generated, place your bot token in the `.env` file that is at the project root.
-<Callout>
+<Blockquote color="info" icon={Icon.info}>
     [See how to create a bot application and get token on the discord developer portal](/discord/guides/application)
-</Callout>
+</Blockquote>
 
 After placing the token you can execute the project in development mode using the command below:
 ```

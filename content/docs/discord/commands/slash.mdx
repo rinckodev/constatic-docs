@@ -2,7 +2,7 @@
 title: Slash
 icon: RiSlashCommands2
 ---
-import { Callout } from 'fumadocs-ui/components/callout';
+import { Icon } from "@/components"
 import { RiErrorWarningFill } from "react-icons/ri";
 import { settings } from "@/app";
 
@@ -13,9 +13,9 @@ import { ApplicationCommandType } from "discord.js";
 ```
 import { MdTipsAndUpdates } from "react-icons/md";
 
-<Callout icon={<MdTipsAndUpdates size={20} color={settings.colors.warning}/>}>
+<Blockquote icon={Icon.bulb} color="info">
     See [conventions](/discord/conventions) to create your commands
-</Callout>
+</Blockquote>
 
 ## How to create slash command
 
@@ -32,9 +32,9 @@ new Command({
 });
 ```
 
-<Callout icon={<RiErrorWarningFill size={20} color={settings.colors.warning}/>}>
+<Blockquote color="danger" icon={Icon.danger}>
     Slash command names cannot be empty, cannot contain special characters, capital letters or spaces
-</Callout>
+</Blockquote>
 
 ## Set slash command options
 

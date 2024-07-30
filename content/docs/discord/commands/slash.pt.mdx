@@ -3,6 +3,7 @@ title: Commandos de barra
 icon: RiSlashCommands2
 ---
 import { settings } from "@/app";
+import { Icon } from "@/components"
 
 Antes de tudo, importe a classe `Command` da base e `ApplicationCommandType` do `discord.js`
 ```ts title="ping.ts"
@@ -12,9 +13,9 @@ import { ApplicationCommandType } from "discord.js";
 
 import { MdTipsAndUpdates } from "react-icons/md";
 
-<Callout icon={<MdTipsAndUpdates size={20} color={settings.colors.warning}/>}>
+<Blockquote icon={Icon.bulb} color="info">
     Veja [convenções](/discord/conventions#pasta-discord) para criar seus comandos
-</Callout>
+</Blockquote>
 
 Para criar um comando de barra, você tem que definir o `nome`, a `descrição` e o `tipo`
 
@@ -28,6 +29,9 @@ new Command({
     },
 });
 ```
+<Blockquote color="danger" icon={Icon.danger}>
+    Nomes de comandos slash não podem ser vazios, não podem conter caracteres especiais, letras maiúsculas ou espaços
+</Blockquote>
 
 Você pode definir `opções`, `sub comandos` e `grupos` também.
 ```ts
