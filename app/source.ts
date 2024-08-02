@@ -27,7 +27,7 @@ export const icons: Record<string, string> = Object.assign(
   {}, ri, bi, lu, pi, si, md, im, hi, ti, fa6, io, fa, bs, go, hi2, tb, LocalIcons
 )
 export const { getPage, getPages, getLanguages, pageTree } = loader({
-  baseUrl: "/", 
+  baseUrl: "/docs", 
   rootDir: "docs",
   languages, 
   source: createMDXSource(map),

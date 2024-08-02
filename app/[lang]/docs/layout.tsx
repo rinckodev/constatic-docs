@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import { I18nProvider } from "fumadocs-ui/i18n";
 import { RootProvider } from "fumadocs-ui/provider";
 import { pageTree } from "@/app/source"
-import { LayoutTitle } from '../ui';
+import { LayoutTitle } from '@/app/ui';
 
 interface LayoutProps {
   params: { lang: string };

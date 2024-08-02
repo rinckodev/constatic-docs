@@ -15,6 +15,36 @@ export default {
       colors: {
         "c-primary": "var(--primary)",
         "c-secondary": "var(--secondary)"
+      },
+      animation: {
+        shimmer: "shimmer 8s infinite",
+        gradient: "gradient 8s linear infinite",
+      },
+      keyframes: {
+        "shine-pulse": {
+          "0%": {
+            "background-position": "0% 0%",
+          },
+          "50%": {
+            "background-position": "100% 100%",
+          },
+          to: {
+            "background-position": "0% 0%",
+          },
+        },
+        shimmer: {
+          "0%, 90%, 100%": {
+            "background-position": "calc(-100% - var(--shimmer-width)) 0",
+          },
+          "30%, 60%": {
+            "background-position": "calc(100% + var(--shimmer-width)) 0",
+          },
+        },
+        gradient: {
+          to: {
+            backgroundPosition: "var(--bg-size) 0",
+          },
+        },
       }
     }
   }

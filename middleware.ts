@@ -4,7 +4,6 @@ import { createI18nMiddleware } from "fumadocs-core/middleware";
 export default createI18nMiddleware({
   languages,
   defaultLanguage,
-  
 });
 
 export const config = {

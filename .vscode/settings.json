@@ -40,5 +40,7 @@
   "files.autoSave": "afterDelay",
   "mdx.server.enable": true,
   "html.autoClosingTags": true,
-  "typescript.autoClosingTags": true
+  "typescript.autoClosingTags": true,
+  "editor.tabSize": 2,
+  "editor.indentSize": "tabSize"
 }
