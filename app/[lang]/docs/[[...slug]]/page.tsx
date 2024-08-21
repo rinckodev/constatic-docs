@@ -2,12 +2,13 @@ import { getPage, getLanguages } from "@/app/source";
 import type { Metadata } from "next";
 import { DocsPage, DocsBody } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
- 
-export default async function Page({
-  params,
-}: {
-  params: { lang: string, slug?: string[] };
-}) {
+
+interface Params { 
+  lang: string, 
+  slug?: string[] 
+}
+
+export default async function Page({ params }: { params: Params }) {
   const page = getPage(params.slug, params.lang);
   if (!page) notFound();
 
@@ -38,18 +39,13 @@ export default async function Page({
   );
 }
 
-export function generateMetadata({ params }: { params: { slug?: string[] } }): Metadata {
-  const page = getPage(params.slug);
+import image from "@/public/constatic.svg";
+
+export function generateMetadata({ params }: { params: Params }): Metadata {
+  const page = getPage(params.slug, params.lang);
   if (!page) notFound();
 
   const description = page.data.description ?? "The Awesome Bot Base";
-
-  const image = {
-    alt: "Banner",
-    url: `https://github.com/rinckodev/constatic-docs/blob/main/public/constatic.svg`,
-    width: 500,
-    height: 500,
-  };
 
   return {
     title: page.data.title,
