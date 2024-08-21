@@ -1,9 +1,8 @@
-import { getPage, getLanguages, pageTree } from "@/app/source";
+import { getPage, getLanguages } from "@/app/source";
 import type { Metadata } from "next";
 import { DocsPage, DocsBody } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
  
-
 export default async function Page({
   params,
 }: {
@@ -48,13 +47,18 @@ export async function generateStaticParams() {
   );
 }
 
+
+
 export function generateMetadata({ params }: { params: { slug?: string[] } }) {
   const page = getPage(params.slug);
-
-  if (page == null) notFound();
-
+  if (!page) notFound();
+  
   return {
     title: page.data.title,
     description: page.data.description,
+    openGraph: {
+      title: page.data.title,
+      description: page.data.description,
+    }
   } satisfies Metadata;
 }
