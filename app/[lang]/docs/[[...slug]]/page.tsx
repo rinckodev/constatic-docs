@@ -38,6 +38,38 @@ export default async function Page({
   );
 }
 
+export function generateMetadata({ params }: { params: { slug?: string[] } }): Metadata {
+  const page = getPage(params.slug);
+  if (!page) notFound();
+
+  const description =
+    page.data.description ?? "The library for building documentation sites";
+
+  const image = {
+    alt: "Banner",
+    url: `https://github.com/rinckodev/constatic-docs/blob/main/public/constatic.svg`,
+    width: 500,
+    height: 500,
+  };
+
+  return {
+    title: page.data.title,
+    description,
+    openGraph: {
+      url: `/docs/${page.slugs.join("/")}`,
+      images: image,
+      title: page.data.title,
+      description: page.data.description,
+      siteName: "Fumadocs",
+    },
+    twitter: {
+      card: "summary_large_image",
+      creator: "@rinckodev",
+      images: image,
+    },
+  };
+}
+
 export async function generateStaticParams() {
   return getLanguages().flatMap(({ pages, language }) => 
     pages.map(page => ({
@@ -45,20 +77,4 @@ export async function generateStaticParams() {
       slug: page.slugs
     }))
   );
-}
-
-
-
-export function generateMetadata({ params }: { params: { slug?: string[] } }) {
-  const page = getPage(params.slug);
-  if (!page) notFound();
-  
-  return {
-    title: page.data.title,
-    description: page.data.description,
-    openGraph: {
-      title: page.data.title,
-      description: page.data.description,
-    }
-  } satisfies Metadata;
 }
