@@ -45,14 +45,14 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   const page = getPage(params.slug, params.lang);
   if (!page) notFound();
 
-  const description = page.data.description ?? "The Awesome Bot Base";
-
+  const description = page.data.description ?? "Build awesome projects";
   return {
     title: page.data.title,
     description,
+    metadataBase: new URL("https://constatic-docs.vercel.app"),
     openGraph: {
       url: `/docs/${page.slugs.join("/")}`,
-      images: image,
+      images: image.src,
       title: page.data.title,
       description: page.data.description,
       siteName: "Constatic docs",
