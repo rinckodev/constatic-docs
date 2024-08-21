@@ -42,8 +42,7 @@ export function generateMetadata({ params }: { params: { slug?: string[] } }): M
   const page = getPage(params.slug);
   if (!page) notFound();
 
-  const description =
-    page.data.description ?? "The library for building documentation sites";
+  const description = page.data.description ?? "The Awesome Bot Base";
 
   const image = {
     alt: "Banner",
@@ -60,7 +59,7 @@ export function generateMetadata({ params }: { params: { slug?: string[] } }): M
       images: image,
       title: page.data.title,
       description: page.data.description,
-      siteName: "Fumadocs",
+      siteName: "Constatic docs",
     },
     twitter: {
       card: "summary_large_image",
