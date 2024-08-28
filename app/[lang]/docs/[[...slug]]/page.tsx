@@ -39,11 +39,34 @@ export default async function Page({ params }: { params: Params }) {
   );
 }
 
-import image from "@/public/constatic.svg";
-
-export function generateMetadata({ params }: { params: Params }): Metadata {
+interface Info {
+  params: Params;
+  searchParams: Record<string, any>
+}
+export function generateMetadata({ params }: Info): Metadata {
   const page = getPage(params.slug, params.lang);
-  if (!page) notFound();
+
+  const keywords = ["Discord", "discord.js", "bot", "application", "discord bot"];
+  const twitter = {
+    card: "summary_large_image",
+    creator: "@rinckodev",
+    images: "/constatic.svg",
+  }
+
+  if (!page) {
+    return {
+      title: "Constatic docs",
+      description: "Create awesome projects",
+      keywords, twitter,
+      openGraph: {
+        url: "/docs",
+        images: "/constatic.svg",
+        title: "Constatic docs",
+        description: "Create awesome projects",
+        siteName: "Constatic docs",
+      },
+    }
+  }
 
   const description = page.data.description ?? "Build awesome projects";
   return {
@@ -52,16 +75,13 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
     metadataBase: new URL("https://constatic-docs.vercel.app"),
     openGraph: {
       url: `/docs/${page.slugs.join("/")}`,
-      images: image.src,
+      images: "/constatic.svg",
       title: page.data.title,
       description: page.data.description,
       siteName: "Constatic docs",
     },
-    twitter: {
-      card: "summary_large_image",
-      creator: "@rinckodev",
-      images: image,
-    },
+    keywords,
+    twitter
   };
 }
 
