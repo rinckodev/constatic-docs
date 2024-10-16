@@ -1,0 +1,89 @@
+---
+title: Discloud
+icon: DiscloudWhite
+description: How to host discord bot project on discloud hosting
+---
+import icons from "@/icons";
+import settings from "@settings";
+
+[Discloud](https://discloud.com/) is a cloud application hosting service.
+
+<Accordions>
+    <Accordion title="Make sure the project is built" id="build">
+    In order to upload, your project must first be built using the command below:
+    ```bash
+    npm run build
+    ```
+    </Accordion>
+</Accordions>
+
+When generating the project using the [CLI](/docs/discord/start), you can select the `discloud project` feature, which will cause the two files needed to upload your application to the hosting to be included in the project.
+
+<Accordions>
+    <Accordion title="But... If you didn't check this option, here's how the files should look">
+    Create the `discloud.config` file in the project root.
+    ```yml title="discloud.config"
+    NAME=Awesome Bot
+    TYPE=bot
+    MAIN=build/index.js
+    RAM=100
+    VERSION=latest
+    AUTORESTART=false
+    START=npm run start
+    ```
+    Create the `.discloudignore` file in the project root.
+    ```yml title=".discloudignore"
+    # Folders
+    /.vscode
+    /src
+    /deprecated
+    /discloud
+    /node_modules
+
+    # Files
+    /.env.dev
+    /.env.example
+    /.eslintrc.json
+    /.gitignore
+    /tsconfig.json
+    /package-lock.json
+    /README.md
+
+    # Extensions
+    *.md
+    *.zip
+    *.exe
+    *.dev.json
+    ```
+    </Accordion>
+</Accordions>
+
+In the `discloud.config` file you can set a name and an avatar for your application on the hosting if you prefer.
+```yml title="discloud.config"
+    NAME=My Awesome Bot
+    AVATAR=https://i.imgur.com/L7Mxhoj.gif
+    # ...
+```
+
+import image01 from "@/public/guides/discloud/extension.png";
+import image02 from "@/public/guides/discloud/upload-button.png";
+
+Install the `discloud` extension in Visual Studio Code
+
+<ImageZoom src={image01} width={380}/>
+
+Click on the `discloud` tab on the sidebar of Visual Studio Code e place <Link href={settings.links.discloud.get_token}>your discloud api token</Link>.
+Then just click on `Upload Discloud` in the bottom bar of Visual Studio Code.
+<ImageZoom src={image02} width={380}/>
+
+If your project does not contain any errors, it will start in a few moments.
+
+<Blockquote icon={icons.info} color="warn">
+    If you don't want to use the Visual Studio Code extension, there are other [ways to host and you can check them out here](https://docs.discloud.com/suporte/hospedar). Just remember to follow the requirements below:
+    - The folder that must be sent is `build`, not `src` ([That's why you need to build first](/discord/hosting/discloud#build)).
+    - The files and folders that must be sent are `build`, `.env`, `package.json` and `discloud.config`
+    - Do not send the `node_modules` folder.
+    - It is necessary to set that the script to start is `npm run start`.
+</Blockquote>
+
+---

@@ -1,0 +1,35 @@
+---
+title: Select menu
+icon: HiOutlineSelector
+description: How to reply discord select menus
+---
+
+Reply to a select menu by setting the `Responder` type to Select.
+
+```ts title="command.ts"
+// ...
+const row = createRow(
+    new StringSelectMenuBuilder({
+        customId: "select/fruits",
+        placeholder: "Select fruits",
+        options: [
+            { emoji: "🍎", label: "Apple", value: "apple" },
+            { emoji: "🍉", label: "Melon", value: "melon" },
+            { emoji: "🍊", label: "Orange", value: "orange" }
+        ]
+    })
+);
+interaction.reply({ ephemeral, components: [row] });
+// ...
+```
+
+```ts title="responder.ts"
+new Responder({
+    customId: "select/fruits",
+    type: ResponderType.StringSelect, cache: "cached",
+    async run(interaction) {
+        const selected = interaction.values[0];
+        interaction.update({ ephemeral, content: `${selected} selected`, components: [] });
+    },
+});
+```

@@ -1,0 +1,48 @@
+---
+title: Aplicação de bot
+icon: MdAutoFixHigh
+description: Como criar uma aplicação de bot de discord, ativar os intents e obter o token
+---
+
+import step01 from "@/public/guides/application/step-01.png";
+import step02 from "@/public/guides/application/step-02.png";
+import step03 from "@/public/guides/application/step-03.png";
+import step04 from "@/public/guides/application/step-04.png";
+import step05 from "@/public/guides/application/step-05.png";
+import step06 from "@/public/guides/application/step-06.png";
+
+Este é um guia simples de como criar uma aplicação para poder desenvolver bots de discord
+
+<Steps>
+  <Step>
+    Você precisa configurar um aplicativo de bot do Discord por meio do site do Discord.
+
+    Primeiro acesse https://discord.com/developers/applications
+  </Step>
+  <Step>
+    Crie uma nova aplicação
+    <ImageZoom src={step01} width={600} alt="setp-01" />
+  </Step>
+  <Step>
+    Defina o nome da aplicação e clique em criar
+    <ImageZoom src={step02} width={600} alt="setp-02" />
+  </Step>
+  <Step>
+    Ative os intents
+    <ImageZoom src={step03} width={600} alt="setp-03" />
+  </Step>
+  <Step>
+    O token do seu bot será revelado quando você pressionar o botão "Reset Token" e confirmar.
+    <ImageZoom src={step04} width={600} alt="setp-04" />
+    Copie o token e cole-o no arquivo `.env`
+    ```yml title=".env"
+    BOT_TOKEN=seutoken
+    ```
+  </Step>
+  <Step>
+    Para convidar o bot para o servidor, clique na aba OAuth2 e depois em URL Generator.
+Marque os escopos "bot" e "application.commands". Marque a permissão de administrador. Uma url será gerada abaixo, basta acessá-la para poder escolher o servidor que deseja que o bot entre.
+    <ImageZoom src={step05} width={600} alt="setp-05" />
+    <ImageZoom src={step06} width={600} alt="setp-06" />
+  </Step>
+</Steps>

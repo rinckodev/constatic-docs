@@ -1,0 +1,95 @@
+---
+title: MongoDB
+icon: BiLogoMongodb
+description: Guide to create a new mongodb database
+---
+import step01 from "@/public/mongodb/step-01.png";
+import step02 from "@/public/mongodb/step-02.png";
+import step03 from "@/public/mongodb/step-03.png";
+import step04 from "@/public/mongodb/step-04.png";
+import step05 from "@/public/mongodb/step-05.png";
+import step06 from "@/public/mongodb/step-06.png";
+import step07 from "@/public/mongodb/step-07.png";
+import step08 from "@/public/mongodb/step-08.png";
+import step09 from "@/public/mongodb/step-09.png";
+import step10 from "@/public/mongodb/step-10.png";
+import step11 from "@/public/mongodb/step-11.png";
+import step12 from "@/public/mongodb/step-12.png";
+import step13 from "@/public/mongodb/step-13.png";
+import step14 from "@/public/mongodb/step-14.png";
+
+# Creating a MongoDb Database
+
+Visit https://www.mongodb.com/pt-br and log in (or register).
+
+<ImageZoom src={step01} alt="test"/>
+
+You should be sent to the home page. If not, click the Atlas logo at the top of the page
+After that, click on **New Project** to create a new project
+
+<ImageZoom src={step02} alt="test"/>
+
+Enter the name you want and click **Next**
+
+<ImageZoom src={step03} alt="test"/>
+
+You will see this screen, so just click **Create Project**
+
+<ImageZoom src={step04} alt="test"/>
+
+You will be redirected to your project home screen
+
+Initially you will have nothing, so click **Create**
+
+<ImageZoom src={step05} alt="test"/>
+
+Choose the **M0** free plan
+
+<ImageZoom src={step06} alt="test"/>
+
+Choose the provider you want, then select the region (It is recommended to choose the one closest to your application).
+Enter whatever name you prefer for the cluster.
+
+<ImageZoom src={step07} alt="test"/>
+
+At the bottom of the page click **Create**
+
+<ImageZoom src={step08} alt="test"/>
+
+- ⚠️ This step is very important
+
+Create a user to be able to access the database! Set the name you want and the password (It is recommended to click to generate the password automatically).
+- ⚠️ Click to copy this password and save it for later use
+Keep scrolling down the page and you will reach the last step
+
+<ImageZoom src={step09} alt="test"/>
+
+Add an IP address and click Add Entry
+Adding the IP 0.0.0.0/0 will allow your bot that is hosted anywhere to connect to the database
+
+Lastly click on **Finish and Close**
+
+<ImageZoom src={step10} alt="test"/>
+
+Click **Connect**
+
+<ImageZoom src={step11} alt="test"/>
+
+Then select **Drivers**
+
+<ImageZoom src={step12} alt="test"/>
+
+Click to copy your database **URI**
+
+<ImageZoom src={step13} alt="test"/>
+
+Note that right below it says to replace **<span>{"<password>"}</span>** with the password you defined for your user
+
+- mongodb+srv://root:`<password>`@cluster0.doy8zej.mon...
+- mongodb+srv://root:`T8g4Hrlqi7LUK0XG`@cluster0.doy8zej.mon...
+
+With your database URI in hand, you can now use it in your projects to connect.
+
+Define it in the .env file
+
+<ImageZoom src={step14} alt="test"/>

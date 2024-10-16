@@ -1,0 +1,69 @@
+---
+title: Autocomplete
+icon: MdAutoFixHigh
+description: Como criar comandos de autocomplete do discord
+---
+import icons from "@/icons";
+
+<Blockquote icon={icons.warn} color="warn">
+    É preciso ter um [comando de barra](/docs/discord/commands/slash) para criar uma opção autocomplete
+</Blockquote>
+
+Você pode criar uma opção autocomplete no seu comando e responder ela usando o método `autocomplete` em cima do `run`.
+
+```ts title="command.ts"
+new Command({
+  	name: "busca",
+	description: "Comando de busca",
+	type: ApplicationCommandType.ChatInput,
+	options: [
+		{
+			name: "termo",
+			description: "termo",
+			type: ApplicationCommandOptionType.String,
+			autocomplete: true,
+			required,
+		}
+	],
+	async autocomplete(interaction) {
+		const focused = interaction.options.getFocused();
+		const results = await searchData(focused);
+		if (results.length < 1) return;
+		const choices = results.map(data => ({
+			name: data.title, value: data.url
+		}));
+		interaction.respond(choices.slice(0, 25));
+	},
+	async run(interaction){
+		const { options } = interaction;
+
+		const query = options.getString("termo", true);
+		
+		interaction.reply({ ephemeral, content: query });
+	}
+});
+```
+
+Se você tiver uma grande quantidade de itens, use o autocomplete para tentar encontrá-los
+
+```ts title="command.ts"
+new Command({
+    // ...
+    async autocomplete(interaction) {
+		const { options, guild } = interaction;
+
+        const focused = options.getFocused();
+        const documents = await db.get(guild.id);
+
+        const filtered = documents.filter(
+            data => data.address.toLowercase().includes(focused.toLowercase())
+        )
+        if (filtered.length < 1) return;
+        const choices = filtered.map(data => ({
+			name: data.title, value: data.url
+		}));
+		interaction.respond(choices.slice(0, 25));
+	},
+    // ...
+})
+```

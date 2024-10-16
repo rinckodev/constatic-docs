@@ -1,0 +1,75 @@
+---
+title: Slash
+icon: RiSlashCommands2
+description: How to create discord slash commands
+---
+import icons from "@/icons";
+
+To create a command, you need to import the `Command` class from the base and `ApplicationCommandType` enum from discord.js
+```ts
+import { Command } from "#base";
+import { ApplicationCommandType } from "discord.js";
+```
+
+<Blockquote icon={icons.bulb} color="info">
+    See [conventions](/docs/discord/conventions) to create your commands
+</Blockquote>
+
+## How to create slash command
+
+To create a slash command, you need to set name, description and type.
+
+```ts title="hello.ts"
+new Command({
+    name: "hello",
+    description: "Hello world command",
+    type: ApplicationCommandType.ChatInput,
+    async run(interaction) {
+        interaction.reply({ ephemeral, content: "Hello world!" });
+    },
+});
+```
+
+<Blockquote color="danger" icon={icons.danger}>
+    Slash command names cannot be empty, cannot contain special characters, capital letters or spaces
+</Blockquote>
+
+## Set slash command options
+
+You can set options, subcommands and groups too
+```ts title="manage.ts"
+import { Command } from "#base";
+import { ApplicationCommandOptionType, ApplicationCommandType } from "discord.js";
+
+new Command({
+    name: "manage",
+    description: "Manage command",
+    type: ApplicationCommandType.ChatInput,
+    options: [
+        {
+            name: "users",
+            description: "Manage users command",
+            type: ApplicationCommandOptionType.Subcommand
+            options: [
+                {
+                    name: "user",
+                    description: "user",
+                    type: ApplicationCommandOptionType.User
+                    required
+                }       
+            ],
+        }
+    ],
+    async run(interaction) {
+        const { options } = interaction;
+
+        switch(options.getSubcommand(true)){
+            case "users":{
+                const user = options.getUser("user", true);
+                interaction.reply({ ephemeral, content: `${user} managed` })
+                return;
+            }
+        }
+    },
+});
+```

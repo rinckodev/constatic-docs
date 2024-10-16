@@ -1,0 +1,104 @@
+---
+title: Get started
+icon: FaClipboard
+description: First steps to starting a new discord bot project
+---
+import icons from "@/icons";
+
+## Requirements
+
+<Blockquote color="warn" icon={icons.warn}>
+You must follow these requirements before you begin
+  - A code editor (preferably [Visual Studio Code](https://code.visualstudio.com/))
+  - Requires [NodeJs](https://nodejs.org/) 20.11 or higher installed (or [Bun](https://bun.sh/))
+  - Basic knowledge of programming logic
+  - Basic knowledge of [javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) and [typescript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
+  - Basic knowledge of [discord.js](https://discordjs.guide/)
+</Blockquote>
+
+## Generating the project
+
+To start a new discord bot project you can use the CLI.
+
+<Steps>
+  <Step>
+    Create a new folder for your project and open it on your terminal
+  </Step>
+  <Step>
+    Use the command below to start cli
+    ```bash
+    npx constatic@latest
+    ```
+  </Step>
+  <Step>
+    Select `Init discord bot project`
+    <ImageZoom src={"/guides/cli/bot-init.svg"} alt="Init discord bot" width="400" height="400" />
+  </Step>
+  <Step>
+    Enter the project name
+    <Blockquote title="Tip" color="tip" icon={icons.star}>
+        Enter `.` to create the project in the current directory and use its name
+    </Blockquote>
+    <ImageZoom src={"/guides/cli/bot-name.svg"} alt="Bot name" width="400" height="400" />
+  </Step>
+  <Step>
+    Select a database preset (optional)
+    <ImageZoom src={"/guides/cli/bot-db.svg"} alt="Bot db" width="400" height="400" />
+  </Step>
+  <Step>
+    Select extra features (optional)
+    <ImageZoom src={"/guides/cli/bot-features.svg"} alt="Bot features" width="400" height="400" />
+  </Step>
+  <Step>
+    Select your package manager to install dependencies (optional)
+    <ImageZoom src={"/guides/cli/bot-deps.svg"} alt="Bot deps" width="400" height="400" />
+  </Step>
+  <Step>
+    Ready! Your project has been generated and you can start developing your bot.
+  </Step>
+</Steps>
+
+## Setup the project
+
+With the project generated, place your bot token in the `.env` file that is at the project root.
+<Blockquote color="info" icon={icons.info}>
+    [See how to create a bot application and get token on the discord developer portal](/discord/guides/application)
+</Blockquote>
+
+After placing the token you can execute the project in development mode using the command below:
+```
+npm run dev
+```
+
+After that your bot should be online and you can start development!
+
+## Developing your bot
+
+Below are some concepts of this bots base you can use to build modern bots:
+
+<Cards>
+  <Card
+    href="/docs/discord/commands"
+    title="Commands"
+    icon={<icons.HiMiniCommandLine/>}
+    description="They are essential in any bot to allow users to perform actions and receive messages"
+  />
+  <Card
+    href="/docs/discord/events"
+    title="Events"
+    icon={<icons.RiCalendarEventFill/>}
+    description="They are useful for executing code when certain actions occur in your bot"
+  />
+  <Card
+    href="/docs/discord/responders"
+    title="Responders"
+    icon={<icons.BsFillReplyFill/>}
+    description="It is an exclusive structure of this project that allows the bot to respond to fixed components and modals"
+  />
+  <Card
+    href="/docs/discord/databases"
+    title="Databases"
+    icon={<icons.FaDatabase/>}
+    description="See how to create and configure databases in projects created with this database"
+  />
+</Cards>

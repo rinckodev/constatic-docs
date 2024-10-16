@@ -1,0 +1,163 @@
+---
+title: Bootstrap App
+icon: FaPowerOff
+description: Função inicial do projeto de bot de discord
+---
+import { File, Files, Folder } from "fumadocs-ui/components/files";
+import { ProjectStructureSrc } from "@components"; 
+import icons from "@/icons";
+
+## Ponto de entrada
+
+O arquivo `index.ts` da pasta `src` é o ponto de entrada deste projeto, é nele que a função `bootstrapApp` é executada para ligar a aplicação de bot de discord.
+
+```ts title="src/index.ts"
+import { bootstrapApp } from "#base";
+
+await bootstrapApp({ workdir: import.meta.dirname });
+```
+
+Neste tópico você vai conferir algumas opções interessantes dessa função.
+
+---
+
+### Diretório de trabalho (workdir)
+
+Essa opção deve receber o nome do diretório atual, ao executar o projeto em desenvolvimento esse diretório será `src`, mas quando o projeto for buildado ele será `build`.
+Essa opção é importante para que os arquivos da pasta discord possam ser importados antes do bot iniciar.
+
+### Diretórios (directories)
+
+Você pode passar um array de caminhos relativos ao `workdir` que você queira que sejam importados antes do bot iniciar.
+```ts title="src/index.ts"
+await bootstrapApp({ 
+    workdir: import.meta.dirname,
+    directories: ["./MyCommands", "./alt/events"]
+});
+```
+
+<Files>
+    <ProjectStructureSrc srcFolder={(
+        <>
+        <Folder name="MyCommands">
+            <File name="party.ts" icon={<icons.TbBrandTypescript />} />
+            <File name="tell.ts" icon={<icons.TbBrandTypescript />} />
+        </Folder>
+        <Folder name="alt">
+            <Folder name="events">
+                <File name="onMemberJoin.ts" icon={<icons.TbBrandTypescript />} />
+                <File name="onMemberLeave.ts" icon={<icons.TbBrandTypescript />} />
+            </Folder>
+        </Folder>
+        </>
+    )} />
+</Files>
+
+Com isso você pode criar `comandos`, `eventos` e `responders` dentro desses diretórios e eles serão carregados antes do bot iniciar.
+
+---
+
+### Logs de carregamento (loadLogs)
+
+É possível desabilitar as logs de carregamento das estruturas dessa base definindo falso na opção `loadLogs` da função `bootstrapApp`.
+
+```ts title="src/index.ts"
+await bootstrapApp({ 
+    workdir: import.meta.dirname,
+    loadLogs: false
+});
+```
+
+### Opções de comandos (commands)
+
+Você pode definir um array de ids de guildas para registrar os comandos, então ao invés de registrar os comandos globalmente na aplicação (que é o comportamento padrão da base), os comandos serão registrados apenas nas guildas cujo os ids foram passados para a opção.
+
+```ts title="src/index.ts"
+await bootstrapApp({ 
+    workdir: import.meta.dirname,
+    commands: {
+        guilds: ["id1", "id2", "id3"]
+    }
+});
+```
+É recomendado definir variáveis de ambiente para os ids de guildas.
+
+<Tabs items={["Exemplo 1", "Exemplo 2"]}>
+    <Tab value="Exemplo 1">
+    ```ts title="src/index.ts"
+    await bootstrapApp({ 
+        workdir: import.meta.dirname,
+        commands: {
+            guilds: [process.env.MAIN_GUILD_ID, process.env.DEV_GUILD_ID]
+        }
+    });
+    ```
+    ```mdx title=".env"
+    MAIN_GUILD_ID=id
+    DEV_GUILD_ID=id
+    ```
+    
+    </Tab>
+    <Tab value="Exemplo 2">
+    ```ts title="src/index.ts"
+    await bootstrapApp({ 
+        workdir: import.meta.dirname,
+        commands: {
+            guilds: process.env.GUILD_IDS.split(" ")
+        }
+    });
+    ```
+    ```mdx title=".env"
+    GUILD_IDS=id1 id2 id3
+    ```
+    </Tab>
+</Tabs>
+
+---
+
+### Opções de responders (responders)
+
+É possível definir uma execução padrão para quando o customId de um componente ou modal do bot for usado e não existir um Responder para ele.
+
+```ts
+await bootstrapApp({ 
+    workdir: import.meta.dirname,
+    responders: {
+        onNotFound(interaction) {
+            if (interaction.replied) return;
+            interaction.reply({ ephemeral, content: "Não foi possível responder esta interação!" });
+        },
+    }
+});
+```
+
+---
+
+### Quando estiver pronto (whenReady)
+
+A base já tem um ouvinte para o evento `ready` do bot, se você não quiser criar um novo ouvinte pra isso, pode usar ele apenas passando uma função para essa opção.
+
+```ts title="src/index.ts"
+await bootstrapApp({ 
+    workdir: import.meta.dirname,
+    whenReady(client) {
+        console.log(`Online como ${client.user.displayName}`)
+    },
+});
+```
+
+---
+
+### Antes de carregar (beforeLoad)
+
+Você você pode executar um código antes dos diretórios serem carregados e recebe o `client` não pronto ainda.
+
+```ts title="src/index.ts"
+await bootstrapApp({ 
+    workdir: import.meta.dirname,
+    beforeLoad() {
+        console.log("Isso ocorre antes do carregamento dos diretórios")
+    },
+});
+```
+---

@@ -1,0 +1,72 @@
+---
+title: Commandos de barra
+icon: RiSlashCommands2
+description: Como criar comandos de barra do discord
+---
+import icons from "@/icons";
+
+Antes de tudo, importe a classe `Command` da base e `ApplicationCommandType` do `discord.js`
+```ts title="ping.ts"
+import { Command } from "#base"
+import { ApplicationCommandType } from "discord.js";
+```
+
+import { MdTipsAndUpdates } from "react-icons/md";
+
+<Blockquote icon={icons.bulb} color="info">
+    Veja [convenções](/docs/discord/conventions#pasta-discord) para criar seus comandos
+</Blockquote>
+
+Para criar um comando de barra, você tem que definir o `nome`, a `descrição` e o `tipo`
+
+```ts
+new Command({
+    name: "ping",
+    description: "Comando de ping",
+    type: ApplicationCommandType.ChatInput,
+    async run(interaction) {
+        interaction.reply({ ephemeral, content: "Pong" });
+    },
+});
+```
+<Blockquote color="danger" icon={icons.danger}>
+    Nomes de comandos slash não podem ser vazios, não podem conter caracteres especiais, letras maiúsculas ou espaços
+</Blockquote>
+
+Você pode definir `opções`, `sub comandos` e `grupos` também.
+```ts title="manage.ts"
+import { Command } from "#base";
+import { ApplicationCommandOptionType, ApplicationCommandType } from "discord.js";
+
+new Command({
+    name: "gerenciar",
+    description: "Comando de gerenciar",
+    type: ApplicationCommandType.ChatInput,
+    options: [
+        {
+            name: "usuários",
+            description: "Gerenciar usuários",
+            type: ApplicationCommandOptionType.Subcommand
+            options: [
+                {
+                    name: "usuário",
+                    description: "Selecione o usuário",
+                    type: ApplicationCommandOptionType.User
+                    required
+                }       
+            ],
+        }
+    ],
+    async run(interaction) {
+        const { options } = interaction;
+
+        switch(options.getSubcommand(true)){
+            case "usuários":{
+                const user = options.getUser("usuário", true);
+                interaction.reply({ ephemeral, content: `${user} managed` })
+                return;
+            }
+        }
+    },
+});
+```

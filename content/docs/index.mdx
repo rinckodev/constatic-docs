@@ -1,13 +1,61 @@
 ---
-title: Hello World
-description: Your first document
+title: Home
+icon: TiHome
+description: Documentation home
+---
+import icons from "@/icons";
+
+## Welcome to the Constatic documentation.
+
+Here you will be able to understand how to use the CLI generated discord bot base created by [Rincko Dev](https://github.com/rinckodev) to develop modern bots.
+
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+## Discord Bot Base
 
-## What is Next?
+<div className="flex flex-col gap-4">
+	<div className="grid grid-cols-2 gap-4">
+		<Card
+		href="/docs/discord/start"
+		title="Get started"
+		icon={<icons.FaClipboard/>}
+		description="See how to start a new project with this base"
+		/>
+		<Card
+			href="/docs/discord/conventions"
+			title="Conventions"
+			icon={<icons.FaHandshake/>}
+			description="Understand the conventions of this project for development"
+		/>
+	</div>
+	<div className="grid grid-cols-3 gap-4">
+		<Card
+			href="/docs/discord/commands"
+			title="Commands"
+			icon={<icons.HiMiniCommandLine/>}
+			description="See how to create and reply discord commands"
+		/>
+		<Card
+			href="/docs/discord/responders"
+			title="Responders"
+			icon={<icons.BsFillReplyFill/>}
+			description="Get to know this awesome feature of this base to reply modals and components"
+		/>
+		<Card
+			href="/docs/discord/events"
+			title="Events"
+			icon={<icons.RiCalendarEventFill/>}
+			description="See how events work on this base and how to create listeners"
+		/>
+	</div>
+	<div className="grid grid-cols-1 gap-4">
+		<Card
+			href="/docs/discord/databases"
+			title="Databases"
+			icon={<icons.FaDatabase/>}
+			description="See how to integrate databases in the project"
+		/>
+	</div>
+</div>
 
-<Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" />
-</Cards>
+---

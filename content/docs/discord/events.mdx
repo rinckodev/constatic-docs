@@ -1,0 +1,30 @@
+---
+title: Events
+icon: RiCalendarEventFill
+description: How to create discord event listeners
+---
+
+To create a listener for a discord event, use the `Event` class
+
+First import the base
+```ts title="src/events/myevent.ts"
+import { Event } from "#base";
+```
+
+Use the `name` property to create a custom identifier for your event, then define which discord event you expect using the `event` property.
+```ts
+import { Event } from "#base";
+
+new Event({
+    name: "Message edit logs",
+    event: "messageUpdate",
+    run(oldMessage, newMessage) {
+        console.log("Message edited at:", newMessage.editedAt?.toDateString());
+        console.log("Author", newMessage.author?.displayName);
+        console.log("Old message content: ", oldMessage.content);
+        console.log("New message content:", newMessage.content);   
+    }
+});
+```
+
+All discord events are typed by the `event` property, when you choose an event, the run method will be automatically typed with all the arguments that this event receives.

@@ -1,0 +1,16 @@
+{
+    "title": "Base de bot de discord",
+    "icon": "BsBoxSeamFill",
+    "defaultOpen": true,
+    "pages": [
+        "start", 
+        "conventions", 
+        "bootstrap",
+        "commands",  
+        "responders", 
+        "events",
+        "databases",
+        "hosting",
+        "guides"
+    ]
+}

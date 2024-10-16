@@ -16,7 +16,10 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@app/*": ["./app/[lang]/*"],
+      "@settings": ["./settings.json"],
+      "@components": ["./components/index.ts"],
     },
     "plugins": [
       {

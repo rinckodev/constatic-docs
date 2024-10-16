@@ -1,0 +1,42 @@
+---
+title: Modais
+icon: RiMenuFill
+description: Como responder modais do discord
+---
+
+Responda um modal definindo o tipo do `Responder` para modal.
+
+```ts title="command.ts"
+// ...
+interaction.showModal({
+    customId: "form/modal",
+    title: "Formulário",
+    components: createModalFields({
+        name:{
+            label: "Qual é o seu nome?",
+            style: TextInputStyle.Short
+        },
+        age:{
+            label: "Qual é a sua idade?",
+            style: TextInputStyle.Short
+        },
+    })
+});
+// ...
+```
+
+```ts title="responder.ts"
+new Responder({
+    customId: "form/modal",
+    type: ResponderType.Modal, cache: "cached",
+    async run(interaction) {
+        const { fields, member } = interaction;
+        const name = fields.getTextInputValue("name");
+        const age = fields.getTextInputValue("age");
+
+        await registerMember(member, { name, age });
+
+        interaction.reply({ ephemeral, content: `Registrado como ${name}` });
+    },
+});
+```

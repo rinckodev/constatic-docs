@@ -1,0 +1,42 @@
+---
+title: Modals
+icon: RiMenuFill
+description: How to reply discord modals
+---
+
+Reply a modal by setting the `Responder` type to modal.
+
+```ts title="command.ts"
+// ...
+interaction.showModal({
+    customId: "form/modal",
+    title: "Form",
+    components: createModalFields({
+        name:{
+            label: "What's your name?",
+            style: TextInputStyle.Short
+        },
+        age:{
+            label: "What's your age?",
+            style: TextInputStyle.Short
+        },
+    })
+});
+// ...
+```
+
+```ts title="responder.ts"
+new Responder({
+    customId: "form/modal",
+    type: ResponderType.Modal, cache: "cached",
+    async run(interaction) {
+        const { fields, member } = interaction;
+        const name = fields.getTextInputValue("name");
+        const age = fields.getTextInputValue("age");
+
+        await registerMember(member, { name, age });
+
+        interaction.reply({ ephemeral, content: `Registered as ${name}` });
+    },
+});
+```

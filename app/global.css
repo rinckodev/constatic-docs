@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --primary: 222 69% 59% !important;
+}
+
+.dark {
+  --accent: 228 10% 16% !important;
+  --secondary: 228 8% 8% !important;
+
+  --card: 228 10% 10% !important;
+  --background: 225 12% 12% ;
+  
+  --border: 228 8% 27% !important;
+  
+  --popover: 228 10% 10% !important;
+  --popover-foreground: 228 8% 68%;
+  
+  
+  --muted: 225 12% 12% !important;
+  --muted-foreground: 228 8% 68%;
+}
+
+.fd-codeblock code {
+  font-size: 14px;
+  font-family: "JetBrains Mono";
+}

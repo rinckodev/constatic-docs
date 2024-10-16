@@ -1,0 +1,88 @@
+---
+title: Parâmetros
+icon: PiBracketsCurlyFill
+description: Transforme o custom id dos componentes em rotas http
+---
+
+import icons from "@/icons";
+
+Você pode usar um recurso desa base chamado `Custom Id Params` para responder qualquer componente ou modal dinamicamente, veja:
+
+Primeiro vamos criar um comando de contexto de usuário:
+```ts title="src/discord/commands/context/manage.ts"
+
+new Command({
+    name: "Gerenciar",
+    type: ApplicationCommandType.User,
+    async run(interaction){
+        const { targetUser } = interaction;
+
+        const embed = new EmbedBuilder({ description: `Gerenciar ${targetUser}` });
+        const row = createRow(
+            new ButtonBuilder({ 
+                customId: `manage/user/${targetUser.id}/kick`, 
+                label: "Kick", style: ButtonStyle.Secondary 
+            }),
+            new ButtonBuilder({ 
+                customId: `manage/user/${targetUser.id}/ban`, 
+                label: "Ban", style: ButtonStyle.Danger 
+            }),
+            new ButtonBuilder({ 
+                customId: `manage/user/${targetUser.id}/timeout`, 
+                label: "Timeout", style: ButtonStyle.Danger 
+            }),
+            new ButtonBuilder({ 
+                customId: `manage/user/${targetUser.id}/alert`, 
+                label: "Alert", style: ButtonStyle.Primary 
+            })
+        );
+
+        interaction.reply({ ephemeral, embeds: [embed], components: [row] });
+    }
+});
+```
+
+Repare que o customId de todos os botões tem uma semelhança, ambos seguem um padrão. São parecidos com rotas http de APIs.
+
+Com isso podemos criar um `Responder` que espera qualquer componente de botão que siga esse padrão no customId.
+
+Ele deve começar com `manage/user` logo depois deve ter um mais dois segmentos separados por `/`, onde o primeiro será o id do usuário e o segundo vai ser uma ação.
+
+Então podemos definir esse padrão e qualquer botão onde o customId seguir ele, será respondido pela função definida. Você pode obter os parâmetros no segundo argumento da função.
+```ts title="src/discord/responders/manage.ts"
+// Dynamic button component function
+new Responder({
+    customId: "manage/user/:userId/:action",
+    type: ComponentType.Button, cache: "cached",
+    async run(interaction, params) {
+        const { action, userId } = params;
+        const targetMember = await interaction.guild.members.fetch(userId);
+
+        switch(action){
+            case "kick": {
+                targetMember.kick();
+                // do things ...
+                break;
+            }
+            case "ban": {
+                targetMember.ban();
+                // do things ...
+                break;
+            }
+            case "timeout": {
+                targetMember.timeout(60000);
+                // do things ...
+                break;
+            }
+            case "alert": {
+                targetMember.send({ /* ... */ });
+                // do things ...
+                break;
+            }
+        }
+    },
+});
+```
+<Blockquote icon={icons.danger} color="danger">
+    Você pode usar esse recurso com qualquer tipo de `Responder`, mas não esqueça que o discord tem um limite de 100 caracteres nos customIds.
+</Blockquote>
