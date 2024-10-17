@@ -1,4 +1,6 @@
+import { rehypeCodeDefaultOptions } from "fumadocs-core/mdx-plugins";
 import { defineDocs, defineConfig } from "fumadocs-mdx/config";
+import { transformerTwoslash } from "fumadocs-twoslash";
 
 export const { docs, meta } = defineDocs();
 
@@ -10,6 +12,10 @@ export default defineConfig({
                 light: "dark-plus",
                 dark: "dark-plus",
             },
+            transformers: [
+                ...(rehypeCodeDefaultOptions.transformers??[]),
+                transformerTwoslash(),
+            ],
         }
     }
 });

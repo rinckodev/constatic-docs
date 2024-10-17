@@ -4,9 +4,11 @@ icon: RiMenuFill
 description: Como responder modais do discord
 ---
 
-Responda um modal definindo o tipo do `Responder` para modal.
+## Responda a interação com um modal
 
 ```ts title="command.ts"
+import { createModalFields } from "@magicyan/discord";
+
 // ...
 interaction.showModal({
     customId: "form/modal",
@@ -24,6 +26,9 @@ interaction.showModal({
 });
 // ...
 ```
+## Responda a interação do modal
+
+Responda um modal definindo o tipo do `Responder` para modal.
 
 ```ts title="responder.ts"
 new Responder({
@@ -34,7 +39,7 @@ new Responder({
         const name = fields.getTextInputValue("name");
         const age = fields.getTextInputValue("age");
 
-        await registerMember(member, { name, age });
+        await registerMember(member, { name, age }); // Função de exemplo
 
         interaction.reply({ ephemeral, content: `Registrado como ${name}` });
     },

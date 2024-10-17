@@ -22,7 +22,10 @@ new Responder({
     customId: "confirm/button",
     type: ResponderType.Button, cache: "cached",
     async run(interaction) {
-        interaction.update({ ephemeral, content: "Confirmed", components: [] });
+        interaction.update({ 
+            ephemeral, content: "Confirmed", 
+            components: []
+        });
     },
 });
 ```

@@ -199,7 +199,10 @@ These are variables with the same name as very common properties when we are cre
 
 For example, the `ephemeral` property, this prop is often used when we want to make the message private only to the interaction user, however, all interaction responses are not ephemeral by default, so most of the time we define the response as ephemeral, this property will be true. On this base we have it as a global variable and we can use it as a "short syntax" in the reply method options object
 
-```ts title="command.ts"
+```ts twoslash title="command.ts"
+// @noErrors
+const ephemeral: true = true;
+// ---cut---
 interaction.deferReply({ ephemeral }); // ephemeral is true by default;
 ```
 
@@ -222,21 +225,33 @@ This way, it is not necessary to import these variables as they have global visi
   <Accordion title="See other examples of using global variables and short syntax">
     <Tabs items={["fetchReply", "ephemeral", "inline"]}>
       <Tab value="fetchReply">
-        ```ts title="command.ts"
+        ```ts twoslash title="command.ts"
+        // @noErrors
+        declare const fetchReply: true;
+        // ---cut---
         const message = await interaction.reply({ fetchReply });
         ```
       </Tab>
       <Tab value="ephemeral">
-        ```ts title="command.ts"
+        ```ts twoslash title="command.ts"
+        // @noErrors
+        declare const ephemeral: true;
+        // ---cut---
         interaction.reply({ ephemeral, content: "Pong" });
         ```
       </Tab>
       <Tab value="inline">
-        ```ts title="command.ts"
+        ```ts twoslash title="command.ts"
+        // @noErrors
+        declare const users: { size: number };
+        declare const guilds: { size: number };
+        declare class EmbedBuilder { constructor(data: EmbedData) }
+        declare const inline: true;
+        // ---cut---
         const embed = new EmbedBuilder({
           fields: [
-            { name: "Users", value: users.size, inline },
-            { name: "Guilds", value: guilds.size, inline },
+            { name: "Users", value: `${users.size}`, inline },
+            { name: "Guilds", value: `${guilds.size}`, inline },
           ]
         })
         ```

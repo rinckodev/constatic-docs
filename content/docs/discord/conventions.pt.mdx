@@ -152,7 +152,7 @@ export * from "./math.js"
 Veja que como este projeto utiliza o tipo `module` precisamos colocar a extensão `.js` no final.
 Com isso podemos importar essa função facilmente em um arquivo de qualquer profundidade no nosso código
 ```ts title="src/discord/commands/admin/context/test.ts"
-import { sum } from "#functions"
+import { sum } from "#functions"                  ?^
 ```
 Sem isso seria necessário usar um caminho relativo. Veja como ficaria
 ```ts title="src/discord/commands/admin/context/test.ts"
@@ -203,7 +203,10 @@ São variáveis com o mesmo nome de propriedades muito comuns quando estamos cri
 
 Por exemplo, a propriedade `ephemeral`, esta propriedade é frequentemente utilizada quando queremos tornar a mensagem privada apenas para o usuário da interação, porém, todas as respostas da interação não são efêmeras por padrão, portanto na maioria das vezes que definimos a resposta como efêmera, esta propriedade será verdadeira. Nessa base temos ela como uma variável global e podemos utilizá-la como uma "sintaxe curta" no objeto de opções do método de resposta
 
-```ts title="command.ts"
+```ts twoslash title="command.ts"
+// @noErrors
+const ephemeral: true = true;
+// ---cut---
 interaction.deferReply({ ephemeral }); // efêmero é verdadeiro por padrão;
 ```
 
@@ -216,7 +219,7 @@ Object.assign(globalThis, {
 });
 
 declare global {
- const ephemeral: verdadeiro;
+ const ephemeral: true;
  // ...
 }
 ```
@@ -226,21 +229,33 @@ Desta forma não é necessário importar essas variáveis pois são de visibilid
   <Accordion title="Veja outros exemplos de uso das variáveis globais e sintaxe curta">
     <Tabs items={["fetchReply", "ephemeral", "inline"]}>
       <Tab value="fetchReply">
-        ```ts title="command.ts"
+        ```ts twoslash title="command.ts"
+        // @noErrors
+        declare const fetchReply: true;
+        // ---cut---
         const message = await interaction.reply({ fetchReply });
         ```
       </Tab>
       <Tab value="ephemeral">
-        ```ts title="command.ts"
+        ```ts twoslash title="command.ts"
+        // @noErrors
+        declare const ephemeral: true;
+        // ---cut---
         interaction.reply({ ephemeral, content: "Pong" });
         ```
       </Tab>
       <Tab value="inline">
-        ```ts title="command.ts"
+        ```ts twoslash title="command.ts"
+        // @noErrors
+        declare const users: { size: number };
+        declare const guilds: { size: number };
+        declare class EmbedBuilder { constructor(data: EmbedData) }
+        declare const inline: true;
+        // ---cut---
         const embed = new EmbedBuilder({
           fields: [
-            { name: "Usuários", value: users.size, inline },
-            { name: "Guildas", value: guilds.size, inline },
+            { name: "Usuários", value: `${users.size}`, inline },
+            { name: "Guildas", value: `${guilds.size}`, inline },
           ]
         })
         ```

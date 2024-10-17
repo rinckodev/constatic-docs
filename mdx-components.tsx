@@ -5,6 +5,7 @@ import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import { Steps, Step } from "fumadocs-ui/components/steps";
+import { Popup, PopupContent, PopupTrigger } from "fumadocs-ui/twoslash/popup";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {
@@ -13,6 +14,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         Steps, Step, Cards, Card, Blockquote, 
         blockquote: ({ children }) => <Callout>{children}</Callout>,
         pre: ({ ref: _ref, ...props }) => CodeBlock(props),
-        a: props => <Link {...props} />, Link
+        a: props => <Link {...props} />, Link,
+        Popup, PopupContent, PopupTrigger
     }
 }
