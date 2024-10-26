@@ -1,15 +1,18 @@
-import { DocsLayout } from "fumadocs-ui/layout";
+import { DocsLayout } from "fumadocs-ui/layouts/docs";
 import type { ReactNode } from "react";
-import { baseOptions } from "../layout.config";
-import { source } from "@/app/source";
+import { baseOptions } from "@app/layout.config";
+import { source } from "@/lib/source";
 
 interface Props {
-  children: ReactNode;
-  params: { lang: string }
+  params: Promise<{
+    lang: string;
+  }>
+  children: ReactNode
 }
-export default function Layout({ children, params }: Props) {
+export default async function Layout({ children, params }: Props) {
+  const { lang } = await params;
   return (
-    <DocsLayout tree={source.pageTree[params.lang]} {...baseOptions}>
+    <DocsLayout tree={source.pageTree[lang]} {...baseOptions}>
       {children}
     </DocsLayout>
   );

@@ -4,16 +4,15 @@ icon: SiFastify
 ---
 import icons from "@/icons";
 
-The API server preset using Fastify comes pre-configured to simplify development. Here's what you need to know to get started:
+A predefinição de servidor de API usando fastify já vem com algumas configurações para facilitar o desenvolvimento. Veja abaixo o que você precisa saber para utilizar:
 
 <Blockquote color="warn" icon={icons.warn}>
-    Knowledge of the Fastify framework is essential for optimal use. Read the documentation: https://fastify.dev/
+    É necessário conhecer o framework fastify para utilizar da melhor forma, leia a documentação: https://fastify.dev/
 </Blockquote>
 
-## Entry Function
+## Função de entrada
 
-Just like in the project base we have the **bootstrapApp** function to load modules and start the bot, we also have the **bootstrapServer** function located in `src/server/index.ts`. This function is exported to be called as soon as the bot is ready:
-
+Assim como na base do projeto temos a função **boostrapApp** para carregar os módulos e iniciar o bot, temos também a função **boostrapServer** que fica no arquivo `src/server/index.ts`. Essa função é exportada para server chamada assim que o bot estiver pronto:
 
 ```ts title="src/index.ts"
 import { bootstrapApp } from "#base";
@@ -26,7 +25,7 @@ await bootstrapApp({
 ```
 
 <Accordions>
-  <Accordion title="If you want to execute additional tasks in the whenReady method">
+  <Accordion title="Caso você queira executar outras coisas no método whenReady">
     ```ts title="src/index.ts"
     import { bootstrapApp } from "#base";
     import { bootstrapServer } from "#server";
@@ -42,11 +41,11 @@ await bootstrapApp({
   </Accordion>
 </Accordions>
 
-With this setup, the Fastify server will start right after the bot goes online, receiving the Client as an argument.
+Com isso o servidor fastify irá iniciar logo após o bot ficar online, assim recebendo o Client como argumento.
 
-## Environment Variables
+## Variáveis de ambiente
 
-The Zod schema for environment validation is adjusted to allow new environment variables:
+O schema zod para validar o env é alterado para permitir novas variávies de ambiente
 
 ```ts title="src/settings/env.ts"
 import { z } from "zod";
@@ -63,16 +62,16 @@ type EnvSchema = z.infer<typeof envSchema>;
 export { envSchema, type EnvSchema };
 ```
 
-This means you can change the **PORT** of the Fastify server by setting this variable in the `.env` file.
+Isso significa que você pode alterar a **PORTA** do servidor fasitfy usando essa variável no arquivo `.env`
 
 ```properties title=".env"
 BOT_TOKEN=yourtoken
 SERVER_PORT=8080
 ```
 
-## Automatic Loading and Registration
+## Carregamento e registro automático
 
-By default, this preset comes with the `@fastify/autoload` plugin installed, allowing us to set up a folder with route handlers that are automatically defined:
+Por padrão, esta predefinição vem com o plugin `@fastify/autoload` instalado, com isso podemos configurar uma pasta com manipuladores de rotas que serão definidos automáticamente:
 
 ```ts title="src/server/index.ts"
 import fastify, { type FastifyInstance } from "fastify";
@@ -94,13 +93,13 @@ export async function bootstrapServer(client: Client<true>){
 }
 ```
 
-This setup will import and register route handlers from all files in the `src/server/routes` folder.
+Essa configuração vai importar e registrar os manipuladores de rota de todos os arquivos da pasta `src/server/routes`.
 
 <Blockquote color="warn" icon={icons.warn}>
-  Therefore, it is important that all files in the routes folder have a default export of a function that receives the Fastify instance, the Discord client, and the Fastify done function.
+  Por isso é muito importante que todos os arquivos da pasta routes tenham uma exportação padrão de uma função que recebe a instância do fastify, o client do discord e a função done do fastify
 </Blockquote>
 
-Here's an example of a root route returning some information:
+Veja um exemplo da rota raiz retornando algumas informações:
 
 ```ts title="src/server/routes/home.ts"
 import { defineRoutes } from "#server";
@@ -118,9 +117,9 @@ export default defineRoutes((app, client) => {
 ```
 
 <Accordions>
-  <Accordion title="Alternative ways to define routes">
+  <Accordion title="Outras maneiras de definir as rotas">
     <Blockquote color="info" icon={icons.info}>
-    In the example above, a utility function included in the preset was used to define routes, but if preferred, you can export a function with typed parameters. 
+    No exemplo acima foi utilizado uma função utilitária que já vem na predefinição, para definir as rotas, mas se você preferir pode apenas exportar uma função tipando os parâmetros corretamente
     </Blockquote>
 
     ```ts title="src/server/routes/home.ts"
@@ -135,10 +134,10 @@ export default defineRoutes((app, client) => {
     };
     ```
     <Blockquote color="warn" icon={icons.warn}>
-    If you choose to export this way, remember to call the done function at the end.
+    Caso for exportar dessa maneira não esqueça de executar a função done no final
     </Blockquote>
 
-    You can also use the type exported from the preset:
+    Você pode usar o tipo exportado da predefinição também:
 
      ```ts title="src/server/routes/home.ts"
     import type { RouteHandler } from "#server";
@@ -152,9 +151,9 @@ export default defineRoutes((app, client) => {
   </Accordion>
 </Accordions>
 
-The `@fastify/autoload` plugin imports subfolder modules and maps the path to a route.
+O plugin `@fastify/autoload` importa módulos de subpastas e transforma o caminho em uma rota:
 
-Create a file in `src/server/routes/users`:
+Crie um arquivo em `src/server/routes/users`:
 ```ts title="src/server/routes/users/route.ts"
 import { defineRoutes } from "#server";
 import { StatusCodes } from "http-status-codes";
@@ -176,14 +175,14 @@ export default defineRoutes((app, client) => {
 });
 ```
 
-In the example above, two routes are registered: the first is `/users`, and the second is `/users/:id`.
+No exemplo acima, será registrado duas rotas, a primeira sendo `/users` e a segunda sendo `/users/:id`.
 <Blockquote color="info" icon={icons.info}>
-    Read the full documentation for the plugin to understand the best use cases: https://github.com/fastify/fastify-autoload
+    Leia a documentação completa do plugin para entender os melhores casos de uso: https://github.com/fastify/fastify-autoload
 </Blockquote>
 
 ## Cors
 
-In this preset, the CORS plugin is already installed with a basic configuration:
+Nesta predefinição, o plugin de cors já vem instalado e com uma configuração básica:
 
 ```ts title="src/server/index.ts"
 import fastify, { type FastifyInstance } from "fastify";
@@ -201,5 +200,5 @@ export async function bootstrapServer(client: Client<true>){
 ```
 
 <Blockquote color="info" icon={icons.info}>
-    Read the full documentation for the plugin to understand the best use cases: https://github.com/fastify/fastify-cors
+    Leia a documentação completa do plugin para entender os melhores casos de uso: https://github.com/fastify/fastify-cors
 </Blockquote>

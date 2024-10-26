@@ -2,14 +2,12 @@ import { docs, meta } from "@/.source";
 import { createMDXSource } from "fumadocs-mdx";
 import { loader } from "fumadocs-core/source";
 import { i18n } from "@/i18n";
+import icons from "@/icons";
 import { createElement } from "react";
 
-import icons from "@/icons";
-
 export const source = loader({
-  baseUrl: "/docs",
+  i18n, baseUrl: "/docs",
   source: createMDXSource(docs, meta),
-  i18n,
   icon(key) {
     if (key && key in icons){
       return createElement(icons[key]);

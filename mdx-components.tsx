@@ -5,7 +5,7 @@ import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import { Steps, Step } from "fumadocs-ui/components/steps";
-import { Popup, PopupContent, PopupTrigger } from "fumadocs-ui/twoslash/popup";
+import { Popup, PopupContent, PopupTrigger } from "fumadocs-twoslash/ui";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {

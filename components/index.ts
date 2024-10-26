@@ -9,6 +9,6 @@ export * from "./magicui/ShineBorder";
 export * from "./Link";
 export * from "./Blockquote";
 export * from "./Card";
-export * from "./CodeBlock";
+export * from "./MyCodeBlock";
 export * from "./ProjectStructure";
 export * from "./CopyButton";

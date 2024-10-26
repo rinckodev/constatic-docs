@@ -1,8 +1,7 @@
+import { I18nProvider, Translations } from "fumadocs-ui/i18n";
 import "../global.css";
-import "fumadocs-ui/twoslash.css";
 import { RootProvider } from "fumadocs-ui/provider";
 import { Inter } from "next/font/google";
-import { I18nProvider, Translations } from "fumadocs-ui/i18n";
 import type { ReactNode } from "react";
 
 const inter = Inter({
@@ -10,17 +9,18 @@ const inter = Inter({
 });
 
 interface Props {
-  params: {
+  params: Promise<{
     lang: string;
-  }
+  }>
   children: ReactNode
 }
-export default function Layout({ children, params }: Props) {
+export default async function Layout({ children, params }: Props) {
+  const { lang } = await params;
   return (
-    <html lang={params.lang} className={inter.className} suppressHydrationWarning>
-      <body>
-        <I18nProvider 
-          locale={params.lang}
+    <html lang="en" className={inter.className} suppressHydrationWarning>
+      <body className="flex flex-col min-h-screen">
+      <I18nProvider 
+          locale={lang}
           locales={[
             { name: "English", locale: "en" },
             { name: "Portuguese", locale: "pt" }
@@ -40,7 +40,7 @@ export default function Layout({ children, params }: Props) {
               previousPage: "Anterior",
               nextPage: "Próxima",
             },
-          } as Record<string, Partial<Translations>>)[params.lang]}
+          } as Record<string, Partial<Translations>>)[lang]}
         >
           <RootProvider>{children}</RootProvider>
         </I18nProvider>

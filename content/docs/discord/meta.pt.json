@@ -10,6 +10,7 @@
         "responders", 
         "events",
         "databases",
+        "servers",
         "hosting",
         "guides"
     ]
