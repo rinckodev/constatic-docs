@@ -1,13 +1,16 @@
-import { source } from '@/lib/source';
+import { source } from "@/lib/source";
 import {
   DocsPage,
   DocsBody,
   DocsDescription,
   DocsTitle,
-} from 'fumadocs-ui/page';
-import { notFound } from 'next/navigation';
-import defaultMdxComponents from 'fumadocs-ui/mdx';
-import { useMDXComponents } from '@/mdx-components';
+} from "fumadocs-ui/page";
+import { notFound } from "next/navigation";
+import defaultMdxComponents from "fumadocs-ui/mdx";
+import { useMDXComponents } from "@/mdx-components";
+import { createMetadataImage } from "fumadocs-core/server";
+import { Metadata } from "next";
+import { createMetadata, metadataImage } from "@/lib/metadata";
 
 interface Props {
   params: Promise<{ 
@@ -37,13 +40,22 @@ export async function generateStaticParams() {
   return source.generateParams();
 }
 
-export async function generateMetadata({ params }: Props) {
-  const { lang, slug } = await params;
-  const page = source.getPage(slug, lang);
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
+  const page = source.getPage(params.slug, params.lang);
+
   if (!page) notFound();
 
-  return {
-    title: page.data.title,
-    description: page.data.description,
-  };
+  const description =
+    page.data.description ?? "Create modern and awesome projects with constatic";
+
+  return createMetadata(
+    metadataImage.withImage(page.slugs, {
+      title: page.data.title,
+      description,
+      openGraph: {
+        url: `/docs/${page.slugs.join("/")}`,
+      },
+    }),
+  );
 }

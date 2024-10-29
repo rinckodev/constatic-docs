@@ -174,11 +174,11 @@ You can have two env files in your project and choose which one to use through t
   // ...
   "scripts":{
     "dev": "tsx --env-file .env ./src/index.ts",
-    "dev:dev": "tsx --env-file .env.development ./src/index.ts",
+    "dev:dev": "tsx --env-file .env.dev ./src/index.ts",
   }
 }
 ```
-If you have a `.env.development` file you can run the `dev:dev` script
+If you have a `.env.dev` file you can run the `dev:dev` script
 
 ```bash
 npm run dev:dev

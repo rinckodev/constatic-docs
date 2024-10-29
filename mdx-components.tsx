@@ -15,6 +15,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         blockquote: ({ children }) => <Callout>{children}</Callout>,
         pre: ({ ref: _ref, ...props }) => CodeBlock(props),
         a: props => <Link {...props} />, Link,
-        Popup, PopupContent, PopupTrigger
+        Popup, PopupContent, PopupTrigger,
     }
 }
