@@ -30,11 +30,11 @@ export default async function Page(props: PageProps) {
             }
             <Link href="/blog" className={buttonVariants({ size: "sm", variant: "secondary" })}>Voltar</Link>
         </div>
-        <article className="container flex flex-col lg:flex-row">
+        <article className="container flex flex-col-reverse md:flex-row">
             <div className="prose min-w-0 flex-1 px-4">
                 <page.data.body components={defaultMdxComponents} />
             </div>
-            <div className="flex flex-col gap-4 border-l p-4 text-sm lg:w-[250px]">
+            <div className="flex flex-col gap-4 md:border-l p-4 text-sm lg:w-[250px]">
                 <div>
                     <p className="font-medium text-muted-foreground">
                         {new Date(page.data.date ?? page.file.name).toLocaleDateString()}
