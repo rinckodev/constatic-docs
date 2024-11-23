@@ -1,9 +1,9 @@
-import { docs, meta } from "@/.source";
-import { createMDXSource } from "fumadocs-mdx";
+import { blogCollection, docs, meta } from "@/.source";
 import { loader } from "fumadocs-core/source";
-import { i18n } from "@/i18n";
-import icons from "@/icons";
+import { createMDXSource } from "fumadocs-mdx";
+import { i18n } from "./i18n";
 import { createElement } from "react";
+import icons from "@/icons";
 
 export const source = loader({
   i18n, baseUrl: "/docs",
@@ -14,3 +14,10 @@ export const source = loader({
     }
   },
 });
+
+export const blog = loader({
+  baseUrl: "/blog",
+  source: createMDXSource(blogCollection, [])
+});
+
+export type BlogPost = NonNullable<ReturnType<typeof blog.getPage>>

@@ -12,8 +12,11 @@ import * as tb from "react-icons/tb";
 import * as bi from "react-icons/bi";
 import * as si from "react-icons/si";
 import * as pi from "react-icons/pi";
-import { LocalIcons } from "@/svgs";
+import { DiscloudWhite } from "./public/svgs/icons/DiscloudWhite";
 
+const LocalIcons = {
+    DiscloudWhite
+}
 const icons: Record<string, IconType> = {};
 const defaults = {
     success: io5.IoCheckmarkCircle,
@@ -25,9 +28,10 @@ const defaults = {
     bulb: md.MdLightbulb   
 }
 Object.assign(
-    icons, defaults, LocalIcons, ti, bs, 
+    icons, defaults, ti, bs, 
     fa, hi, hi2, ri, io, io5, md, tb, bi, 
-    si, pi
+    si, pi, 
+    LocalIcons,
 );
 
 export default icons;

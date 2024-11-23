@@ -1,26 +1,17 @@
+import { defaultMdxComponents } from "@/components/defaultMdxComponents";
 import { source } from "@/lib/source";
+import { CommomPageProps } from "@/lib/types";
 import {
-  DocsPage,
   DocsBody,
   DocsDescription,
+  DocsPage,
   DocsTitle,
 } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
-import defaultMdxComponents from "fumadocs-ui/mdx";
-import { useMDXComponents } from "@/mdx-components";
-import { createMetadataImage } from "fumadocs-core/server";
-import { Metadata } from "next";
-import { createMetadata, metadataImage } from "@/lib/metadata";
 
-interface Props {
-  params: Promise<{ 
-    lang: string; 
-    slug?: string[] 
-  }>;
-}
-export default async function Page({ params }: Props) {
-  const { lang, slug } = await params;
-  const page = source.getPage(slug, lang);
+export default async function Page(props: CommomPageProps) {
+  const params = await props.params;
+  const page = source.getPage(params.slug, params.lang);
   if (!page) notFound();
 
   const MDX = page.data.body;
@@ -30,7 +21,7 @@ export default async function Page({ params }: Props) {
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>
-        <MDX components={{ ...useMDXComponents(defaultMdxComponents) }} />
+        <MDX components={defaultMdxComponents} />
       </DocsBody>
     </DocsPage>
   );
@@ -40,22 +31,13 @@ export async function generateStaticParams() {
   return source.generateParams();
 }
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(props: CommomPageProps) {
   const params = await props.params;
   const page = source.getPage(params.slug, params.lang);
-
   if (!page) notFound();
 
-  const description =
-    page.data.description ?? "Create modern and awesome projects with constatic";
-
-  return createMetadata(
-    metadataImage.withImage(page.slugs, {
-      title: page.data.title,
-      description,
-      openGraph: {
-        url: `/docs/${page.slugs.join("/")}`,
-      },
-    }),
-  );
+  return {
+    title: page.data.title,
+    description: page.data.description,
+  };
 }

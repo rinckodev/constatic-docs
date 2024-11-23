@@ -17,9 +17,8 @@
     "incremental": true,
     "paths": {
       "@/*": ["./*"],
-      "@app/*": ["./app/[lang]/*"],
-      "@settings": ["./settings.json"],
-      "@components": ["./components/index.ts"],
+      "@icons": ["./icons.ts"],
+      "@components/*": ["./components/*"]
     },
     "plugins": [
       {
