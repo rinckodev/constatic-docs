@@ -20,7 +20,7 @@ export default defineConfig({
     rehypeCodeOptions: {
       inline: "tailing-curly-colon",
       themes: {
-        light: "dark-plus",
+        light: "light-plus",
         dark: "dark-plus"
       },
       transformers: [

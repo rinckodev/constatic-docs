@@ -9,11 +9,10 @@ import { Blockquote } from "./docs/Blockquote";
 import { Card, Cards } from "./docs/Card";
 import { Link } from "./docs/Link";
 
-
 export const defaultMdxComponents: MDXComponents = {
     ...mdxComponnets,
     Accordion, Accordions, Tab, Tabs, ImageZoom,
     Steps, Step, Cards, Card, Blockquote, 
     blockquote: ({ children }) => <Callout>{children}</Callout>,
-    a: props => <Link {...props} />, Link,
+    a: props => <Link {...props} />, Link
 };
