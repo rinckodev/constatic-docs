@@ -24,6 +24,8 @@ export function BlogPosts() {
             new Date(a.data.date ?? a.file.name).getTime()
     )
 
+    const mostRecentPost = p[0];
+
     const posts = p.filter((post) => {
         const matchesTags =
             tags.length === 0 ||
@@ -39,7 +41,11 @@ export function BlogPosts() {
     return <div className="flex flex-col-reverse md:flex-row gap-2 w-full">
 
         <div className="flex flex-col gap-2 w-full rounded-md">
-            {posts.map(post => <BlogArticle key={post.data.title} post={post} />)}
+            {posts.map(post => <BlogArticle 
+                key={post.data.title} 
+                post={post} 
+                isMostRecent={mostRecentPost.data.title === post.data.title} 
+            />)}
         </div>
 
         <div className="flex h-fit flex-col gap-2 p-4 md:w-1/3">

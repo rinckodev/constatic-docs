@@ -1,11 +1,13 @@
 import type { BlogPost } from "@/lib/source";
-import { BlogTag } from "./BlogTag";
 import Link from "next/link";
+import { BlogTag } from "./BlogTag";
+import { IoFlameSharp } from "react-icons/io5";
 
 interface BlogArticleProps {
     post: BlogPost,
+    isMostRecent: boolean;
 }
-export function BlogArticle({ post }: BlogArticleProps) {
+export function BlogArticle({ post, isMostRecent }: BlogArticleProps) {
     return <Link href={post.url}>
         <article
             className="flex flex-col gap-2 p-4
@@ -15,9 +17,15 @@ export function BlogArticle({ post }: BlogArticleProps) {
             border-b border-border h-36 rounded-md
             ">
             <div className="flex justify-between items-center gap-2">
-                <h2 className="text-xl font-semibold">
-                    {post.data.title}
-                </h2>
+                <div className="flex items-center gap-2">
+                    <h2 className="text-xl font-semibold">
+                        {post.data.title}
+                    </h2>
+                    {isMostRecent && <p className="
+                    bg-orange-500 text-orange-900 rounded-md text-xs px-2
+                    animate-pulse flex items-center gap-1
+                    "><IoFlameSharp/> Novo</p>} 
+                </div>
                 <time className="text-xs text-muted-foreground">
                     {new Date(post.data.date ?? post.file.name).toLocaleDateString()}
                 </time>

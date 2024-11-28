@@ -17,7 +17,7 @@ export default async function Page(props: PageProps) {
     const page = blog.getPage([params.slug]);
     if (!page) notFound();
 
-    return <main className="flex flex-col gap-4 p-8">
+    return <main className="flex flex-col gap-4 px-12 py-6">
         <div className="container rounded-xl px-8 py-4 border">
             <h1 className="mb-2 text-3xl font-bold darK:text-white">
                 {page.data.title}
