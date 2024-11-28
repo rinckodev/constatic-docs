@@ -40,10 +40,11 @@ export function BlogPosts() {
     });
     return <div className="flex flex-col-reverse md:flex-row gap-2 w-full">
 
-        <div className="flex flex-col gap-2 w-full rounded-md">
-            {posts.map(post => <BlogArticle 
+        <div className="flex flex-col gap-2 w-fit rounded-md">
+            {posts.map((post, index) => <BlogArticle 
                 key={post.data.title} 
                 post={post} 
+                index={index}
                 isMostRecent={mostRecentPost.data.title === post.data.title} 
             />)}
         </div>

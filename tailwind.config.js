@@ -3,6 +3,7 @@
 import { createPreset } from "fumadocs-ui/tailwind-plugin";
 
 import tailwindanimate from "tailwindcss-animate";
+import tailwindmotion from "tailwindcss-motion";
 
 /** @type {import("tailwindcss").Config} */
 export default {
@@ -17,7 +18,7 @@ export default {
 	presets: [createPreset({
 		addGlobalColors: true
 	})],
-	plugins: [tailwindanimate],
+	plugins: [tailwindanimate, tailwindmotion],
 	theme: {
     	extend: {
     		borderRadius: {
