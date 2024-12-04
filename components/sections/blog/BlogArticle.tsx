@@ -10,10 +10,10 @@ interface BlogArticleProps {
     index: number;
 }
 export function BlogArticle({ post, isMostRecent, index }: BlogArticleProps) {
-    return <Link href={post.url}>
+    return <Link href={post.url} className="w-full">
         <article
             className={cn(
-                `flex flex-col gap-2 p-4
+                `flex flex-col gap-2 p-4 w-full
                 hover:cursor-pointer hover:bg-white/5
                 transition-all duration-500 ease-in-out
                 dark:text-neutral-300 dark:hover:text-white
@@ -21,7 +21,7 @@ export function BlogArticle({ post, isMostRecent, index }: BlogArticleProps) {
                 motion-preset-slide-right-sm`,
                 `motion-delay-[${index * 200}ms]`
             )}>
-            <div className="flex justify-between items-center gap-2">
+            <div className="flex justify-between items-center gap-2 w-full">
                 <div className="flex items-center gap-2">
                     <h2 className="text-xl font-semibold">
                         {post.data.title}

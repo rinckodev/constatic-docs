@@ -38,9 +38,9 @@ export function BlogPosts() {
 
         return matchesTags && matchesSearch;
     });
-    return <div className="flex flex-col-reverse md:flex-row gap-2 w-full">
+    return <div className="flex flex-col-reverse md:flex-row gap-2 justify-between w-full">
 
-        <div className="flex flex-col gap-2 w-fit rounded-md">
+        <div className="flex flex-col gap-2 w-full rounded-md">
             {posts.map((post, index) => <BlogArticle 
                 key={post.data.title} 
                 post={post} 
@@ -49,7 +49,7 @@ export function BlogPosts() {
             />)}
         </div>
 
-        <div className="flex h-fit flex-col gap-2 p-4 md:w-1/3">
+        <div className="flex h-fit flex-col gap-2 p-4 md:w-2/4">
             <div className="flex flex-col gap-2">
                 <h2>Pesquisar</h2>
                 <Input
