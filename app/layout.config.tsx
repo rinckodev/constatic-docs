@@ -9,12 +9,12 @@ export const baseOptions: BaseLayoutProps = {
   },
   links: [
     {
-      text: <span className="flex gap-2 items-center"><FaBook/> Docs</span>,
+      text: <span className="flex gap-2 items-center"><FaBook/>Docs</span>,
       url: "/docs",
       active: "nested-url",
     },
     {
-      text: <span className="flex gap-2 items-center"><FaNewspaper/> Blog</span>,
+      text: <span className="flex gap-2 items-center"><FaNewspaper/>Blog</span>,
       url: "/blog",
       active: "nested-url",
     },
