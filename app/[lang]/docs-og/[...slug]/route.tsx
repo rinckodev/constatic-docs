@@ -8,6 +8,7 @@ export const GET = metadataImage.createAPI((page) => {
     title: page.data.title,
     description: page.data.description,
     site: "Constatic Docs",
+    icon: page.data.icon,
   });
 });
 

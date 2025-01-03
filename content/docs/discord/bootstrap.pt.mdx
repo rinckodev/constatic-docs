@@ -1,5 +1,5 @@
 ---
-title: Bootstrap App
+title: Bootstrap
 icon: FaPowerOff
 description: Função inicial do projeto de bot de discord
 ---
@@ -9,29 +9,34 @@ import { File, Files, Folder } from "fumadocs-ui/components/files";
 
 ## Ponto de entrada
 
-O arquivo `index.ts` da pasta `src` é o ponto de entrada deste projeto, é nele que a função `bootstrapApp` é executada para ligar a aplicação de bot de discord.
+O arquivo `index.ts` da pasta `src` é o ponto de entrada deste projeto, é nele que a função `bootstrap` é executada para ligar a aplicação de bot de discord.
 
 ```ts title="src/index.ts"
-import { bootstrapApp } from "#base";
+import { bootstrap } from "#base";
 
-await bootstrapApp({ workdir: import.meta.dirname });
+await bootstrap({ meta: import.meta });
 ```
 
 Neste tópico você vai conferir algumas opções interessantes dessa função.
 
 ---
 
-### Diretório de trabalho (workdir)
+### Meta
 
-Essa opção deve receber o nome do diretório atual, ao executar o projeto em desenvolvimento esse diretório será `src`, mas quando o projeto for buildado ele será `build`.
+Essa opção deve receber o import.meta do arquivo atual, ao executar o projeto em desenvolvimento, o diretório de import.meta será `src`, mas quando o projeto for buildado ele será `build`.
 Essa opção é importante para que os arquivos da pasta discord possam ser importados antes do bot iniciar.
 
 ### Diretórios (directories)
 
-Você pode passar um array de caminhos relativos ao `workdir` que você queira que sejam importados antes do bot iniciar.
+Você pode passar um array de caminhos relativos à pasta atual que você queira que sejam importados antes do bot iniciar.
+
+<Blockquote color="info" icon={icons.info}>
+    Todas as sub pastas aninhadas dos diretórios que você passar nessa propriedade também serão carregadasn não importa a profundidade.
+</Blockquote>
+
 ```ts title="src/index.ts"
-await bootstrapApp({ 
-    workdir: import.meta.dirname,
+await bootstrap({ 
+    meta: import.meta,
     directories: ["./MyCommands", "./alt/events"]
 });
 ```
@@ -59,75 +64,12 @@ Com isso você pode criar `comandos`, `eventos` e `responders` dentro desses dir
 
 ### Logs de carregamento (loadLogs)
 
-É possível desabilitar as logs de carregamento das estruturas dessa base definindo falso na opção `loadLogs` da função `bootstrapApp`.
+É possível desabilitar as logs de carregamento das estruturas dessa base definindo `falso` na opção `loadLogs` da função `bootstrap`.
 
 ```ts title="src/index.ts"
-await bootstrapApp({ 
-    workdir: import.meta.dirname,
+await bootstrap({ 
+    meta: import.meta,
     loadLogs: false
-});
-```
-
-### Opções de comandos (commands)
-
-Você pode definir um array de ids de guildas para registrar os comandos, então ao invés de registrar os comandos globalmente na aplicação (que é o comportamento padrão da base), os comandos serão registrados apenas nas guildas cujo os ids foram passados para a opção.
-
-```ts title="src/index.ts"
-await bootstrapApp({ 
-    workdir: import.meta.dirname,
-    commands: {
-        guilds: ["id1", "id2", "id3"]
-    }
-});
-```
-É recomendado definir variáveis de ambiente para os ids de guildas.
-
-<Tabs items={["Exemplo 1", "Exemplo 2"]}>
-    <Tab value="Exemplo 1">
-    ```ts title="src/index.ts"
-    await bootstrapApp({ 
-        workdir: import.meta.dirname,
-        commands: {
-            guilds: [process.env.MAIN_GUILD_ID, process.env.DEV_GUILD_ID]
-        }
-    });
-    ```
-    ```mdx title=".env"
-    MAIN_GUILD_ID=id
-    DEV_GUILD_ID=id
-    ```
-    
-    </Tab>
-    <Tab value="Exemplo 2">
-    ```ts title="src/index.ts"
-    await bootstrapApp({ 
-        workdir: import.meta.dirname,
-        commands: {
-            guilds: process.env.GUILD_IDS.split(" ")
-        }
-    });
-    ```
-    ```mdx title=".env"
-    GUILD_IDS=id1 id2 id3
-    ```
-    </Tab>
-</Tabs>
-
----
-
-### Opções de responders (responders)
-
-É possível definir uma execução padrão para quando o customId de um componente ou modal do bot for usado e não existir um Responder para ele.
-
-```ts
-await bootstrapApp({ 
-    workdir: import.meta.dirname,
-    responders: {
-        onNotFound(interaction) {
-            if (interaction.replied) return;
-            interaction.reply({ ephemeral, content: "Não foi possível responder esta interação!" });
-        },
-    }
 });
 ```
 
@@ -138,8 +80,8 @@ await bootstrapApp({
 A base já tem um ouvinte para o evento `ready` do bot, se você não quiser criar um novo ouvinte pra isso, pode usar ele apenas passando uma função para essa opção.
 
 ```ts title="src/index.ts"
-await bootstrapApp({ 
-    workdir: import.meta.dirname,
+await bootstrap({ 
+    meta: import.meta,
     whenReady(client) {
         console.log(`Online como ${client.user.displayName}`)
     },
@@ -150,12 +92,13 @@ await bootstrapApp({
 
 ### Antes de carregar (beforeLoad)
 
-Você você pode executar um código antes dos diretórios serem carregados e recebe o `client` não pronto ainda.
+Você você pode executar um código antes dos diretórios serem carregados e recebe o `client` antes de ficar online (ready).
 
 ```ts title="src/index.ts"
-await bootstrapApp({ 
-    workdir: import.meta.dirname,
-    beforeLoad() {
+await bootstrap({ 
+    meta: import.meta,
+    beforeLoad(client) {
+        console.log(client.application) // null;
         console.log("Isso ocorre antes do carregamento dos diretórios")
     },
 });

@@ -1,10 +1,12 @@
 ---
 title: Modais
 icon: RiMenuFill
-description: Como responder modais do discord
+description: Como responder modais do discord com a estrutura Responder
 ---
 
-## Responda a interação com um modal
+## Criando Responder para modais
+
+Abaixo você pode ver um trecho de código respondendo a interação de um comando exibindo um modal:
 
 ```ts title="command.ts"
 import { createModalFields } from "@magicyan/discord";
@@ -26,14 +28,14 @@ interaction.showModal({
 });
 // ...
 ```
-## Responda a interação do modal
 
-Responda um modal definindo o tipo do `Responder` para modal.
+Para responder um modal com o `Responder`, adicione nos tipos o `ResponderType.Modal`:
 
 ```ts title="responder.ts"
-new Responder({
+createResponder({
     customId: "form/modal",
-    type: ResponderType.Modal, cache: "cached",
+    // [!code word:Modal]
+    types: [ResponderType.Modal], cache: "cached",
     async run(interaction) {
         const { fields, member } = interaction;
         const name = fields.getTextInputValue("name");
@@ -41,7 +43,7 @@ new Responder({
 
         await registerMember(member, { name, age }); // Função de exemplo
 
-        interaction.reply({ ephemeral, content: `Registrado como ${name}` });
+        interaction.reply({ flags: ["Ephemeral"], content: `Registrado como ${name}` });
     },
 });
 ```

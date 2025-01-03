@@ -25,36 +25,25 @@ To start a new discord bot project you can use the CLI.
     Create a new folder for your project and open it on your terminal
   </Step>
   <Step>
-    Use the command below to start cli
-    ```bash
-    npx constatic@latest
-    ```
+  Use the command below to start CLI
+  ```bash
+  npx constatic@latest
+  ```
   </Step>
   <Step>
-    Select `Init discord bot project`
-    <ImageZoom src={"/guides/cli/bot-init.svg"} alt="Init discord bot" width="400" height="400" />
+    Select the first option: `Init discord bot project`
   </Step>
   <Step>
-    Enter the project name
-    <Blockquote title="Tip" color="tip" icon={icons.bulb}>
-        Enter `.` to create the project in the current directory and use its name
-    </Blockquote>
-    <ImageZoom src={"/guides/cli/bot-name.svg"} alt="Bot name" width="400" height="400" />
+  You will be asked a few questions to prepare your project:
+  ```md
+  - Project name (path to folder)
+  - Database (optional)
+  - Extra resources (optional)
+  - Install dependencies (optional)
+  ```
   </Step>
   <Step>
-    Select a database preset (optional)
-    <ImageZoom src={"/guides/cli/bot-db.svg"} alt="Bot db" width="400" height="400" />
-  </Step>
-  <Step>
-    Select extra features (optional)
-    <ImageZoom src={"/guides/cli/bot-features.svg"} alt="Bot features" width="400" height="400" />
-  </Step>
-  <Step>
-    Select your package manager to install dependencies (optional)
-    <ImageZoom src={"/guides/cli/bot-deps.svg"} alt="Bot deps" width="400" height="400" />
-  </Step>
-  <Step>
-    Ready! Your project has been generated and you can start developing your bot.
+    Once you have answered everything, your project will be generated and you can start developing.
   </Step>
 </Steps>
 
@@ -65,8 +54,13 @@ With the project generated, place your bot token in the `.env` file that is at t
     [See how to create a bot application and get token on the discord developer portal](/discord/guides/application)
 </Blockquote>
 
-After placing the token you can execute the project in development mode using the command below:
+```properties title=".env"
+BOT_TOKEN=yourtoken
 ```
+
+After placing the token you can execute the project in development mode using the command below:
+
+```bash
 npm run dev
 ```
 

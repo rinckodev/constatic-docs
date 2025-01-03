@@ -220,7 +220,7 @@ await bootstrapApp({
 
       if (err instanceof CustomError){ // [!code highlight]
           const options = { 
-              ephemeral,
+              flags: ["Ephemeral"],
               content: `>>> Erro no sistema principal: ${err.message}` // [!code highlight]
           } satisfies InteractionReplyOptions; 
           
@@ -230,7 +230,7 @@ await bootstrapApp({
       log.error(err); 
               
       const options = { 
-          ephemeral,
+          flags: ["Ephemeral"],
           content: "Ocorreu um erro inesperado!"
       } satisfies InteractionReplyOptions; 
       

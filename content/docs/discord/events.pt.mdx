@@ -5,18 +5,20 @@ description: Como criar listeners de eventos do discord
 ---
 import icons from "@/icons";
 
-Para criar um ouvinte para um evento do discord, use a classe `Event`
+## Criando funções para ouvintes de eventos
+
+Para criar uma função para um ouvinte de evento do discord, use a função `createEvent`
 
 Primeiro faça a importação da base
 ```ts title="src/events/myevent.ts"
-import { Event } from "#base";
+import { createEvent } from "#base";
 ```
 
 Use a propriedade `name` para criar um identificador personalizado para o seu evento, depois defina qual evento do discord você espera usando a propriedade `event`.
 ```ts
-import { Event } from "#base";
+import { createEvent } from "#base";
 
-new Event({
+createEvent({
     name: "Message edit logs",
     event: "messageUpdate",
     run(oldMessage, newMessage) {

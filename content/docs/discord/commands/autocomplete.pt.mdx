@@ -5,6 +5,10 @@ description: Como criar comandos de autocomplete do discord
 ---
 import icons from "@/icons";
 
+## Criando opções autocomplete
+
+Imagine que você queira fornecer escolhas para uma opção de um comando mas de forma dinâmica, por exemplo um comando para pesquisar vídeos no youtube. Você pode usar a opção `autocomplete`, assim com base no que o usuário digitar nessa opção, você pode fazer buscas em APIs e retornar uma lista de escolhas.
+
 <Blockquote icon={icons.warn} color="warn">
     É preciso ter um [comando de barra](/docs/discord/commands/slash) para criar uma opção autocomplete
 </Blockquote>
@@ -12,7 +16,7 @@ import icons from "@/icons";
 Você pode criar uma opção autocomplete no seu comando e responder ela usando o método `autocomplete` em cima do `run`.
 
 ```ts title="command.ts"
-new Command({
+createCommand({
   	name: "busca",
 	description: "Comando de busca",
 	type: ApplicationCommandType.ChatInput,
@@ -21,25 +25,25 @@ new Command({
 			name: "termo",
 			description: "termo",
 			type: ApplicationCommandOptionType.String,
-			autocomplete: true,
+			autocomplete: true, // [!code ++]
 			required,
 		}
 	],
-	async autocomplete(interaction) {
-		const focused = interaction.options.getFocused();
-		const results = await searchData(focused);
-		if (results.length < 1) return;
-		const choices = results.map(data => ({
-			name: data.title, value: data.url
-		}));
-		interaction.respond(choices.slice(0, 25));
+	async autocomplete(interaction) { // [!code highlight]
+		const focused = interaction.options.getFocused(); // [!code highlight]
+		const results = await searchData(focused); // [!code highlight]
+		if (results.length < 1) return; // [!code highlight]
+		const choices = results.map(data => ({ // [!code highlight]
+			name: data.title, value: data.url // [!code highlight]
+		})); // [!code highlight]
+		interaction.respond(choices.slice(0, 25)); // [!code highlight]
 	},
 	async run(interaction){
 		const { options } = interaction;
 
 		const query = options.getString("termo", true);
 		
-		interaction.reply({ ephemeral, content: query });
+		interaction.reply({ flags: ["Ephemeral"], content: query });
 	}
 });
 ```
@@ -47,7 +51,7 @@ new Command({
 Se você tiver uma grande quantidade de itens, use o autocomplete para tentar encontrá-los
 
 ```ts title="command.ts"
-new Command({
+createCommand({
     // ...
     async autocomplete(interaction) {
 		const { options, guild } = interaction;

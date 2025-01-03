@@ -4,20 +4,22 @@ icon: BsFillReplyFill
 description: Entenda como a classe Responder funciona
 ---
 
-A classe `Responder` é poderosa para lidar com diferentes tipos de interações do discord. Com ela podemos responder botões, menus de seleção e modais, ou todos ao mesmo tempo.
+## O que são Responders?
 
-Para criar um `Responder` é preciso importar a classe e o enum da base
+A função `createResponder` é poderosa para lidar com diferentes tipos de interações do discord. Com ela podemos responder botões, menus de seleção e modais, ou todos ao mesmo tempo.
+
+Para criar um `Responder` é preciso importar a função e o enum da base
 ```ts title="responder.ts"
-import { Responder, ResponderType } from "#base";
+import { createResponder, ResponderType } from "#base";
 ```
-Veja um simples exemplo abaixo, vamos enviar um botão através de um comando e responder ele usando a classe `Responder`
+Veja um simples exemplo abaixo, vamos enviar um botão através de um comando e responder ele usando a função `createResponder`
 
 ```ts title="command.ts"
-import { Command, Responder, ResponderType } from "#base";
+import { createCommand } from "#base";
 import { createRow } from "@magicyan/discord";
 import { ApplicationCommandType, ButtonBuilder, ButtonStyle } from "discord.js";
 
-new Command({
+createCommand({
     name: "ping",
     description: "Comando de ping",
     dmPermission: false,
@@ -30,15 +32,18 @@ new Command({
                 style: ButtonStyle.Success
             })
         );
-        interaction.reply({ ephemeral, components: [row] });
+        interaction.reply({ flags: ["Ephemeral"], components: [row] });
     }
 });
+```
+```ts title="responder.ts"
+import { createResponder, ResponderType } from "#base";
 
-new Responder({
+createResponder({
     customId: "ping/button",
-    type: ResponderType.Button, cache: "cached",
+    types: [ResponderType.Button], cache: "cached",
     async run(interaction) {
-        interaction.reply({ ephemeral, content: "pong" });
+        interaction.reply({ flags: ["Ephemeral"], content: "pong" });
     },
 });
 ```

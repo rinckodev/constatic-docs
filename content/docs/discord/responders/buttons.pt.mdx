@@ -1,7 +1,7 @@
 ---
 title: Botões
 icon: MdOutlineRadioButtonChecked
-description: Como responder botões do discord
+description: Como responder botões do discord com a estrutura Responder
 ---
 
 Responda um botão definindo o tipo do `Responder` para botão.
@@ -14,16 +14,17 @@ const row = createRow(
         style: ButtonStyle.Success
     })
 );
-interaction.reply({ ephemeral, components: [row] });
+interaction.reply({ flags: ["Ephemeral"], components: [row] });
 ```
 
 ```ts title="responder.ts"
-new Responder({
+createResponder({
     customId: "confirm/button",
-    type: ResponderType.Button, cache: "cached",
+    // [!code word:Button]
+    types: [ResponderType.Button], cache: "cached",
     async run(interaction) {
         interaction.update({ 
-            ephemeral, content: "Confirmado", 
+            flags: ["Ephemeral"], content: "Confirmado", 
             components: [] 
         });
     },

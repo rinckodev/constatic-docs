@@ -4,25 +4,23 @@ icon: BsFillReplyFill
 description: Understand how the Responder class works
 ---
 
-A classe `Responder` é poderosa para lidar com diferentes tipos de interações do discord. Com ela podemos responder botões, menus de seleção e modais, ou todos ao mesmo tempo.
+## What are Responders?
 
-Para criar um `Responder` é preciso importar a classe e o enum da base
+The `createResponder` function is powerful for handling different types of discord interactions. With it, we can respond to buttons, selection menus and modals, or all of them at the same time.
 
-The `Responder` class is powerful for handling different discord interaction types. With it we can reply to buttons, select menus and modals, or all at the same time.
-
-To create a `Responder` you need to import the class and enum from the base
+To create a `Responder` you need to import the function and the enum from base
 
 ```ts title="responder.ts"
 import { Responder, ResponderType } from "#base";
 ```
-See a simple example below, let's send a button through a command and respond to it using the `Responder` class
+See a simple example below, let's send a button through a command and respond to it using the `createResponder` function
 
 ```ts title="command.ts"
-import { Command, Responder, ResponderType } from "#base";
+import { createCommand, createResponder, ResponderType } from "#base";
 import { createRow } from "@magicyan/discord";
 import { ApplicationCommandType, ButtonBuilder, ButtonStyle } from "discord.js";
 
-new Command({
+createCommand({
     name: "ping",
     description: "Ping command",
     dmPermission: false,
@@ -35,15 +33,15 @@ new Command({
                 style: ButtonStyle.Success
             })
         );
-        interaction.reply({ ephemeral, components: [row] });
+        interaction.reply({ flags: ["Ephemeral"], components: [row] });
     }
 });
 
-new Responder({
+createResponder({
     customId: "ping/button",
-    type: ResponderType.Button, cache: "cached",
+    types: [ResponderType.Button], cache: "cached",
     async run(interaction) {
-        interaction.reply({ ephemeral, content: "pong" });
+        interaction.reply({ flags: ["Ephemeral"], content: "pong" });
     },
 });
 ```

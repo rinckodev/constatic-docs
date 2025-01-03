@@ -12,30 +12,30 @@ The API server preset using Fastify comes pre-configured to simplify development
 
 ## Entry Function
 
-Just like in the project base we have the **bootstrapApp** function to load modules and start the bot, we also have the **bootstrapServer** function located in `src/server/index.ts`. This function is exported to be called as soon as the bot is ready:
+Just like in the project base we have the **bootstrap** function to load modules and start the bot, we also have the **startServer** function located in `src/server/index.ts`. This function is exported to be called as soon as the bot is ready:
 
 
 ```ts title="src/index.ts"
-import { bootstrapApp } from "#base";
-import { bootstrapServer } from "#server";
+import { bootstrap } from "#base";
+import { startServer } from "#server";
 
-await bootstrapApp({ 
-    workdir: import.meta.dirname,
-    whenReady: bootstrapServer
+await bootstrap({ 
+    meta: import.meta,
+    whenReady: startServer
 });
 ```
 
 <Accordions>
   <Accordion title="If you want to execute additional tasks in the whenReady method">
     ```ts title="src/index.ts"
-    import { bootstrapApp } from "#base";
-    import { bootstrapServer } from "#server";
+    import { bootstrap } from "#base";
+    import { startServer } from "#server";
 
-    await bootstrapApp({ 
-        workdir: import.meta.dirname,
+    await bootstrap({ 
+    meta: import.meta,
         whenReady(client){
-            // executar outras coisas
-            bootstrapServer(client);
+            // run other things
+            startServer(client);
         }
     });
     ```
@@ -81,7 +81,7 @@ import type { Client } from "discord.js";
 import path from "node:path";
 // ...
 
-export async function bootstrapServer(client: Client<true>){
+export async function startServer(client: Client<true>){
     // ...
     // [!code word:autoload]
     app.register(autoload, { // [!code highlight]
@@ -192,7 +192,7 @@ import type { Client } from "discord.js";
 import path from "node:path";
 // ...
 
-export async function bootstrapServer(client: Client<true>){
+export async function startServer(client: Client<true>){
     // ...
     // [!code word:cors]
     app.register(cors, { origin: "*" }); // [!code highlight]

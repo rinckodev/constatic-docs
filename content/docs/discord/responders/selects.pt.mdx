@@ -1,10 +1,12 @@
 ---
 title: Menus de seleção
 icon: HiOutlineSelector
-description: Como responder menus de seleção do discord
+description: Como responder menus de seleção do discord com a estrutura Responder
 ---
 
-Responda um menu de seleção definindo o tipo do `Responder` para menu de seleção.
+## Criando Responder para menu de seleção
+
+É possível criar um `Responder` que pode aceitar vários tipos de menus de seleção, veja um exemplo:
 
 ```ts title="command.ts"
 // ...
@@ -19,17 +21,83 @@ const row = createRow(
         ]
     })
 );
-interaction.reply({ ephemeral, components: [row] });
+interaction.reply({ flags: ["Ephemeral"], components: [row] });
 // ...
 ```
+Acima está o código para enviar um menu de seleção comum como resposta do comando. Logo abaixo você pode ver um `Responder` com `ResponderType.StringSelect` nos tipos, assim a função `run` deste Responder será executada quando alguém selecionar neste menu de seleção:
 
 ```ts title="responder.ts"
-new Responder({
+createResponder({
     customId: "select/fruits",
-    type: ResponderType.StringSelect, cache: "cached",
+    // [!code word:StringSelect]
+    types: [ResponderType.StringSelect], cache: "cached",
     async run(interaction) {
         const selected = interaction.values[0];
-        interaction.update({ ephemeral, content: `${selected} Selecionada`, components: [] });
+        interaction.update({ flags: ["Ephemeral"], content: `${selected} Selecionada`, components: [] });
+    },
+});
+```
+
+Você pode combinar diversos tipos de menus de seleção diferentes:
+
+```ts title="responder.ts"
+createResponder({
+    customId: "ban/user", cache: "cached",
+    types: [
+        ResponderType.StringSelect,
+        ResponderType.UserSelect,
+    ],
+    async run(interaction) {
+        const { guild, values: [selected] } = interaction;
+
+        await interaction.update({});
+
+        if (interaction.isUserSelectMenu()){
+            const member = guild.members.get(selected);
+            await member.ban(); 
+        } else {
+            const member = guild.members.cache.find(m => m.user.username === selected);
+            await member.ban(); 
+        }
+
+        await interaction.editReply({ 
+            flags: ["Ephemeral"], components: [] 
+            content: `${userMention(selected)} foi banido!`, 
+        });
+    },
+});
+```
+Abaixo estão todos os tipos de menus de seleção:
+| Menu de seleção | ResponderType | 
+| - | - | 
+| Strings | `ResponderType.StringSelect` | 
+| Usuários | `ResponderType.UserSelect` | 
+| Canais | `ResponderType.ChannelSelect` | 
+| Cargos | `ResponderType.RoleSelect` | 
+| Menções | `ResponderType.MentionableSelect` | 
+
+É possível combinar com qualquer tipo, dessa forma você pode ter um botão, um menu de seleção e um modal com o mesmo customId e todos serão respondidos nesta função, basta fazer verificações:
+
+```ts title="responder.ts"
+createResponder({
+    customId: "menus/main", cache: "cached",
+    types: [
+        ResponderType.Button,
+        ResponderType.StringSelect,
+        ResponderType.ModalComponent,
+    ],
+    async run(interaction) {
+        switch (true) {
+            case interaction.isButton():
+                console.log("Botão")
+                return;
+            case interaction.isStringSelect():
+                console.log("Menu de seleção", interaction.values);
+                return;
+            default:
+                console.log("Modal", interaction.fields);
+                return;
+        }
     },
 });
 ```

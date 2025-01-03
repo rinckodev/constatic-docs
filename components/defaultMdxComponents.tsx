@@ -8,11 +8,15 @@ import { MDXComponents } from "mdx/types";
 import { Blockquote } from "./docs/Blockquote";
 import { Card, Cards } from "./docs/Card";
 import { Link } from "./docs/Link";
+import { Popup, PopupContent, PopupTrigger } from 'fumadocs-twoslash/ui';
 
 export const defaultMdxComponents: MDXComponents = {
     ...mdxComponnets,
     Accordion, Accordions, Tab, Tabs, ImageZoom,
     Steps, Step, Cards, Card, Blockquote, 
     blockquote: ({ children }) => <Callout>{children}</Callout>,
-    a: props => <Link {...props} />, Link
+    a: props => <Link {...props} />, Link,
+    Popup,
+    PopupContent,
+    PopupTrigger,
 };

@@ -40,6 +40,7 @@ function ProjectStructureSrc(props: ProjectStructureProps){
         <Folder name="responders" >
           <File name="click.ts" icon={<TbBrandTypescript />} />
         </Folder>
+        <File name="index.ts" icon={<TbBrandTypescript />} />
       </Folder>
       <Folder name="functions" >
         <File name="index.ts" icon={<TbBrandTypescript />} />

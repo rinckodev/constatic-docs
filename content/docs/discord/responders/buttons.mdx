@@ -14,16 +14,17 @@ const row = createRow(
         style: ButtonStyle.Success
     })
 );
-interaction.reply({ ephemeral, components: [row] });
+interaction.reply({ flags: ["Ephemeral"], components: [row] });
 ```
 
 ```ts title="responder.ts"
-new Responder({
+createResponder({
     customId: "confirm/button",
-    type: ResponderType.Button, cache: "cached",
+    // [!code word:Button]
+    types: [ResponderType.Button], cache: "cached",
     async run(interaction) {
         interaction.update({ 
-            ephemeral, content: "Confirmed", 
+            flags: ["Ephemeral"], content: "Confirmed", 
             components: []
         });
     },

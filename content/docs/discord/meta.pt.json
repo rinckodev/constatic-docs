@@ -4,8 +4,10 @@
     "defaultOpen": true,
     "pages": [
         "start", 
+        "troubleshooting",
         "conventions", 
         "bootstrap",
+        "creators",
         "commands",  
         "responders", 
         "events",

@@ -1,5 +1,5 @@
 {
-  "name": "constatic-revamp-fix",
+  "name": "constatic-docs",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -16,10 +16,10 @@
     "@radix-ui/react-slot": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "codehike": "^1.0.4",
     "framer-motion": "^11.11.17",
     "fumadocs-core": "14.5.2",
     "fumadocs-mdx": "11.1.1",
+    "fumadocs-twoslash": "^2.0.2",
     "fumadocs-ui": "14.5.2",
     "lucide-react": "^0.460.0",
     "next": "15.0.3",

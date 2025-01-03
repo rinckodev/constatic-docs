@@ -22,7 +22,7 @@ Ao gerar o projeto usando a [CLI](/docs/discord/start), é possível selecionar 
 <Accordions>
     <Accordion title="Mas... Se você não marcou essa opção, veja como os arquivos devem ficar">
     Crie o arquivo `discloud.config` na raiz do projeto.
-    ```yml title="discloud.config"
+    ```properties title="discloud.config"
     NAME=Awesome Bot
     TYPE=bot
     MAIN=build/index.js
@@ -32,7 +32,7 @@ Ao gerar o projeto usando a [CLI](/docs/discord/start), é possível selecionar 
     START=npm run start
     ```
     Crie o arquivo `.discloudignore` na raiz do projeto.
-    ```yml title=".discloudignore"
+    ```properties title=".discloudignore"
     # Folders
     /.vscode
     /src
@@ -59,7 +59,7 @@ Ao gerar o projeto usando a [CLI](/docs/discord/start), é possível selecionar 
 </Accordions>
 
 No arquivo `discloud.config` você pode definir um nome e um avatar para a sua aplicação na hospedagem se preferir.
-```yml title="discloud.config"
+```properties title="discloud.config"
     NAME=My Awesome Bot
     AVATAR=https://i.imgur.com/L7Mxhoj.gif
     # ...
