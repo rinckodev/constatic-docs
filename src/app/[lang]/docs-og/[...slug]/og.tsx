@@ -1,7 +1,7 @@
+import icons from "@/lib/icons";
+import type { ImageResponseOptions } from "next/dist/compiled/@vercel/og/types";
 import { ImageResponse } from "next/og";
 import { createElement, type ReactElement, type ReactNode } from "react";
-import type { ImageResponseOptions } from "next/dist/compiled/@vercel/og/types";
-import icons from "@/lib/icons";
 
 interface GenerateProps {
   title: ReactNode;
