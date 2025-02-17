@@ -3,8 +3,6 @@ title: Imports
 icon: FaFileImport
 description: Development standards for this project
 ---
-import icons from "@/icons";
-import { ProjectStructure } from "@/components/docs/ProjectStructure";
 
 ## Import Shortcuts
 
@@ -29,7 +27,7 @@ You can import anything using alias in `package.json`.
         "#settings": ["./build/settings/index.js"],
         "#tools": ["./build/tools/index.js"],
         "#server": ["./build/server/index.js"],
-        "#lang/*": ["./lang/*"]
+        "#lib": ["./build/lib/index.js"]
       }
     }
     ```
@@ -47,7 +45,9 @@ You can import anything using alias in `package.json`.
           "#settings": ["./settings/index.ts"],
           "#tools": ["./tools/index.ts"],
           "#server": ["./server/index.ts"],
-          "#lang/*": ["../lang/*"]
+          "#lib": ["./lib/index.ts"],
+          "#emojis": ["../emojis.json"],
+          "#types/*": ["./@types/*"]
         },
       }
       // ...

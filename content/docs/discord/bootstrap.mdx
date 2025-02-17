@@ -3,9 +3,7 @@ title: Bootstrap
 icon: FaPowerOff
 description: Initial discord bot project function
 ---
-import icons from "@/icons";
-import { ProjectStructureSrc } from "@/components/docs/ProjectStructure";
-import { File, Files, Folder } from "fumadocs-ui/components/files";
+import icons from "@/lib/icons";
 
 ## Entry point
 
@@ -29,9 +27,9 @@ This option is important so that the files in the discord folder can be imported
 
 You can pass an array of paths relative to the current folder that you want to be imported before the bot starts.
 
-<Blockquote color="info" icon={icons.info}>
+<Callout type="info">
     Any nested subfolders of the directories you pass in this property will also be loaded, no matter how deep.
-</Blockquote>
+</Callout>
 
 ```ts title="src/index.ts"
 await bootstrap({
@@ -39,23 +37,6 @@ meta: import.meta,
 directories: ["./MyCommands", "./alt/events"]
 });
 ```
-
-<Files>
-    <ProjectStructureSrc srcFolder={(
-        <>
-        <Folder name="MyCommands">
-            <File name="party.ts" icon={<icons.TbBrandTypescript />} />
-            <File name="tell.ts" icon={<icons.TbBrandTypescript />} />
-        </Folder>
-        <Folder name="alt">
-            <Folder name="events">
-                <File name="onMemberJoin.ts" icon={<icons.TbBrandTypescript />} />
-                <File name="onMemberLeave.ts" icon={<icons.TbBrandTypescript />} />
-            </Folder>
-        </Folder>
-        </>
-    )} />
-</Files>
 
 With this you can create `commands`, `events` and `responders` within these directories and they will be loaded before the bot starts.
 

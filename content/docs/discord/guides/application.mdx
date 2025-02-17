@@ -4,13 +4,6 @@ icon: MdAutoFixHigh
 description: How to create a discord bot application, enable intents and get token
 ---
 
-import step01 from "@/public/guides/application/step-01.png";
-import step02 from "@/public/guides/application/step-02.png";
-import step03 from "@/public/guides/application/step-03.png";
-import step04 from "@/public/guides/application/step-04.png";
-import step05 from "@/public/guides/application/step-05.png";
-import step06 from "@/public/guides/application/step-06.png";
-
 This is a simple guide on how to create an application to develop discord bots
 
 <Steps>
@@ -21,19 +14,19 @@ This is a simple guide on how to create an application to develop discord bots
   </Step>
   <Step>
     Create a new application
-    <ImageZoom src={step01} width={600} alt="setp-01" />
+    <ImageZoom src={"/guides/application/step-01.png"} width={600} height={600} alt="setp-01" />
   </Step>
   <Step>
     Set the application name and click create
-    <ImageZoom src={step02} width={600} alt="setp-02" />
+    <ImageZoom src={"/guides/application/step-02.png"} width={600} height={600} alt="setp-02" />
   </Step>
   <Step>
     Enable intents
-    <ImageZoom src={step03} width={600} alt="setp-03" />
+    <ImageZoom src={"/guides/application/step-03.png"} width={600} height={600} alt="setp-03" />
   </Step>
   <Step>
     Your bot's token will be revealed when you open the "Reset Token" button and confirm.
-    <ImageZoom src={step04} width={600} alt="setp-04" />
+    <ImageZoom src={"/guides/application/step-04.png"} width={600} height={600} alt="setp-04" />
     Copy the token and paste it into the `.env` file
     ```yml title=".env"
     BOT_TOKEN=yourtoken
@@ -42,7 +35,7 @@ This is a simple guide on how to create an application to develop discord bots
   <Step>
     To invite the bot to the server, click on the OAuth2 tab and then on URL Generator.
 Check the "bot" and "application.commands" scopes. Check admin permission. A url will be generated below, just access it to choose the server you want the bot to enter.
-    <ImageZoom src={step05} width={600} alt="setp-05" />
-    <ImageZoom src={step06} width={600} alt="setp-06" />
+    <ImageZoom src={"/guides/application/step-05.png"} width={600} height={600} alt="setp-05" />
+    <ImageZoom src={"/guides/application/step-06.png"} width={600} height={600} alt="setp-06" />
   </Step>
 </Steps>

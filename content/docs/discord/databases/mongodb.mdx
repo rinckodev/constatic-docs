@@ -3,58 +3,44 @@ title: MongoDB
 icon: BiLogoMongodb
 description: Guide to create a new mongodb database
 ---
-import step01 from "@/public/mongodb/step-01.png";
-import step02 from "@/public/mongodb/step-02.png";
-import step03 from "@/public/mongodb/step-03.png";
-import step04 from "@/public/mongodb/step-04.png";
-import step05 from "@/public/mongodb/step-05.png";
-import step06 from "@/public/mongodb/step-06.png";
-import step07 from "@/public/mongodb/step-07.png";
-import step08 from "@/public/mongodb/step-08.png";
-import step09 from "@/public/mongodb/step-09.png";
-import step10 from "@/public/mongodb/step-10.png";
-import step11 from "@/public/mongodb/step-11.png";
-import step12 from "@/public/mongodb/step-12.png";
-import step13 from "@/public/mongodb/step-13.png";
-import step14 from "@/public/mongodb/step-14.png";
 
 # Creating a MongoDb Database
 
 Visit https://www.mongodb.com/pt-br and log in (or register).
 
-<ImageZoom src={step01} alt="test"/>
+<ImageZoom src={"/mongodb/step-01.png"} width={500} height={500} alt="step-01"/>
 
 You should be sent to the home page. If not, click the Atlas logo at the top of the page
 After that, click on **New Project** to create a new project
 
-<ImageZoom src={step02} alt="test"/>
+<ImageZoom src={"/mongodb/step-02.png"} width={500} height={500} alt="step-02"/>
 
 Enter the name you want and click **Next**
 
-<ImageZoom src={step03} alt="test"/>
+<ImageZoom src={"/mongodb/step-03.png"} width={500} height={500} alt="step-03"/>
 
 You will see this screen, so just click **Create Project**
 
-<ImageZoom src={step04} alt="test"/>
+<ImageZoom src={"/mongodb/step-04.png"} width={500} height={500} alt="step-04"/>
 
 You will be redirected to your project home screen
 
 Initially you will have nothing, so click **Create**
 
-<ImageZoom src={step05} alt="test"/>
+<ImageZoom src={"/mongodb/step-05.png"} width={500} height={500} alt="step-05"/>
 
 Choose the **M0** free plan
 
-<ImageZoom src={step06} alt="test"/>
+<ImageZoom src={"/mongodb/step-06.png"} width={500} height={500} alt="step-06"/>
 
 Choose the provider you want, then select the region (It is recommended to choose the one closest to your application).
 Enter whatever name you prefer for the cluster.
 
-<ImageZoom src={step07} alt="test"/>
+<ImageZoom src={"/mongodb/step-07.png"} width={500} height={500} alt="step-07"/>
 
 At the bottom of the page click **Create**
 
-<ImageZoom src={step08} alt="test"/>
+<ImageZoom src={"/mongodb/step-08.png"} width={500} height={500} alt="step-08"/>
 
 - ⚠️ This step is very important
 
@@ -62,26 +48,26 @@ Create a user to be able to access the database! Set the name you want and the p
 - ⚠️ Click to copy this password and save it for later use
 Keep scrolling down the page and you will reach the last step
 
-<ImageZoom src={step09} alt="test"/>
+<ImageZoom src={"/mongodb/step-09.png"} width={500} height={500} alt="step-09"/>
 
 Add an IP address and click Add Entry
 Adding the IP 0.0.0.0/0 will allow your bot that is hosted anywhere to connect to the database
 
 Lastly click on **Finish and Close**
 
-<ImageZoom src={step10} alt="test"/>
+<ImageZoom src={"/mongodb/step-10.png"} width={500} height={500} alt="step-10"/>
 
 Click **Connect**
 
-<ImageZoom src={step11} alt="test"/>
+<ImageZoom src={"/mongodb/step-11.png"} width={500} height={500} alt="step-11"/>
 
 Then select **Drivers**
 
-<ImageZoom src={step12} alt="test"/>
+<ImageZoom src={"/mongodb/step-12.png"} width={500} height={500} alt="step-12"/>
 
 Click to copy your database **URI**
 
-<ImageZoom src={step13} alt="test"/>
+<ImageZoom src={"/mongodb/step-13.png"} width={500} height={500} alt="step-13"/>
 
 Note that right below it says to replace **<span>{"<password>"}</span>** with the password you defined for your user
 
@@ -92,4 +78,4 @@ With your database URI in hand, you can now use it in your projects to connect.
 
 Define it in the .env file
 
-<ImageZoom src={step14} alt="test"/>
+<ImageZoom src={"/mongodb/step-14.png"} width={500} height={500} alt="step-14"/>

@@ -3,7 +3,7 @@ title: Slash
 icon: RiSlashCommands2
 description: How to create discord slash commands
 ---
-import icons from "@/icons";
+import icons from "@/lib/icons";
 
 ## Creating slash commands
 
@@ -14,9 +14,9 @@ import { Command } from "#base";
 import { ApplicationCommandType } from "discord.js";
 ```
 
-<Blockquote icon={icons.bulb} color="info">
+<Callout type="info">
     See [conventions](/docs/discord/conventions) to create your commands
-</Blockquote>
+</Callout>
 
 ## How to create slash command
 
@@ -33,9 +33,9 @@ createCommand({
 });
 ```
 
-<Blockquote color="danger" icon={icons.danger}>
+<Callout type="danger">
     Slash command names cannot be empty, cannot contain special characters, capital letters or spaces
-</Blockquote>
+</Callout>
 
 ## Set slash command options
 

@@ -3,7 +3,7 @@ title: Commandos de barra
 icon: RiSlashCommands2
 description: Como criar comandos de barra do discord
 ---
-import icons from "@/icons";
+import icons from "@/lib/icons";
 
 ## Criando comandos de barra
 
@@ -16,9 +16,9 @@ import { ApplicationCommandType } from "discord.js";
 
 import { MdTipsAndUpdates } from "react-icons/md";
 
-<Blockquote icon={icons.bulb} color="info">
+<Callout type="info">
     Veja [convenções](/docs/discord/conventions#pasta-discord) para criar seus comandos
-</Blockquote>
+</Callout>
 
 Para criar um comando de barra, você tem que definir o `nome`, a `descrição` e o `tipo`
 
@@ -32,15 +32,15 @@ createCommand({
     },
 });
 ```
-<Blockquote color="danger" icon={icons.danger}>
+<Callout type="danger">
     Nomes de comandos `/` (barra) e de opções de comandos não podem ser vazios, não podem conter caracteres especiais, letras maiúsculas ou espaços
-</Blockquote>
+</Callout>
 
 ## Definindo opções de comando
 
 Você pode definir `opções`, `sub comandos` e `grupos` também.
 ```ts title="manage.ts"
-import { Command } from "#base";
+import { createCommand } from "#base";
 import { ApplicationCommandOptionType, ApplicationCommandType } from "discord.js";
 
 createCommand({

@@ -2,13 +2,14 @@
 title: Fastify
 icon: SiFastify
 ---
-import icons from "@/icons";
+import icons from "@/lib/icons";
+
 
 A predefinição de servidor de API usando fastify já vem com algumas configurações para facilitar o desenvolvimento. Veja abaixo o que você precisa saber para utilizar:
 
-<Blockquote color="warn" icon={icons.warn}>
+<Callout type="warn">
     É necessário conhecer o framework fastify para utilizar da melhor forma, leia a documentação: https://fastify.dev/
-</Blockquote>
+</Callout>
 
 ## Função de entrada
 
@@ -95,9 +96,9 @@ export async function startServer(client: Client<true>){
 
 Essa configuração vai importar e registrar os manipuladores de rota de todos os arquivos da pasta `src/server/routes`.
 
-<Blockquote color="warn" icon={icons.warn}>
+<Callout type="warn">
   Por isso é muito importante que todos os arquivos da pasta routes tenham uma exportação padrão de uma função que recebe a instância do fastify, o client do discord e a função done do fastify
-</Blockquote>
+</Callout>
 
 Veja um exemplo da rota raiz retornando algumas informações:
 
@@ -118,9 +119,9 @@ export default defineRoutes((app, client) => {
 
 <Accordions>
   <Accordion title="Outras maneiras de definir as rotas">
-    <Blockquote color="info" icon={icons.info}>
+    <Callout type="info">
     No exemplo acima foi utilizado uma função utilitária que já vem na predefinição, para definir as rotas, mas se você preferir pode apenas exportar uma função tipando os parâmetros corretamente
-    </Blockquote>
+    </Callout>
 
     ```ts title="src/server/routes/home.ts"
     import type { FastifyInstance } from "fastify";
@@ -133,9 +134,9 @@ export default defineRoutes((app, client) => {
         done(); // [!code highlight]
     };
     ```
-    <Blockquote color="warn" icon={icons.warn}>
+    <Callout type="warn">
     Caso for exportar dessa maneira não esqueça de executar a função done no final
-    </Blockquote>
+    </Callout>
 
     Você pode usar o tipo exportado da predefinição também:
 
@@ -176,9 +177,9 @@ export default defineRoutes((app, client) => {
 ```
 
 No exemplo acima, será registrado duas rotas, a primeira sendo `/users` e a segunda sendo `/users/:id`.
-<Blockquote color="info" icon={icons.info}>
+<Callout type="info">
     Leia a documentação completa do plugin para entender os melhores casos de uso: https://github.com/fastify/fastify-autoload
-</Blockquote>
+</Callout>
 
 ## Cors
 
@@ -199,6 +200,6 @@ export async function startServer(client: Client<true>){
 }
 ```
 
-<Blockquote color="info" icon={icons.info}>
+<Callout type="info">
     Leia a documentação completa do plugin para entender os melhores casos de uso: https://github.com/fastify/fastify-cors
-</Blockquote>
+</Callout>

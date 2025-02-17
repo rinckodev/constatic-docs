@@ -3,18 +3,18 @@ title: Get started
 icon: FaClipboard
 description: First steps to starting a new discord bot project
 ---
-import icons from "@/icons";
+import icons from "@/lib/icons";
 
 ## Requirements
 
-<Blockquote color="warn" icon={icons.warn}>
+<Callout type="warn">
 You must follow these requirements before you begin
   - A code editor (preferably [Visual Studio Code](https://code.visualstudio.com/))
   - Requires [NodeJs](https://nodejs.org/) 20.11 or higher installed (or [Bun](https://bun.sh/))
   - Basic knowledge of programming logic
   - Basic knowledge of [javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) and [typescript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
   - Basic knowledge of [discord.js](https://discordjs.guide/)
-</Blockquote>
+</Callout>
 
 ## Generating the project
 
@@ -50,9 +50,9 @@ To start a new discord bot project you can use the CLI.
 ## Setup the project
 
 With the project generated, place your bot token in the `.env` file that is at the project root.
-<Blockquote color="info" icon={icons.info}>
+<Callout type="info">
     [See how to create a bot application and get token on the discord developer portal](/discord/guides/application)
-</Blockquote>
+</Callout>
 
 ```properties title=".env"
 BOT_TOKEN=yourtoken

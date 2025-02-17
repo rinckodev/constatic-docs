@@ -3,13 +3,13 @@ title: Docker
 icon: FaDocker
 description: How to host discord bot project using docker
 ---
-import icons from "@/icons";
+import icons from "@/lib/icons";
 
 Docker is an open-source platform that simplifies the creation, testing, and deployment of applications in containers, which are isolated and lightweight environments containing everything needed to run an application, ensuring consistency and portability across different development and production environments.
 
-<Blockquote icon={icons.warn} color="warn">
+<Callout type="warn">
     You must have [Docker installed](https://www.docker.com/) and [basic knowledge of Docker.](https://docs.docker.com/guides/) to follow this guide!
-</Blockquote>
+</Callout>
 
 Create a `Dockerfile` in the project root with the following contents:
 
@@ -40,18 +40,18 @@ Then run the command below:
 docker build --pull --rm -f Dockerfile -t discord-bot .
 ```
 
-<Blockquote icon={icons.info} color="info">
+<Callout type="info">
     The `-t` flag set a name for the image, in this case it will be **discord-bot**
-</Blockquote>
+</Callout>
 
 After that, just run a container with this image.
 
 ```bash
 docker run -d --name my-bot discord-bot
 ```
-<Blockquote icon={icons.info} color="info">
+<Callout type="info">
     The `--name` flag set a name for the container, in this case it will be **my-bot**
-</Blockquote>
+</Callout>
 
 That's enough, your application will be online in moments.
 

@@ -3,8 +3,8 @@ title: Creators
 icon: MdFactory
 description: Main base structures for creating commands and systems
 ---
-import icons from "@/icons";
-import { ProjectStructureSrc } from "@/components/docs/ProjectStructure";
+import icons from "@/lib/icons";
+
 import { File, Files, Folder } from "fumadocs-ui/components/files";
 
 On this base, to create commands and systems you must use the creator functions, which are `createCommand`, `createEvent` and `createResponder`.
@@ -110,9 +110,9 @@ You can set some command options in the `setupCreators` function:
     ```
     You can check what type of error it is and choose whether or not to send custom messages.
     
-    <Blockquote icon={icons.warn} color="danger">
+    <Callout type="danger">
         It is extremely important to use `await` on Promises when their run is `async`, so that the command error handler can catch it correctly.
-    </Blockquote>
+    </Callout>
 
     ```ts
     // [!code word:await]
@@ -196,9 +196,9 @@ You can set some responder options in the `setupCreators` function:
     ```
     You can check what type of error it is and choose whether or not to send custom messages.
     
-    <Blockquote icon={icons.warn} color="danger">
+    <Callout type="danger">
         It is extremely important to use `await` on Promises when their run is `async`, so that the responder error handler can catch it correctly.
-    </Blockquote>
+    </Callout>
 
     ```ts
     // [!code word:await]
@@ -231,8 +231,8 @@ You can set some responder options in the `setupCreators` function:
         },
     });
     ```
-    <Blockquote icon={icons.warn} color="danger">
+    <Callout type="danger">
         Be careful! If you use component collectors or modals in any command, this function will still be called, as it looks for a handler created with the `createResponder` function. So it is important to check if the interaction has already been responded to or wait a short time before actually responding.
-    </Blockquote>
+    </Callout>
   </Tab>
 </Tabs>

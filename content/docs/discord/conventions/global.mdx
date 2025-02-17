@@ -3,8 +3,6 @@ title: Global
 icon: FaGlobe
 description: Development standards for this project
 ---
-import icons from "@/icons";
-import { ProjectStructure } from "@/components/docs/ProjectStructure";
 
 ## Global Variables
 
@@ -24,7 +22,7 @@ The other flags that can be passed in the array of this property are rarely used
 
 ```ts twoslash title="command.ts"
 // @noErrors
-const flags: ["Ephemeral"], = ["Ephemeral"];
+const flags: ["Ephemeral"] = ["Ephemeral"];
 // ---cut---
 interaction.deferReply({ flags }); // Contém "Ephemeral" por padrão;
 ```
@@ -33,7 +31,7 @@ This is the file that contains the global variables:
 
 ```ts title="src/settings/global.ts"
 declare global {
-  const flags: ["Ephemeral"],;
+  const flags: ["Ephemeral"];
   // ...
 }
 
@@ -54,7 +52,7 @@ In this way, it is not necessary to import these variables since they have globa
         // @noErrors
         declare const withResponse: true;
         // ---cut---
-        const message = await interaction.reply({ withResponse });
+        const response = await interaction.reply({ withResponse });
         ```
       </Tab>
       <Tab value="flags">
@@ -68,8 +66,10 @@ In this way, it is not necessary to import these variables since they have globa
       <Tab value="inline">
         ```ts twoslash title="command.ts"
         // @noErrors
-        declare const users: { size: number };
-        declare const guilds: { size: number };
+        type Guilds = { size: number }
+        type Users = { size: number }
+        declare const users: Users;
+        declare const guilds: Guilds;
         declare class EmbedBuilder { constructor(data: EmbedData) }
         declare const inline: true;
         // ---cut---

@@ -2,13 +2,14 @@
 title: Fastify
 icon: SiFastify
 ---
-import icons from "@/icons";
+import icons from "@/lib/icons";
+
 
 The API server preset using Fastify comes pre-configured to simplify development. Here's what you need to know to get started:
 
-<Blockquote color="warn" icon={icons.warn}>
+<Callout type="warn">
     Knowledge of the Fastify framework is essential for optimal use. Read the documentation: https://fastify.dev/
-</Blockquote>
+</Callout>
 
 ## Entry Function
 
@@ -96,9 +97,9 @@ export async function startServer(client: Client<true>){
 
 This setup will import and register route handlers from all files in the `src/server/routes` folder.
 
-<Blockquote color="warn" icon={icons.warn}>
+<Callout type="warn">
   Therefore, it is important that all files in the routes folder have a default export of a function that receives the Fastify instance, the Discord client, and the Fastify done function.
-</Blockquote>
+</Callout>
 
 Here's an example of a root route returning some information:
 
@@ -119,9 +120,9 @@ export default defineRoutes((app, client) => {
 
 <Accordions>
   <Accordion title="Alternative ways to define routes">
-    <Blockquote color="info" icon={icons.info}>
+    <Callout type="info">
     In the example above, a utility function included in the preset was used to define routes, but if preferred, you can export a function with typed parameters. 
-    </Blockquote>
+    </Callout>
 
     ```ts title="src/server/routes/home.ts"
     import type { FastifyInstance } from "fastify";
@@ -134,9 +135,9 @@ export default defineRoutes((app, client) => {
         done(); // [!code highlight]
     };
     ```
-    <Blockquote color="warn" icon={icons.warn}>
+    <Callout type="warn">
     If you choose to export this way, remember to call the done function at the end.
-    </Blockquote>
+    </Callout>
 
     You can also use the type exported from the preset:
 
@@ -177,9 +178,9 @@ export default defineRoutes((app, client) => {
 ```
 
 In the example above, two routes are registered: the first is `/users`, and the second is `/users/:id`.
-<Blockquote color="info" icon={icons.info}>
+<Callout type="info">
     Read the full documentation for the plugin to understand the best use cases: https://github.com/fastify/fastify-autoload
-</Blockquote>
+</Callout>
 
 ## Cors
 
@@ -200,6 +201,6 @@ export async function startServer(client: Client<true>){
 }
 ```
 
-<Blockquote color="info" icon={icons.info}>
+<Callout type="info">
     Read the full documentation for the plugin to understand the best use cases: https://github.com/fastify/fastify-cors
-</Blockquote>
+</Callout>

@@ -3,7 +3,7 @@ title: PM2
 icon: SiPm2
 description: Como hospedar o projeto de bot de discord usando pm2
 ---
-import icons from "@/icons";
+import icons from "@/lib/icons";
 
 O PM2 é um gerenciador de processos daemon que ajudará você a gerenciar e manter sua aplicação online.
 
@@ -30,9 +30,9 @@ Então você pode iniciar sua aplicação usando este comando:
 ```bash
 pm2 start --name my-bot ./pm2.start.mjs
 ```
-<Blockquote icon={icons.info} color="info">
+<Callout type="info">
     Você pode definir um nome customizado para o seu processo usando a flag `--name`
-</Blockquote>
+</Callout>
 
 Pronto, sua aplicação será executada em segundo plano na maquina.
 

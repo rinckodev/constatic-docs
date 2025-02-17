@@ -3,15 +3,14 @@ title: Autocomplete
 icon: MdAutoFixHigh
 description: How to create discord autocomplete commands
 ---
-import icons from "@/icons";
 
 ## Creating autocomplete options
 
 Imagine that you want to provide choices for a command option but in a dynamic way, for example a command to search for videos on YouTube. You can use the `autocomplete` option, so that based on what the user types in that option, you can search APIs and return a list of choices.
 
-<Blockquote icon={icons.warn} color="warn">
+<Callout type="warn">
 	It's required have a [slash command](/docs/discord/commands/slash) to create an autocomplete option
-</Blockquote>
+</Callout>
 
 You can create an autocomplete option in your command and respond to it using the `autocomplete` method above `run`
 
@@ -36,7 +35,7 @@ createCommand({
 		const choices = results.map(data => ({ // [!code highlight]
 			name: data.title, value: data.url // [!code highlight]
 		})); // [!code highlight]
-		interaction.respond(choices.slice(0, 25)); // [!code highlight]
+		return choices; // [!code highlight]
 	},
 	async run(interaction){
 		const { options } = interaction;
@@ -47,6 +46,29 @@ createCommand({
 	}
 });
 ```
+
+<Callout type="info">
+ 	Note that you can only return options, as the autocomplete command handler will automatically limit the array items to `25`
+	
+	```ts
+	// ...
+		return choices; // [!code highlight]
+	// ...
+	```
+
+	Here's what the internal function of the autocomplete command handler looks like:
+	```ts
+	// ...
+	const command = baseStorage.commands.get(interaction.commandName);
+    if (command && "autocomplete" in command && command.autocomplete){
+        const choices = await command.autocomplete(interaction);
+        if (choices && Array.isArray(choices)){
+            interaction.respond(choices.slice(0, 25));
+        }
+    };
+	// ...
+	```
+</Callout>
 
 If you have a large number of items, use autocomplete to try to find it
 
@@ -63,11 +85,18 @@ createCommand({
             data => data.address.toLowercase().includes(focused.toLowercase())
         )
         if (filtered.length < 1) return;
-        const choices = filtered.map(data => ({
+        return filtered.map(data => ({
 			name: data.title, value: data.url
 		}));
-		interaction.respond(choices.slice(0, 25));
 	},
     // ...
 })
 ```
+
+<Callout type="info">
+	If you prefer, you can use the interaction's `respond` method as you normally would:
+	```ts
+		return choices; // [!code --]
+		interaction.respond(choices.slice(0, 25)) // [!code ++]
+	```
+</Callout>

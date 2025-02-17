@@ -3,7 +3,7 @@ title: PM2
 icon: SiPm2
 description: How to host discord bot project using pm2
 ---
-import icons from "@/icons";
+import icons from "@/lib/icons";
 
 PM2 is a daemon process manager that will help you manage and keep your application online.
 
@@ -30,9 +30,9 @@ Then you can start your application using this command:
 pm2 start --name my-bot ./pm2.start.mjs
 ```
 
-<Blockquote icon={icons.info} color="info">
+<Callout type="info">
     You can set a custom name for your process using the `--name` flag
-</Blockquote>
+</Callout>
 
 Done, your application will run in the background on the machine.
 

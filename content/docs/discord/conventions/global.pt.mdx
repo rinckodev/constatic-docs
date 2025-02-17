@@ -3,8 +3,6 @@ title: Global
 icon: FaGlobe
 description: Variáveis globais úteis para o desenvolvimento de bots de discord
 ---
-import icons from "@/icons";
-import { ProjectStructure } from "@/components/docs/ProjectStructure";
 
 ## Variáveis globais
 
@@ -23,7 +21,7 @@ As outras flags que podem ser passadas no array dessa propriedade, são pouco us
 
 ```ts twoslash title="command.ts"
 // @noErrors
-const flags: ["Ephemeral"], = ["Ephemeral"];
+const flags: ["Ephemeral"] = ["Ephemeral"];
 // ---cut---
 interaction.deferReply({ flags }); // Contém "Ephemeral" por padrão;
 ```
@@ -31,7 +29,7 @@ interaction.deferReply({ flags }); // Contém "Ephemeral" por padrão;
 Este é o arquivo que contém as variáveis globais
 ```ts title="src/settings/global.ts"
 declare global {
-  const flags: ["Ephemeral"],;
+  const flags: ["Ephemeral"];
   // ...
 }
 

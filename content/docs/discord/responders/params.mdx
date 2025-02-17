@@ -4,7 +4,8 @@ icon: PiBracketsCurlyFill
 description: Transform custom id of components into http routes
 ---
 
-import icons from "@/icons";
+import icons from "@/lib/icons";
+
 
 ## What are CustomID params?
 
@@ -76,9 +77,9 @@ With this we can create a `Responder` that expects any button component that fol
 
 It should start with `manage/user` and then have two more parameter segments separated by `/` and starting with `:`, where the first will be the user id and the second will be an action.
 
-<Blockquote color="info">
+<Callout type="info">
     It would look like this: `manage/user/:userId/:action`
-</Blockquote>
+</Callout>
 
 So we can define this pattern and any button where the customId follows it, will be responded by the defined function. You can get the parameters in the second argument of the function.
 
@@ -118,9 +119,9 @@ createResponder({
 });
 ```
 
-<Blockquote icon={icons.danger} color="danger">
+<Callout type="danger">
     You can use this feature with any type of `Responder`, but don't forget that discord has a 100 character limit on customIds.
-</Blockquote>
+</Callout>
 
 ## Transforming CustomID parameters
 
@@ -283,9 +284,9 @@ You can also use wildcards if you want to respond to routes with more or less se
         }
     });
     ```
-    <Blockquote icon={icons.warn} color="warn">
+    <Callout type="warn">
         By defining a name for the wildcard, it now becomes mandatory for the customId to have one more segment, that is, it will not respond to just `giveway`, only `giveway/args...`.
-    </Blockquote>
+    </Callout>
   </Tab>
   <Tab value="Transforming wildcard">
     You can use the `parse` method to transform the wildcard into whatever you want, for example an array.
@@ -315,6 +316,7 @@ You can also use wildcards if you want to respond to routes with more or less se
   </Tab>
 </Tabs>
 
-<Blockquote icon={icons.info} color="info">
+<Callout type="info">
     The examples on this page were all with buttons, but this feature can be used with any type of responder!
-</Blockquote>
+</Callout>
+

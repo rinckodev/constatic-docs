@@ -3,14 +3,12 @@ title: ES6 Modules
 icon: FaNodeJs
 description: Development standards for this project
 ---
-import icons from "@/icons";
-import { ProjectStructure } from "@/components/docs/ProjectStructure";
 
 ## ES6 Modules
 
-<Blockquote color="warn" icon={icons.warn}>
+<Callout type="warn">
   This base uses `"type": "module"` in the **package.json**. It's important to remember to use the `.js` extension when importing files via relative paths (even if they are TypeScript files).
-</Blockquote>
+</Callout>
 
 If you export a function from a TypeScript file:
 ```ts title="src/functions/math/mycustumfunc.ts"

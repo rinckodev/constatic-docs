@@ -4,15 +4,13 @@ icon: MdError
 description: Veja como solucionar alguns erros conhecidos ao tentar usar a CLI e o Constatic Base
 ---
 
-import icons from "@/icons";
-
-<Blockquote color="warn" icon={icons.warn}>
+<Callout type="warn">
     Antes de tudo, certifique-se de que cumpriu alguns requisitos para utilizar este projeto:
     - É necessário [NodeJs](https://nodejs.org/) 20.11 ou maior instalado (ou [Bun](https://bun.sh/))
     - Conhecimento básico de lógica de programação
     - Conhecimento básico de [javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) e [typescript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
     - Conhecimento básico de [discord.js](https://discordjs.guide/)
-</Blockquote>
+</Callout>
 
 Se você estiver enfrentando algum erro listado abaixo, confira algumas soluções que você pode tentar:
 
@@ -56,9 +54,9 @@ Você iniciou o projeto, o terminal exibiu que os comandos foram registrados, ma
 
 Apenas reinicie o seu cliente (seu aplicativo do discord) para atualizar o cache. No computador basta pressionar o atalho `CTRL + R` e no celular feche o aplicativo e abra novamente.
 
-<Blockquote color="info" icon={icons.info}>
+<Callout type="info">
     Você pode ter certeza de que os comandos foram registrados na aplicação indo nas configurações do servidor `>` itegrações `>` sua aplicação e você verá todos os comandos lá.
-</Blockquote>
+</Callout>
 
 Isso ocorre quando os comandos são registrados na aplicação do bot, se você optar por [registrar os comandos por guilda](/docs/discord/creators/#commandoptions), eles serão atualizados instantâneamente.
 
@@ -81,6 +79,6 @@ Se este erro ocorre exibindo o nome de alguma biblioteca, você provavelmente es
 
 Agora se o erro está exibindo um caminho para um arquivo, é muito provável que você especificou o caminho errado ou de forma incorreta.
 
-<Blockquote color="danger" icon={icons.danger}>
+<Callout type="danger">
     Os únicos caminhos de arquivo válidos são os relativos (que começam com `.`) ou atalhos de importação (que começam com `#`). Se o seu caminho não começa com nenhum dos dois, não é um caminho de arquivo válido!
-</Blockquote>
+</Callout>

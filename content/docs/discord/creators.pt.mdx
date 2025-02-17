@@ -3,7 +3,7 @@ title: Criadores
 icon: MdFactory
 description: Principais estruturas da base para criação de comandos e sistemas
 ---
-import icons from "@/icons";
+import icons from "@/lib/icons";
 
 Nesta base, para criar comandos e sistemas você deve utilizar as funções criadoras, que são `createCommand`, `createEvent` e `createResponder`.
 
@@ -107,9 +107,9 @@ Você pode definir algumas opções de comandos na função `setupCreators`:
     ```
     Você pode verificar qual é o tipo de erro e escolher entre enviar ou não, mensagens customizadas.
     
-    <Blockquote icon={icons.warn} color="danger">
+    <Callout type="danger">
         É extremamente importante usar `await` em Promises quando o seu run for `async`, para que o manipulador de erros de comandos possa capturar corretamente.
-    </Blockquote>
+    </Callout>
 
     ```ts
     // [!code word:await]
@@ -193,9 +193,9 @@ Você pode definir algumas opções de responders na função `setupCreators`:
     ```
     Você pode verificar qual é o tipo de erro e escolher entre enviar ou não, mensagens customizadas.
     
-    <Blockquote icon={icons.warn} color="danger">
+    <Callout type="danger">
         É extremamente importante usar `await` em Promises quando o seu run for `async`, para que o manipulador de erros de responders possa capturar corretamente.
-    </Blockquote>
+    </Callout>
 
     ```ts
     // [!code word:await]
@@ -228,9 +228,9 @@ Você pode definir algumas opções de responders na função `setupCreators`:
         },
     });
     ```
-    <Blockquote icon={icons.warn} color="danger">
+    <Callout type="danger">
         Tome cuidado! Se você usar coletores de componentes ou modais em algum comando, essa função ainda será chamada, pois ela busca um manipulador criado com a função `createResponder`. Então é importante verificar se a interação já foi respondida ou aguardar um pequeno tempo antes de responder de fato.
-    </Blockquote>
+    </Callout>
   </Tab>
 </Tabs>
 

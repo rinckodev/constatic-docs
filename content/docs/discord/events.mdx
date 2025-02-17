@@ -3,20 +3,19 @@ title: Events
 icon: RiCalendarEventFill
 description: How to create discord event listeners
 ---
-import icons from "@/icons";
 
 To create a listener for a discord event, use the `Event` class
 
 First import the base
 ```ts title="src/events/myevent.ts"
-import { Event } from "#base";
+import { createEvent } from "#base";
 ```
 
 Use the `name` property to create a custom identifier for your event, then set which discord event you expect using the `event` property.
 ```ts
-import { Event } from "#base";
+import { createEvent } from "#base";
 
-new Event({
+createEvent({
     name: "Message edit logs",
     event: "messageUpdate",
     run(oldMessage, newMessage) {

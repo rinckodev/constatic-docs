@@ -4,15 +4,13 @@ icon: MdError
 description: Here's how to troubleshoot some known errors when trying to use the CLI and Constatic Base
 ---
 
-import icons from "@/icons";
-
-<Blockquote color="warn" icon={icons.warn}>
+<Callout type="warn">
     First of all, make sure you meet some requirements to use this project:
     - You need [NodeJs](https://nodejs.org/) 20.11 or higher installed (or [Bun](https://bun.sh/))
     - Basic knowledge of programming logic
     - Basic knowledge of [javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) and [typescript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
     - Basic knowledge of [discord.js](https://discordjs.guide/)
-</Blockquote>
+</Callout>
 
 If you are experiencing any of the errors listed below, here are some solutions you can try:
 
@@ -56,9 +54,9 @@ You started the project, the terminal showed that the commands were registered, 
 
 Just restart your client (your discord application) to refresh the cache. On your computer, just press the shortcut `CTRL + R` and on your phone, close the application and open it again.
 
-<Blockquote color="info" icon={icons.info}>
+<Callout type="info">
     You can make sure that the commands have been registered in the application by going to the server settings `>` integrations `>` your application and you will see all the commands there.
-</Blockquote>
+</Callout>
 
 This happens when the commands are registered in the bot application, if you choose to [register the commands by guild](/docs/discord/creators/#commandoptions), they will be updated instantly.
 
@@ -81,6 +79,6 @@ If this error occurs displaying the name of a library, you probably misspelled t
 
 Now if the error is displaying a path to a file, it is very likely that you specified the wrong path or incorrectly.
 
-<Blockquote color="danger" icon={icons.danger}>
+<Callout type="danger">
     The only valid file paths are relative paths (starting with `.`) or import paths (starting with `#`). If your path does not start with either of these, it is not a valid file path!
-</Blockquote>
+</Callout>

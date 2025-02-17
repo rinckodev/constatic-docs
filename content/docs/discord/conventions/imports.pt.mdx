@@ -3,7 +3,6 @@ title: Importações
 icon: FaFileImport
 description: Atalhos de importação para melhor organização de código
 ---
-import icons from "@/icons";
 
 ## Atalhos de importações
 
@@ -28,7 +27,7 @@ Você pode importar qualquer coisa utilizando atalhos nomeados no `package.json`
         "#settings": ["./build/settings/index.js"],
         "#tools": ["./build/tools/index.js"],
         "#server": ["./build/server/index.js"],
-        "#lang/*": ["./lang/*"]
+        "#lib": ["./build/lib/index.js"]
       }
     }
     ```
@@ -46,7 +45,9 @@ Você pode importar qualquer coisa utilizando atalhos nomeados no `package.json`
           "#settings": ["./settings/index.ts"],
           "#tools": ["./tools/index.ts"],
           "#server": ["./server/index.ts"],
-          "#lang/*": ["../lang/*"]
+          "#lib": ["./lib/index.ts"],
+          "#emojis": ["../emojis.json"],
+          "#types/*": ["./@types/*"]
         },
       }
       // ...
