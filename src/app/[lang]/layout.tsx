@@ -10,7 +10,7 @@ const inter = Inter({
 
 export default async function Layout({ params, children }: { params: Promise<{ lang: string }>, children: ReactNode }) {
   return (
-    <html lang="en" className={`${inter.className} dark`} suppressHydrationWarning>
+    <html lang="en" data-theme="dark" className={`${inter.className} dark`} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
         <I18nProvider locale={(await params).lang} locales={[
           { locale: "en", name: "English" },

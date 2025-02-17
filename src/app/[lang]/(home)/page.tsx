@@ -1,16 +1,11 @@
 import { GithubButton } from "@/components/constatic/GithubButton";
 import { ReadDocsButton } from "@/components/constatic/ReadDocsButton";
 import { CopyButton } from "@/components/CopyButton";
-import AnimatedShinyText from "@/components/decoration/animated-shiny-text";
 import { ConstaticFlare } from "@/components/decoration/ConstaticFlare";
 import { GridPattern } from "@/components/decoration/GridPattern";
-import { RainbowButton } from "@/components/rainbow-button";
 import { cn } from "@/lib/cn";
 import { JetBrains_Mono, Poppins } from "next/font/google";
 import Image from "next/image";
-import Link from "next/link";
-import { FaGithub, FaStar } from "react-icons/fa";
-import { FaArrowRightLong } from "react-icons/fa6";
 
 const poppins = Poppins({ subsets: ["latin"], weight: "500" });
 const jetbrains = JetBrains_Mono({ subsets: ["latin"], weight: "500" });
