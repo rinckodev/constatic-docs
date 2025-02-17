@@ -8,6 +8,7 @@ import {
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { source } from "../../../../lib/source";
+import { metadataImage } from "@/lib/metadata";
 
 export default async function Page(props: {
   params: Promise<{ 
@@ -63,7 +64,7 @@ export async function generateMetadata(props: {
 
   const images = {
     alt: "Banner",
-    url: `${params.lang}/docs-og/${params.slug?.join("/")}/image.png`,
+    url: `/${params.lang}/docs-og/${params.slug?.join("/")}/image.png`,
     width: 1200,
     height: 630
   };
@@ -74,6 +75,6 @@ export async function generateMetadata(props: {
     openGraph: { images },
     twitter: { images, card: "summary_large_image" }
   };
-
+  
   return metadata;
 }
