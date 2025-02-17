@@ -18,9 +18,7 @@ code {
 
 :root {
     --color-fd-primary: hsl(222 69% 59%) !important;
-}
-
-.dark {
+    
     --color-fd-background: hsl(225 12% 12%);
 
     --color-fd-card: hsl(228 10% 10%) !important;
