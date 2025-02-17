@@ -75,7 +75,5 @@ export async function generateMetadata(props: {
     twitter: { images, card: "summary_large_image" }
   };
 
-  console.log(metadata);
-
   return metadata;
 }
