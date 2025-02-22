@@ -11,8 +11,7 @@
         "commands",  
         "responders", 
         "events",
-        "databases",
-        "servers",
+        "presets",
         "hosting",
         "guides"
     ]

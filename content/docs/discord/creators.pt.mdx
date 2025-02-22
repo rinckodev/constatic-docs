@@ -25,7 +25,7 @@ import { createCommand, createEvent, createResponder } from "#base";
 
 Você pode definir algumas opções de comandos na função `setupCreators`:
 
-<Tabs updateAnchor items={["Permissões padrões", "Guildas", "middleware", "onError", "onNotFound"]}>
+<Tabs updateAnchor items={["Permissões padrões", "Guildas", "middleware", "onError", "onNotFound", "verbose"]}>
   <Tab value="Permissões padrões">
     Defina quais serão as permissões padrões de todos os comandos, caso não seja definida nenhuma com a opção `defaultMemberPermissions` (É o mesmo array de permissões do comando).
 
@@ -140,6 +140,27 @@ Você pode definir algumas opções de comandos na função `setupCreators`:
         },
     });
     ```
+  </Tab>
+  <Tab value="verbose">
+    Essa opção faz com que as logs de registro de comandos sejam mais detalhadas, dessa maneira você pode ter certeza de que seus comandos foram registrados pois isso exibe a resposta direta da api
+
+    ```ts
+    /* ... */ setupCreators({
+        commands: {
+            verboose: true
+        },
+    });
+    ```
+
+    Veja o exemplo abaixo com os comandos que vem por padrão:
+    ```bash
+    ● Awes online ✓
+    └ 2 commands successfully registered globally!
+      └ {/} 1342179401697333281 CREATED ping > Awes application > created at: 1:01:45 PM
+      └ {/} 1342179401252470856 CREATED counter > Awes application > created at: 1:01:45 PM
+    ```
+
+    A resposta exibe o id do comando na aplicação ou guilda, o nome dele e o horario em que foi criado
   </Tab>
 </Tabs>
 

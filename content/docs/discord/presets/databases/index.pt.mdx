@@ -1,0 +1,66 @@
+---
+title: Banco de dados
+icon: FaDatabase
+description: Guias de banco de dados
+---
+import icons from "@/lib/icons";
+
+Um banco de dados é um sistema que armazena e organiza informações de maneira estruturada, permitindo a criação, leitura, atualização e exclusão desses dados de forma eficiente. Ele é essencial para gerenciar grandes volumes de informações, facilitando o acesso e a manipulação de dados por aplicações e usuários.
+
+Usando a [CLI para gerar seu projeto](/docs/discord/start), é possível selecionar uma predefinição de banco de dados.
+
+A segunda pergunta pedirá para você escolher uma predefinição de banco de dados:
+```bash title="npx constatic@latest"
+🧰 Predefinição de banco de dados:
+- 🍃 MongoDb (mongoose)
+- 🧊 QuickDB (better-sqlite3)
+- 🦕 Firestore (typesaurus)
+- 🔥 Firestore (firelord)
+- 🐬 MySQL (sql)
+- 🦭 MariaDb (sql)
+- 💎 Prisma (orm)
+```
+
+Se você não quiser nenhum banco de dados ou quiser criar o código do zero basta escolher "nenhum"
+
+Veja abaixo como utilizar cada predefinição, convenções e melhores práticas de cada uma:
+
+<Cards className="lg:grid-cols-3">
+    <Card
+		  href="/docs/discord/presets/databases/mongodb"
+      title="MongoDb"
+      icon={<icons.BiLogoMongodb/>}
+      description="Veja como é a estrutura da predefinição de banco de dados mongodb"
+    />
+    <Card
+		  href="/docs/discord/presets/databases/firestore"
+      title="Firestore"
+      icon={<icons.BiLogoFirebase/>}
+      description="Veja como é a estrutura da predefinição de banco de dados firestore"
+    />
+    {/* <Card
+		  href="/docs/discord/presets/databases/quickdb"
+      title="QuickDb"
+      icon={<icons.BiSolidCube/>}
+      description="Veja como é a estrutura da predefinição de banco de dados quickdb"
+    />
+    <Card
+      href="/docs/discord/presets/databases/mysql"
+      title="MySQL"
+      icon={<icons.GrMysql/>}
+      description="Veja como é a estrutura da predefinição de banco de dados mysql"
+    />
+    <Card
+      href="/docs/discord/presets/databases/mariadb"
+      title="MariaDb"
+      icon={<icons.SiMariadb/>}
+      description="Veja como é a estrutura da predefinição de banco de dados mariadb"
+    />
+    <Card
+      href="/docs/discord/presets/databases/prisma"
+      title="Prisma"
+      icon={<icons.SiPrisma/>}
+      description="Veja como é a estrutura da predefinição de banco de dados prisma"
+    /> */}
+</Cards>
+

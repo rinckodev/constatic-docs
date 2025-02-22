@@ -144,6 +144,27 @@ You can set some command options in the `setupCreators` function:
     });
     ```
   </Tab>
+  <Tab value="verbose">
+    This option makes the command logs more detailed, this way you can be sure that your commands were registered as it displays the direct response from the API.
+
+    ```ts
+    /* ... */ setupCreators({
+        commands: {
+            verboose: true
+        },
+    });
+    ```
+
+    See the example below with the commands that come by default:
+    ```bash
+    ● Awes online ✓
+    └ 2 commands successfully registered globally!
+      └ {/} 1342179401697333281 CREATED ping > Awes application > created at: 1:01:45 PM
+      └ {/} 1342179401252470856 CREATED counter > Awes application > created at: 1:01:45 PM
+    ```
+
+    The response displays the command ID in the application or guild, its name and the time it was created.
+  </Tab>
 </Tabs>
 
 ## Responder Options

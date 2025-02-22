@@ -3,6 +3,7 @@
     "icon": "FaBook",
     "defaultOpen": false,
     "pages": [
-        "application"
+        "application",
+        "databases"
     ]
 }
