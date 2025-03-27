@@ -175,7 +175,7 @@ Você pode definir algumas opções de responders na função `setupCreators`:
     ```ts
     /* ... */ setupCreators({
         responders: {
-            async middleware(interaction, params){
+            async middleware(interaction, _block, params){
                 console.log("Comando executado:", interaction.customId);
                 console.log("Parâmetros:", params);
             }
@@ -189,7 +189,7 @@ Você pode definir algumas opções de responders na função `setupCreators`:
     ```ts
     /* ... */ setupCreators({
         responders: {
-            async middleware(interaction, _params, block){
+            async middleware(interaction, block){
                 if (interaction.isButton() && blockedUsers.includes(interaction.user.id)){
                     interaction.reply({ content: "Você não pode clicar em nenhum botão!" });
                     block();
@@ -255,3 +255,170 @@ Você pode definir algumas opções de responders na função `setupCreators`:
   </Tab>
 </Tabs>
 
+## Opções de Eventos
+
+Você pode definir algumas opções de eventos na função `setupCreators`:
+
+<Tabs items={["middleware", "onError"]}>
+  <Tab value="middleware">
+    Você pode definir uma função `middleware` que será executada antes da função `run` dos eventos
+
+    ```ts
+    /* ... */ setupCreators({
+        events: {
+            async middleware(event){
+                console.log("Evento", event.name, "emitido");
+            }
+        },
+    });
+    ```
+    Assim como nos comandos e responders, você pode fazer muita coisa com isso, como exibir logs padronizados para todos os eventos executados, injetar informações adicionais nos argumentos de eventos específicos, ou até mesmo bloquear a execução com base em checagens.
+
+    <Callout type="info">
+        No primeiro argumento, é recebido um objeto com os dados do evento, onde `name` é o nome do evento emitido e `args` são os argumentos desse evento, então verificando qual é o nome do evento, a tipagem dos argumentos é definida automaticamente:
+        ```ts
+        /* ... */ setupCreators({
+            events: {
+                async middleware(event) {
+                    if (event.name === "guildMemberUpdate"){
+                        const [oldMember, newMember] = event.args;
+                        // ...
+                        return;
+                    }
+                    if (event.name === "guildAuditLogEntryCreate"){
+                        const [entry, guild] = event.args;
+                        // ...
+                        return;
+                    }
+                    if (event.name === "messageCreate"){
+                        const [message] = event.args;
+                        // ...
+                        return;
+                    }
+                },
+            },
+        });
+        ```
+    </Callout>
+
+    Você pode executar a função `block` para bloquear a execução dos eventos.
+
+    ```ts
+    /* ... */ setupCreators({
+        events: {
+            async middleware(event, block){
+                if (event.name === "messageDelete"){
+                    const [message] = event.args;
+                    if (message.inGuild() && message.author.id == message.guild.id){
+                        block();
+                        return;
+                    }
+                }
+            }
+        },
+    });
+    ```
+    No caso dos eventos também é possível passar tags como argumento da função block, dessa maneira, você pode ter 3 eventos do mesmo tipo, por exemplo `messageCreate`, mas bloquear apenas aqueles com as tags previamente definidas:
+
+    ```ts tab="Eventos"
+    createEvent({
+        name: "Morning workflow",
+        event: "messageCreate",
+        tags: ["morning"],
+        async run(message) {
+            // ...
+        },
+    });
+
+    createEvent({
+        name: "Night workflow",
+        event: "messageCreate",
+        tags: ["night"],
+        async run(message) {
+            // ...
+        },
+    });
+
+    createEvent({
+        name: "Messages Workflow",
+        event: "messageCreate",
+        async run(message) {
+            // ...
+        },
+    });
+    ```
+    ```ts tab="Middleware"
+    /* ... */ setupCreators({
+        events: {
+            async middleware(event, block){
+                if (event.name === "messageCreate"){
+                    if (!isMorning()){
+                        block("morning");
+                        return;
+                    }
+                    if (!isNight()){
+                        block("night");
+                        return;
+                    }
+                }
+            }
+        },
+    });
+    ```
+    ```ts tab="Funções utilitárias"
+    function isMorning(): boolean {
+        const currentHour = new Date().getHours();
+        return currentHour >= 6 && currentHour < 12;
+    }
+    function isNight(): boolean {
+        const currentHour = new Date().getHours();
+        return currentHour >= 20 || currentHour < 6;
+    }
+    ```
+
+    Você pode passar quantas tags quiser para função `block`
+
+    ```ts
+    // ...
+    block("morning", "night", "foo", "bar", "baz")
+    // ...
+    ```
+
+    Todos os eventos que conter alguma das tags passadas como argumento da função block, não serão executados 
+
+  </Tab>
+  <Tab value="onError">
+    É possível definir um manipulador de erros customizado para eventos com a função `onError`
+
+    ```ts
+    /* ... */ setupCreators({
+        events: {
+            async onError(error, event){
+                // ...
+            }
+        },
+    });
+    ```
+    Você pode verificar qual é o tipo de erro e escolher entre enviar ou não, mensagens customizadas.
+    
+    <Callout type="danger">
+        É extremamente importante usar `await` em Promises quando o seu run for `async`, para que o manipulador de erros de eventos possa capturar corretamente.
+    </Callout>
+
+    ```ts
+    // [!code word:await]
+    createEvent({
+        name: "Register workflow",
+        event: "guildMemberAdd",
+        async run(member) {
+            const document = await db.members.create({
+                id: member.id,
+                username: member.user.username,
+                guildId: member.guild.id
+            });
+            // ...
+        },
+    })
+    ```
+  </Tab>
+</Tabs>

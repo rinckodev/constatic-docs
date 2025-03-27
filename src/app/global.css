@@ -13,7 +13,7 @@
 
 pre,
 code {
-    font-family: var(--font-code);
+    font-family: "JetBrains Mono", monospace;
 }
 
 :root {

@@ -33,7 +33,7 @@ createCommand({
 });
 ```
 <Callout type="danger">
-    Nomes de comandos `/` (barra) e de opções de comandos não podem ser vazios, não podem conter caracteres especiais, letras maiúsculas ou espaços
+    Nomes de comandos `/` (barra) e de opções de comandos não podem ser strings vazias, não podem conter caractéres especiais, letras maiúsculas ou espaços
 </Callout>
 
 ## Definindo opções de comando
@@ -75,3 +75,53 @@ createCommand({
     },
 });
 ```
+
+## Global
+
+A opção `global` nos comandos é útil quando você quer que o comando seja registrado na aplicação ao invés da guilda. Só é necessário quando IDs de guildas são definidos na função [setupCreators](/docs/discord/creators/#commandoptions)
+
+O código abaixo faz com que os comandos sejam registrados apenas nas guildas válidas listadas no array:
+```ts title="src/discord/index.ts"
+import { setupCreators } from "#base";
+
+export const { createCommand, createEvent, createResponder } = setupCreators({
+    commands: {
+        guilds: [
+            process.env.MAIN_GUILD_ID,
+            process.env.DEV_GUILD_ID,
+            process.env.TEST_GUILD_ID,
+        ]
+    }
+});
+```
+
+Agora veja este código onde alguns comandos são criados:
+
+```ts
+createCommand({
+	name: "configurações",
+	description: "Comando de configurações do servidor",
+	async run(interaction){
+		// ...
+	}
+});
+
+createCommand({
+	name: "gerenciar",
+	description: "Comando para gerenciar membros, canais e cargos",
+	async run(interaction){
+		// ...
+	}
+});
+
+createCommand({
+	name: "informações",
+	description: "Exibe informações do bot",
+	global: true, // [!code highlight]
+	async run(interaction){
+		// ...
+	}
+});
+```
+
+Os comandos `configurações` e `gerenciar` serão registrados nas guildas definidas na função `setupCreators`, mas o comando `informações` será registrado globalmente na aplicação, assim estando disponível em qualquer guilda.
