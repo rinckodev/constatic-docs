@@ -1,9 +1,13 @@
 import { BlogPosts } from "@/components/sections/blog/BlogPosts";
+import { blog } from "@/lib/source";
 import { FaNewspaper } from "react-icons/fa6";
 
-
-export default async function Page() {
-
+export default function Page() {
+    const posts = [...blog.getPages()].sort(
+        (a, b) =>
+        new Date(b.data.date ?? b.file.name).getTime() -
+        new Date(a.data.date ?? a.file.name).getTime(),
+    );
     return <div className="container flex flex-col gap-2 px-2 py-4 items-center">
         <div className="flex flex-col gap-2 p-8 border rounded-md w-full">
             <h1 className="flex items-center gap-4 text-4xl font-bold">
@@ -13,6 +17,6 @@ export default async function Page() {
                 Fique por dentro das novidades, atualizações e dicas sobre a CLI e a base de bots
             </p>
         </div>
-        <BlogPosts />
+        <BlogPosts posts={posts}/>
     </div>
 }

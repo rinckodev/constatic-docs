@@ -1,51 +1,49 @@
-import { defaultMdxComponents } from "@/components/mdxComponents";
+import { source } from "@/lib/source";
 import {
+  DocsPage,
   DocsBody,
   DocsDescription,
-  DocsPage,
   DocsTitle,
 } from "fumadocs-ui/page";
-import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { source } from "../../../../lib/source";
-import { metadataImage } from "@/lib/metadata";
+import { createRelativeLink } from "fumadocs-ui/mdx";
+import { getMDXComponents } from "@/mdx-components";
+import { Metadata } from "next";
+import icons from "@/lib/icons";
+import { MdStickyNote2 } from "react-icons/md";
 
-export default async function Page(props: {
-  params: Promise<{ 
-    slug?: string[],
-    lang?: string 
-  }>;
+export default async function Page({ params }: {
+  params: Promise<{
+      lang: string,
+      slug?: string[]
+  }>
 }) {
-  const params = await props.params;
-  const page = source.getPage(params.slug, params.lang);
+  const { lang, slug } = await params;
+  const page = source.getPage(slug, lang);
   if (!page) notFound();
 
-  const MDX = page.data.body;
-  const path = `content/docs/${page.file.path}`;
+  const MDXContent = page.data.body;
+  const Icon = page.data.icon 
+    ? icons[page.data.icon]
+    : null
 
+  const Title = <span className="flex gap-4 items-center">
+    {Icon && <Icon/>} {page.data.title}
+  </span>
   return (
-    <DocsPage 
-      toc={page.data.toc} 
-      full={page.data.full} 
-        breadcrumb={{
-        enabled: true,
-        includePage: true,
-        includeSeparator: true,
-      }}
-      tableOfContent={{
-        style: "clerk",
-      }}
-      editOnGithub={{
-        repo: "constatic-docs",
-        owner: "rinckodev",
-        sha: "main",
-        path,
-      }}
-    >
-      <DocsTitle>{page.data.title}</DocsTitle>
-      <DocsDescription>{page.data.description}</DocsDescription>
+    <DocsPage toc={page.data.toc} full={page.data.full}>
+      <DocsTitle>{Title}</DocsTitle>
+      <DocsDescription>
+        <span className="flex gap-2 items-center">
+            {<MdStickyNote2/>} {page.data.description}
+        </span>
+      </DocsDescription>
       <DocsBody>
-        <MDX components={{ ...defaultMdxComponents }} />
+        <MDXContent
+          components={getMDXComponents({
+            a: createRelativeLink(source, page),
+          })}
+        />
       </DocsBody>
     </DocsPage>
   );
@@ -55,26 +53,27 @@ export async function generateStaticParams() {
   return source.generateParams();
 }
 
-export async function generateMetadata(props: {
-  params: Promise<{ slug?: string[], lang: string }>;
+export async function generateMetadata({ params }: {
+  params: Promise<{
+      lang: string,
+      slug?: string[]
+  }>
 }) {
-  const params = await props.params;
-  const page = source.getPage(params.slug, params.lang);
+  const { slug=[], lang } = await params;
+  const page = source.getPage(slug, lang);
   if (!page) notFound();
 
-  const images = {
-    alt: "Banner",
-    url: `/${params.lang}/docs-og/${params.slug?.join("/")}/image.png`,
-    width: 1200,
-    height: 630
-  };
+  const images = ["/docs-og", ...slug, "image.png"].join("/");
 
-  const metadata: Metadata = {
+  return {
     title: page.data.title,
     description: page.data.description,
-    openGraph: { images },
-    twitter: { images, card: "summary_large_image" }
-  };
-  
-  return metadata;
+    openGraph: {
+      images,
+    },
+    twitter: {
+      card: "summary_large_image",
+      images,
+    },
+  } satisfies Metadata;
 }

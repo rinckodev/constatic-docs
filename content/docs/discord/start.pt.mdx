@@ -4,6 +4,7 @@ icon: FaClipboard
 description: Primeiros passos para iniciar um novo projeto de bot de discord
 ---
 import icons from "@/lib/icons";
+import { CliCommand } from "@/components/display/CliCommand";
 
 ## Requisitos
 
@@ -26,9 +27,7 @@ Para iniciar um novo projeto de bot de discord você pode utilizar a CLI.
   </Step>
   <Step>
   Use o comando abaixo para iniciar a CLI
-  ```bash
-  npx constatic@latest
-  ```
+  <CliCommand packageName="constatic@latest" />
   </Step>
   <Step>
     Selecione a primeira opção: `Iniciar projeto de bot de discord`

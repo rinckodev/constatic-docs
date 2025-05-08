@@ -3,6 +3,7 @@ import * as bi from "react-icons/bi";
 import * as bs from "react-icons/bs";
 import * as cg from "react-icons/cg";
 import * as fa from "react-icons/fa";
+import * as fa6 from "react-icons/fa6";
 import * as gr from "react-icons/gr";
 import * as hi from "react-icons/hi";
 import * as hi2 from "react-icons/hi2";
@@ -32,8 +33,7 @@ const defaults = {
 Object.assign(
     icons, defaults, ti, bs, 
     fa, hi, hi2, ri, io, io5, md, tb, bi, 
-    si, pi, cg, gr,
-    LocalIcons,
+    si, pi, cg, gr, fa6, LocalIcons
 );
 
 export default icons;

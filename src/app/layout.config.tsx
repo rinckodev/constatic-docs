@@ -1,20 +1,24 @@
-import { ConstaticTitle } from "@/components/decoration/ConstaticTitle";
+import { ConstaticTitle } from "@/components/constatic/ConstaticTitle";
+import { i18n } from "@/lib/i18n";
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
-import { FaBook, FaNewspaper } from "react-icons/fa";
-
+import { FaBook } from "react-icons/fa";
+import { FaNewspaper } from "react-icons/fa6";
 /**
  * Shared layout configurations
  *
- * you can configure layouts individually from:
+ * you can customise layouts individually from:
  * Home Layout: app/(home)/layout.tsx
  * Docs Layout: app/docs/layout.tsx
  */
 export const baseOptions: BaseLayoutProps = {
-  disableThemeSwitch: true,
+  i18n,
+  themeSwitch: {
+    enabled: false,
+  },
   githubUrl: "https://github.com/rinckodev/constatic",
   nav: {
-    transparentMode: "none",
     title: <ConstaticTitle/>,
+    
   },
   links: [
     {
@@ -28,5 +32,4 @@ export const baseOptions: BaseLayoutProps = {
       active: "nested-url",
     },
   ],
-  i18n: true
 };

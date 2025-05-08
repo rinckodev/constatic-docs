@@ -1,0 +1,8 @@
+{
+    "title": "Configurações da CLI",
+    "icon": "FaGear",
+    "pages": [
+        "tokens",
+        "language"
+    ]
+}

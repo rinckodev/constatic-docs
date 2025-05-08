@@ -1,7 +1,8 @@
 ---
 title: Início
 icon: TiHome
-description: Início da documentação
+description: Início da documentação Constatic
+tag: updated 
 ---
 import icons from "@/lib/icons";
 
@@ -55,6 +56,54 @@ Aqui você será capaz de entender como usar a base de bots de discord gerada pe
 		title="Servidores de API"
 		icon={<icons.FaGlobe/>}
 		description="Veja como integrar servidores de API no projeto"
+	/>
+</Cards>
+---
+
+## Ferramente de emojis
+
+<Cards className="lg:grid-cols-2">
+	<Card
+		href="/docs/emojis/upload"
+		title="Enviando emojis"
+		icon={<icons.HiUpload/>}
+		description="Veja como enviar imagens para criar emojis da aplicação de maneira simples"
+	/>
+	<Card
+		href="/docs/emojis/list"
+		title="Listando emojis"
+		icon={<icons.FaRegListAlt/>}
+		description="Liste todos os emojis da sua aplicação para conferir suas informações"
+	/>
+	<Card
+		href="/docs/emojis/file"
+		title="Arquivo de emojis"
+		icon={<icons.FaFileDownload/>}
+		description="Gere um arquivo json com todos os emojis prontos para serem usados no seu projeto"
+	/>
+	<Card
+		href="/docs/emojis/delete"
+		title="Deletando emojis"
+		icon={<icons.FaTrashAlt/>}
+		description="Exclua emojis selecionados ou todos os emojis de uma vez"
+	/>
+</Cards>
+---
+
+## Configurações da CLI
+
+<Cards className="lg:grid-cols-2">
+	<Card
+		href="/docs/settings/language"
+		title="Idioma"
+		icon={<icons.IoLanguage/>}
+		description="Altere o idioma da CLI de acordo com a sua preferência"
+	/>
+	<Card
+		href="/docs/settings/tokens"
+		title="Tokens"
+		icon={<icons.IoMdKey/>}
+		description="Armazene e gerencie tokens de aplicações de discord"
 	/>
 </Cards>
 ---

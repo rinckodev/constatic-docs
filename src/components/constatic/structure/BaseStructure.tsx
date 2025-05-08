@@ -26,6 +26,7 @@ export function BaseStructure() {
                     <File name="base.responder.ts" icon={<TbBrandTypescript />} />
                     <File name="base.storage.ts" icon={<TbBrandTypescript />} />
                     <File name="base.types.d.ts" icon={<TbBrandTypescript />} />
+                    <File name="base.version.ts" icon={<TbBrandTypescript />} />
                     <File name="index.ts" icon={<TbBrandTypescript />} />
                 </Folder>
                 <Folder name="commands">
@@ -50,10 +51,12 @@ export function BaseStructure() {
                 <File name="index.ts" icon={<TbBrandTypescript />} />
             </Folder>
             <Folder name="settings">
-                <File name="env.ts" icon={<TbBrandTypescript />} />
+                <File name="env.schema.ts" icon={<TbBrandTypescript />} />
+                <File name="env.validate.ts" icon={<TbBrandTypescript />} />
                 <File name="error.ts" icon={<TbBrandTypescript />} />
                 <File name="global.ts" icon={<TbBrandTypescript />} />
                 <File name="index.ts" icon={<TbBrandTypescript />} />
+                <File name="logger.ts" icon={<TbBrandTypescript />} />
             </Folder>
             <File name="index.ts" icon={<TbBrandTypescript />} />
         </Folder>

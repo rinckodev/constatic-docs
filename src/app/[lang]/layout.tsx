@@ -1,40 +1,64 @@
-import { I18nProvider, Translations } from "fumadocs-ui/i18n";
+import "../global.css";
+import { Translations } from "fumadocs-ui/contexts/i18n";
 import { RootProvider } from "fumadocs-ui/provider";
 import { Inter } from "next/font/google";
-import type { ReactNode } from "react";
-import "../global.css";
 
 const inter = Inter({
   subsets: ["latin"],
 });
 
-export default async function Layout({ params, children }: { params: Promise<{ lang: string }>, children: ReactNode }) {
+const cn: Partial<Translations> = {
+  search: "Translated Content",
+  // other translations
+};
+
+const locales = [
+  {
+    name: "English",
+    locale: "en",
+  },
+  {
+    name: "Portuguese",
+    locale: "pt",
+  },
+];
+
+export default async function Layout({ children, params }: {
+  params: Promise<{
+    lang: string,
+    slug?: string[]
+  }>
+  children: React.ReactNode
+}) {
+  const lang = (await params).lang
   return (
     <html lang="en" data-theme="dark" className={`${inter.className} dark`} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
-        <I18nProvider locale={(await params).lang} locales={[
-          { locale: "en", name: "English" },
-          { locale: "pt", name: "Português" },
-        ]}
-          translations={({
-            pt: {
-              lastUpdate: "Última atualização",
-              searchNoResult: "Sem resultado",
-              tocNoHeadings: "Sem cabeçalhos",
-              chooseLanguage: "Escolha o idioma",
-              name: "Português",
-              toc: "Nesta página",
-              search: "Procurar",
-              previousPage: "Anterior",
-              nextPage: "Próxima",
-              editOnGithub: "Editar no github",
-            },
-          } as Record<string, Partial<Translations>>)[(await params).lang]}
+        <RootProvider
+          i18n={{
+            locale: lang,
+            locales,
+            translations: ({
+              pt: {
+                lastUpdate: "Última atualização",
+                searchNoResult: "Sem resultado",
+                tocNoHeadings: "Sem cabeçalhos",
+                chooseLanguage: "Escolha o idioma",
+                name: "Português",
+                toc: "Nesta página",
+                search: "Procurar",
+                previousPage: "Anterior",
+                nextPage: "Próxima",
+                editOnGithub: "Editar no github",
+              }
+            } as Record<string, Partial<Translations>>)[lang]
+          }}
+          theme={{
+            defaultTheme: "dark",
+          }}
         >
-          <RootProvider>
-            {children}
-          </RootProvider>
-        </I18nProvider>
+          {children}
+        </RootProvider>
       </body>
     </html>
   );

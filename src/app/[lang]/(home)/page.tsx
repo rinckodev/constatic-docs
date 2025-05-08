@@ -1,14 +1,13 @@
+import { ConstaticFlare } from "@/components/constatic/ConstaticFlare";
 import { GithubButton } from "@/components/constatic/GithubButton";
 import { ReadDocsButton } from "@/components/constatic/ReadDocsButton";
-import { CopyButton } from "@/components/CopyButton";
-import { ConstaticFlare } from "@/components/decoration/ConstaticFlare";
 import { GridPattern } from "@/components/decoration/GridPattern";
+import { CliCommand } from "@/components/display/CliCommand";
 import { cn } from "@/lib/cn";
-import { JetBrains_Mono, Poppins } from "next/font/google";
+import { Poppins } from "next/font/google";
 import Image from "next/image";
 
 const poppins = Poppins({ subsets: ["latin"], weight: "500" });
-const jetbrains = JetBrains_Mono({ subsets: ["latin"], weight: "500" });
 
 export default function HomePage() {
   return (
@@ -24,16 +23,15 @@ export default function HomePage() {
       <span className="justify-center items-center text-center text-sm lg:text-2xl px-24 max-w-screen-lg font-light text-wrap motion-preset-expand motion-delay-[300ms]">
         Creating modern and <span className="font-bold">awesome</span> projects has never been easier
       </span>
-      <div className="flex flex-col lg:flex-row gap-4 lg:gap-2 items-center justify-center motion-preset-expand motion-delay-[400ms]">
-        <GithubButton/>
-        <ReadDocsButton/>
-      </div>
-      <div className="flex flex-row gap-2 items-center justify-center motion-preset-fade-lg motion-duration-1000 motion-delay-[500ms]">
-        <div 
-          className={`${jetbrains.className} flex gap-2 text-xs lg:text-sm items-center rounded-full px-4 py-1 text-neutral-500 border border-dashed`}>
-          <p>npx constatic@latest</p>
-          <CopyButton text="npx constatic@latest" />
+      <div className="flex flex-col w-fit">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-2 items-center justify-center motion-preset-expand motion-delay-[400ms]">
+          <GithubButton/>
+          <ReadDocsButton/>
         </div>
+        <CliCommand 
+          packageName="constatic@latest" 
+          className="border-dashed"
+        />
       </div>
       <GridPattern
         width={60}

@@ -1,23 +1,29 @@
-import { DocsLayout } from 'fumadocs-ui/layouts/docs';
-import type { ReactNode } from 'react';
-import { baseOptions } from '../../layout.config';
-import { source } from '../../../lib/source';
-import { GridPattern } from '@/components/decoration/GridPattern';
-import { cn } from '@/lib/cn';
+import { DocsLayout } from "fumadocs-ui/layouts/notebook";
+import { baseOptions } from "@/app/layout.config";
+import { source } from "@/lib/source";
+import { GridPattern } from "@/components/decoration/GridPattern";
+import { cn } from "@/lib/cn";
 
-export default async function Layout({ children, params }: { 
+export default async function Layout({ children, params }: {
   params: Promise<{
-    lang: string
+      lang: string,
+      slug?: string[]
   }>
-  children: ReactNode 
+  children: React.ReactNode
 }) {
   const { lang } = await params;
+
   return (
-    <DocsLayout tree={source.pageTree[lang]} {...baseOptions}>
+    <DocsLayout 
+    {...baseOptions}
+      tree={source.pageTree[lang]} 
+      nav={{ ...baseOptions.nav, mode: "top" }}
+      sidebar={{ prefetch: false }} 
+      >
       {children}
       <GridPattern
         width={60}
-        height={60}
+        height={56}
         className={cn(
           "[mask-image:linear-gradient(-160deg,white,transparent,transparent)]",
           "opacity-50"

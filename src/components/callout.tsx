@@ -20,7 +20,7 @@ type CalloutProps = Omit<
   /**
    * Force an icon
    */
-  icon?: ReactNode;
+  icon?: ReactNode | boolean;
 };
 
 const calloutVariants = cva(
@@ -28,14 +28,14 @@ const calloutVariants = cva(
   {
     variants: {
       type: {
-        success: "border-s-4 border-green-500/30 border-s-green-500/50 bg-gradient-to-br from-green-950/20 to-60% to-fd-card",
-        danger: `border-s-4 border-red-500/30 border-s-red-500/50 bg-gradient-to-br from-red-950/20 to-60% to-fd-card`,
-        warn: "border-s-4 border-amber-500/70 border-s-amber-500/90 bg-gradient-to-br from-amber-950/20 to-60% to-fd-card",
-        primary: "border-s-4 border-blue-500/30 border-s-blue-500/50 bg-gradient-to-br from-blue-950/20 to-60% to-fd-card",
-        secondary: "border-s-4 border-gray-500/30 border-s-gray-500/50 bg-gradient-to-br from-gray-950/20 to-60% to-fd-card",
-        hint: "border-s-4 border-yellow-300/70 border-s-yellow-300 bg-gradient-to-br from-yellow-200/20 to-60% to-fd-card",
-        info: "border-s-4 border-blue-500/30 border-s-blue-500/50 bg-gradient-to-br from-blue-950/20 to-60% to-fd-card",
-        error: "border-s-4 border-red-500/30 border-s-red-500/50 bg-gradient-to-br from-red-950/20 to-60% to-fd-card",
+        success: "border-s-4 border-l-green-500/50",
+        danger: "border-s-4 border-l-red-500/50",
+        warn: "border-s-4 border-l-amber-500/70",
+        primary: "border-s-4 border-l-blue-500/50",
+        secondary: "border-s-4 border-l-gray-500/50",
+        hint: "border-s-4 border-l-yellow-500/70",
+        info: "border-s-4 border-l-blue-500/50",
+        error: "border-s-4 border-l-red-500/50",
       },
     },
   },

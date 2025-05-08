@@ -1,7 +1,7 @@
-import { defaultMdxComponents } from "@/components/mdxComponents";
 import { BlogTag } from "@/components/sections/blog/BlogTag";
 import { buttonVariants } from "@/components/ui/button";
 import { blog } from "@/lib/source";
+import { getMDXComponents } from "@/mdx-components";
 import { InlineTOC } from "fumadocs-ui/components/inline-toc";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -28,11 +28,11 @@ export default async function Page(props: PageProps) {
                     {page.data.tags.map(tag => <BlogTag key={tag} tag={tag} />)}
                 </div>
             }
-            <Link href="/blog" className={buttonVariants({ size: "sm", variant: "secondary" })}>Voltar</Link>
+            <Link href="/blog" className={buttonVariants({ size: "sm", color: "secondary" })}>Voltar</Link>
         </div>
         <article className="container flex flex-col-reverse md:flex-row gap-2">
             <div className="prose min-w-0 flex-1">
-                <page.data.body components={defaultMdxComponents} />
+                <page.data.body components={getMDXComponents()} />
             </div>
             <div className="flex flex-col gap-4 md:border-l md:p-4 text-sm lg:w-[250px]">
                 <div>
