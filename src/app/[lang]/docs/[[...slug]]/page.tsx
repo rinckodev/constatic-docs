@@ -62,8 +62,13 @@ export async function generateMetadata({ params }: {
   const { slug=[], lang } = await params;
   const page = source.getPage(slug, lang);
   if (!page) notFound();
-
-  const images = ["/docs-og", ...slug, "image.png"].join("/");
+  
+  const images = {
+    alt: "Banner",
+    url: `/${lang}/docs-og/${slug.join("/")}/image.png`,
+    width: 1200,
+    height: 630
+  };
 
   return {
     title: page.data.title,

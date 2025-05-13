@@ -5,17 +5,17 @@ import { generateOGImage } from "./og";
 
 export async function GET(
   _req: Request,
-  { params }: { params: Promise<{ slug: string[] }> },
+  { params }: { params: Promise<{ slug: string[], lang: string }> },
 ) {
-  const { slug } = await params;
-  const page = source.getPage(slug.slice(0, -1));
+  const { slug, lang } = await params;
+  const page = source.getPage(slug.slice(0, -1), lang);
   if (!page) notFound();
 
   const { title, description, icon } = page.data;
 
   return generateOGImage({
     title, description, icon,
-    site: "My App",
+    site: "Constatic",
   });
 }
 
