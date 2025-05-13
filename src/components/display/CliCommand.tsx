@@ -1,9 +1,8 @@
 import { FaNodeJs } from "react-icons/fa";
-import { IoRocketSharp } from "react-icons/io5";
-import { SiPnpm } from "react-icons/si";
+import { SiBun, SiPnpm } from "react-icons/si";
 import { TbBrandYarn } from "react-icons/tb";
-import { Tab, Tabs } from "../tabs";
 import { CodeBlock, Pre } from "../codeblock";
+import { Tab, Tabs } from "../tabs";
 
 interface CliCommandProps {
     packageName: string;
@@ -13,7 +12,7 @@ export function CliCommand({ packageName, className }: CliCommandProps){
     return <>
         <Tabs items={[
         { value: "node", icon: <FaNodeJs size={18}/> },
-        { value: "bun", icon: <IoRocketSharp size={18}/> },
+        { value: "bun", icon: <SiBun size={18}/> },
         { value: "yarn", icon: <TbBrandYarn size={18}/> },
         { value: "pnpm", icon: <SiPnpm size={18}/> },
       ]} className={className}>
@@ -38,10 +37,10 @@ interface CodeProps {
 }
 function Code({ text }: CodeProps){
     return <CodeBlock lang="bash">
-    <Pre className="text-start" lang="bash">
-        <code>
-            {text}
-        </code>
-    </Pre>
-</CodeBlock>
+        <Pre className="text-start" lang="bash">
+            <code>
+                {text}
+            </code>
+        </Pre>
+    </CodeBlock>
 }
