@@ -28,10 +28,10 @@ export const source = loader({
         ? <HiMiniSparkles className="text-green-500"/> 
         : <PiMagicWandFill className="text-yellow-500" /> 
         node.name = (
-          <>
+          <span className="flex items-center gap-2">
             {node.name}
             {iconTag}
-          </>
+          </span>
         );
       }
 

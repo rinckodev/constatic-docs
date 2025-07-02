@@ -1,0 +1,13 @@
+{
+    "title": "Scripts",
+    "icon": "PiFilesFill",
+    "tag": "new",
+    "pages": [
+        "start",
+        "apply",
+        "new",
+        "list",
+        "edit",
+        "delete"
+    ]
+}

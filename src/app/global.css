@@ -10,6 +10,12 @@ code {
 	font-family: "Cascadia Mono", monospace;
 }
 
+@layer utilities {
+  .code-font {
+    font-family: "Cascadia Mono", monospace;
+  }
+}
+
 @theme inline {
 	--radius-sm: calc(var(--radius) - 4px);
 	--radius-md: calc(var(--radius) - 2px);

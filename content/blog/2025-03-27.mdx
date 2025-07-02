@@ -18,10 +18,10 @@ O estilo das logs foi alterado para ficar mais minimalista e simples, a lib `con
 
 <ImageZoom src={"/blog/2025-03-27/logs-comparision.svg"} width={1000} height={300} alt="cli" unoptimized />
 
-Caso queira exibir logs com algumas estilizações, importe o objeto logger de `##settings`:
+Caso queira exibir logs com algumas estilizações, importe o objeto logger de `#settings`:
 
 ```ts
-import { logger } from "##settings";
+import { logger } from "#settings";
 
 logger.success("Comandos carregados");
 logger.error("Ocorreu um erro ao registrar os comandos");
@@ -34,7 +34,7 @@ logger.log("Log comum");
 Depois de alguns relatos de pessoas dizendo que os comandos não estavam sendo registrados, foi adicionada a opção `verboose` para exibir uma resposta direta da API do discord para que você tenha certeza de que eles foram registrados. Assim é possível concluir que se você não está vendo os comandos do seu bot no discord, o problema está em outro lugar.
 
 ```ts title="src/discord/index.ts"
-import { setupCreators } from "##base";
+import { setupCreators } from "#base";
 
 export const { createCommand, createEvent, createResponder } = setupCreators({
     commands: {

@@ -2,9 +2,10 @@
 title: Get started
 icon: FaClipboard
 description: How to use the Constatic CLI emoji tool
-tag: new
+tag: updated
 ---
-
+import { CliCommand } from "@/components/display/CliCommand";
+import { CliMenus } from "@/components/constatic/cli/CliMenu";
 import icons from "@/lib/icons";
 
 # Introduction
@@ -22,18 +23,16 @@ With this tool you can:
 
 To use this feature, start by running the CLI:
 
-```bash tab="node"
-npx constatic@latest
-```
-```bash tab="bun"
-bunx constatic@latest
-```
+<CliCommand packageName="constatic@latest" />
 
-Then in the main menu select the option `Manage discord emojis`
+Then in the main menu select the option `Manage discord emojis`.
 
-Before accessing the emoji menu, you need to select an application. You can do this in two ways:
+<CliMenus.Main lang="en" selected="emojis"/>
 
-- Selecting a saved application in the [token settings](/docs/settings/tokens) menu
+Before accessing the emoji menu, you need to select an application. You can do this a few ways:
+
+- Selecting a saved application in the [token presets](/docs/presets/tokens) menu
+- Selecting the token in one of the .env files detected in the root from where the CLI was executed.
 - Inserting the token manually through the `New temporary application` option
 
 After that, you will see the menu with all the options to manage your application's emojis. Check out how to use each option:
