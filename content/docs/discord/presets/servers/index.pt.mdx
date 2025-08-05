@@ -1,8 +1,10 @@
 ---
-title: Servidores de API
+title: Servidores API
 icon: FaGlobe
-description: Guia de utilização das predefinições de server API
+description: Guia de utilização das predefinições de servidor API da Constatic Base
+tag: updated 
 ---
+import { CliMenus } from "@/components/constatic/cli/CliMenu";
 import icons from "@/lib/icons";
 
 
@@ -10,11 +12,23 @@ Um servidor de API (Interface de Programação de Aplicações) é um sistema qu
 
 Usando a [CLI para gerar seu projeto](/docs/discord/start), é possível selecionar uma predefinição de servidores de API.
 
-<ImageZoom src={"/guides/cli/bot-server-api.svg"} alt="Init discord bot" width="400" height="400" />
+<CliMenus.Servers lang="pt" />
 
-O servidor de API das predefinições vai estar na pasta `server` dentro de `src`
+O servidor API das predefinições vai estar na pasta `server` dentro de `src`
 
-As predefinições disponívei são:
+As predefinições disponíveis são:
 
-- Fastify - [Veja o guia](/docs/discord/presets/servers/fastify)
-- Express - [Veja o guia](/docs/discord/presets/servers/express)
+<Cards className="lg:grid-cols-3">
+    <Card
+        href="/docs/discord/presets/servers/fastify"
+        title="Fastify"
+        icon={<icons.SiFastify/>}
+        description="Veja como é a estrutura da predefinição de servidor fastify"
+    />
+    <Card
+	    href="/docs/discord/presets/servers/express"
+        title="Express"
+        icon={<icons.SiExpress/>}
+        description="Veja como é a estrutura da predefinição de servidor express"
+    />
+</Cards>

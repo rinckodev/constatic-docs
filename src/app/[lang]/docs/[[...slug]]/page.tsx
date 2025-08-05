@@ -28,7 +28,7 @@ export default async function Page({ params }: {
     : null
 
   const Title = <span className="flex gap-4 items-center">
-    {Icon && <Icon/>} {page.data.title}
+    {Icon && <Icon className="h-8 w-8"/>} {page.data.title}
   </span>
   return (
     <DocsPage toc={page.data.toc} full={page.data.full}>

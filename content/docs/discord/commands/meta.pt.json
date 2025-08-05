@@ -2,5 +2,11 @@
     "title": "Comandos",
     "defaultOpen": true,
     "icon": "HiMiniCommandLine",
-    "pages": ["commands", "slash", "context", "autocomplete"]
+    "pages": [
+        "commands", 
+        "slash", 
+        "modularization",
+        "context", 
+        "autocomplete"
+    ]
 }

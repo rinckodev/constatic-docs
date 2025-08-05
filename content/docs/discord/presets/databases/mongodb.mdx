@@ -2,6 +2,7 @@
 title: MongoDB
 icon: BiLogoMongodb
 description: See how to use the mongodb database preset
+tag: updated
 ---
 
 <Callout type="info">
@@ -32,7 +33,8 @@ The `index.ts` file in the `src/database` folder must connect to the database:
 import mongoose, { InferSchemaType, model } from "mongoose";
 import { guildSchema } from "./schemas/guild.js";
 import { memberSchema } from "./schemas/member.js";
-import { logger, env } from "#settings";
+import { logger } from "#base";
+import { env } from "#env";
 import chalk from "chalk";
 
 try {

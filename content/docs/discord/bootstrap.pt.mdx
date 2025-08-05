@@ -2,6 +2,7 @@
 title: Bootstrap
 icon: FaPowerOff
 description: Função inicial do projeto de bot de discord
+tag: updated 
 ---
 import icons from "@/lib/icons";
 
@@ -24,22 +25,43 @@ Neste tópico você vai conferir algumas opções interessantes dessa função.
 Essa opção deve receber o import.meta do arquivo atual, ao executar o projeto em desenvolvimento, o diretório de import.meta será `src`, mas quando o projeto for buildado ele será `build`.
 Essa opção é importante para que os arquivos da pasta discord possam ser importados antes do bot iniciar.
 
-### Diretórios (directories)
+### Modules
 
-Você pode passar um array de caminhos relativos à pasta atual que você queira que sejam importados antes do bot iniciar.
-
-<Callout type="info">
-    Todas as sub pastas aninhadas dos diretórios que você passar nessa propriedade também serão carregadasn não importa a profundidade.
-</Callout>
+Você pode passar um array de [padrões glob](https://en.wikipedia.org/wiki/Glob_(programming)) relativos à pasta atual. Todos os arquivos arquivos e diretórios encontrados neste padrão, serão importados antes do bot iniciar.
 
 ```ts title="src/index.ts"
 await bootstrap({ 
     meta: import.meta,
-    directories: ["./MyCommands", "./alt/events"]
+    modules: [
+        "./MyCommands/**", 
+        "./alt/events", 
+        "./tools/**/*.mod.{ts,js}"
+    ]
 });
 ```
 
 Com isso você pode criar `comandos`, `eventos` e `responders` dentro desses diretórios e eles serão carregados antes do bot iniciar.
+
+<Callout type="info">
+    Também tem a possibilidade de carregar arquivos com _side effects_, assim podendo registrar variáveis globais, alterar protótipos de objetos existentes e entre outros.
+</Callout>
+
+<Callout type="danger">
+    Mas um aviso importante sobre essa opção! Tome cuidado para não especificar um padrão que importe tudo do workdir (o diretório de trabalho atual, em desenvolvimento é a pasta src, e em produção é a pasta build) ou da pasta `src/discord/base`. Isso irá causar dependências circulares e por consequência, crashando o projeto.
+    Então evite algo como isso:
+
+    ```ts title="src/index.ts"
+    await bootstrap({ 
+        meta: import.meta,
+        modules: [
+            "./discord/base/**", // [!code --]
+            "./**/*", // [!code --]
+            "./", // [!code --]
+            "." // [!code --]
+        ]
+    });
+    ```
+</Callout>
 
 ---
 
@@ -56,21 +78,6 @@ await bootstrap({
 
 ---
 
-### Quando estiver pronto (whenReady)
-
-A base já tem um ouvinte para o evento `ready` do bot, se você não quiser criar um novo ouvinte pra isso, pode usar ele apenas passando uma função para essa opção.
-
-```ts title="src/index.ts"
-await bootstrap({ 
-    meta: import.meta,
-    whenReady(client) {
-        console.log(`Online como ${client.user.displayName}`)
-    },
-});
-```
-
----
-
 ### Antes de carregar (beforeLoad)
 
 Você você pode executar um código antes dos diretórios serem carregados e recebe o `client` antes de ficar online (ready).
@@ -78,7 +85,7 @@ Você você pode executar um código antes dos diretórios serem carregados e re
 ```ts title="src/index.ts"
 await bootstrap({ 
     meta: import.meta,
-    beforeLoad(client) {
+    async beforeLoad(client) {
         console.log(client.application) // null;
         console.log("Isso ocorre antes do carregamento dos diretórios")
     },

@@ -2,6 +2,7 @@
 title: Modals
 icon: RiMenuFill
 description: How to reply discord modals
+tag: updated
 ---
 
 ## Creating a Responder for Modals
@@ -12,7 +13,7 @@ Below you can see a code snippet responding to a command interaction by showing 
 import { createModalFields } from "@magicyan/discord";
 // ...
 interaction.showModal({
-    customId: "form/modal",
+    customId: "/form/modal",
     title: "Form",
     components: createModalFields({
         name:{
@@ -33,7 +34,7 @@ To reply to a modal with `Responder`, add `ResponderType.Modal` to the types:
 
 ```ts title="responder.ts"
 createResponder({
-    customId: "form/modal",
+    customId: "/form/modal",
     // [!code word:Modal]
     types: [ResponderType.Modal], cache: "cached",
     async run(interaction) {
@@ -51,12 +52,12 @@ createResponder({
 If the modal is showed from a component:
 ```ts title="responder.ts"
 createResponder({
-    customId: "open/form",
+    customId: "/open/form",
     // [!code word:Modal]
     types: [ResponderType.Button], cache: "cached",
     async run(interaction) {
         await interaction.showModal({
-            customId: "form/modal",
+            customId: "/form/modal",
             title: "Form",
             components: createModalFields({
                 name:{
@@ -76,7 +77,7 @@ createResponder({
 You can use the `ResponderType.ModalComponent` type:
 ```ts title="responder.ts"
 createResponder({
-    customId: "form/modal",
+    customId: "/form/modal",
     // [!code word:ModalComponent]
     types: [ResponderType.ModalComponent], cache: "cached",
     async run(interaction) {
@@ -103,7 +104,7 @@ createResponder({
     import { myCustomModals } from "#modals" // Example
 
     createResponder({
-        customId: "open/form",
+        customId: "/open/form",
         types: [ResponderType.Button], cache: "cached",
         async run(interaction) {
             await interaction.showModal(
@@ -114,7 +115,7 @@ createResponder({
     ```
     ```ts title="responder.ts"
     createResponder({
-        customId: "form/modal",
+        customId: "/form/modal",
         // [!code word:ModalComponent]
         // [!code word:Modal]
         types: [

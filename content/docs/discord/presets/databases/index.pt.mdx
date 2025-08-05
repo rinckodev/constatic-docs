@@ -2,24 +2,18 @@
 title: Banco de dados
 icon: FaDatabase
 description: Guias de banco de dados
+tag: updated
 ---
 import icons from "@/lib/icons";
+import { CliMenus } from "@/components/constatic/cli/CliMenu";
 
 Um banco de dados é um sistema que armazena e organiza informações de maneira estruturada, permitindo a criação, leitura, atualização e exclusão desses dados de forma eficiente. Ele é essencial para gerenciar grandes volumes de informações, facilitando o acesso e a manipulação de dados por aplicações e usuários.
 
 Usando a [CLI para gerar seu projeto](/docs/discord/start), é possível selecionar uma predefinição de banco de dados.
 
 A segunda pergunta pedirá para você escolher uma predefinição de banco de dados:
-```bash title="npx constatic@latest"
-🧰 Predefinição de banco de dados:
-- 🍃 MongoDb (mongoose)
-- 🧊 QuickDB (better-sqlite3)
-- 🦕 Firestore (typesaurus)
-- 🔥 Firestore (firelord)
-- 🐬 MySQL (sql)
-- 🦭 MariaDb (sql)
-- 💎 Prisma (orm)
-```
+
+<CliMenus.Databases lang="pt" />
 
 Se você não quiser nenhum banco de dados ou quiser criar o código do zero basta escolher "nenhum"
 

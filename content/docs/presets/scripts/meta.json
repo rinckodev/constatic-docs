@@ -4,8 +4,8 @@
     "tag": "new",
     "pages": [
         "start",
-        "apply",
         "new",
+        "apply",
         "list",
         "edit",
         "delete"

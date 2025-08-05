@@ -2,6 +2,7 @@
 title: Select menu
 icon: HiOutlineSelector
 description: How to reply discord select menus
+tag: updated
 ---
 
 ## Creating a Responder for a Selection Menu
@@ -12,7 +13,7 @@ It is possible to create a `Responder` that can accept several types of select m
 // ...
 const row = createRow(
     new StringSelectMenuBuilder({
-        customId: "select/fruits",
+        customId: "/select/fruits",
         placeholder: "Select fruits",
         options: [
             { emoji: "🍎", label: "Apple", value: "apple" },
@@ -28,7 +29,7 @@ Above is the code to send a common selection menu as a response to a command. Ju
 
 ```ts title="responder.ts"
 createResponder({
-    customId: "select/fruits",
+    customId: "/select/fruits",
     // [!code word:StringSelect]
     types: [ResponderType.StringSelect], cache: "cached",
     async run(interaction) {
@@ -42,7 +43,7 @@ You can combine several different types of select menus:
 
 ```ts title="responder.ts"
 createResponder({
-    customId: "ban/user", cache: "cached",
+    customId: "/ban/user", cache: "cached",
     types: [
         ResponderType.StringSelect,
         ResponderType.UserSelect,
@@ -82,7 +83,7 @@ It is possible to combine with any type, this way you can have a button, a selec
 
 ```ts title="responder.ts"
 createResponder({
-    customId: "menus/main", cache: "cached",
+    customId: "/menus/main", cache: "cached",
     types: [
         ResponderType.Button,
         ResponderType.StringSelect,

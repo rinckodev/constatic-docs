@@ -2,9 +2,9 @@
 title: Docker
 icon: FaDocker
 description: Como hospedar o projeto de bot de discord usando docker
+tag: updated 
 ---
 import icons from "@/lib/icons";
-
 
 Docker é uma plataforma de código aberto que facilita a criação, o teste e a implantação de aplicações em contêineres, que são ambientes isolados e leves que contêm tudo o que é necessário para a execução de uma aplicação, garantindo consistência e portabilidade entre diferentes ambientes de desenvolvimento e produção.
 
@@ -14,20 +14,40 @@ Docker é uma plataforma de código aberto que facilita a criação, o teste e a
 
 Crie um `Dockerfile` na raiz do projeto com o seguinte conteúdo:
 
-```dockerfile title="Dockerfile"
-FROM docker.io/library/node:21.5
+<Tabs items={["Node", "Bun"]}>
+    <Tab value="Node">
+        ```dockerfile title="Dockerfile"
+        FROM docker.io/library/node:21.5
 
-WORKDIR /bot
+        WORKDIR /app
 
-COPY ./package*.json .
-RUN npm install
+        COPY ./package*.json .
+        RUN npm install
 
-COPY . .
+        COPY . .
 
-RUN npm run build
+        RUN npm run build
 
-CMD [ "npm", "start" ]
-```
+        CMD ["npm", "run", "start"]
+        ```
+    </Tab>
+    <Tab value="Bun">
+        ```dockerfile title="Dockerfile"
+        FROM docker.io/oven/bun:latest
+
+        WORKDIR /app
+
+        COPY package.json package.json
+        COPY bun.lock bun.lock
+
+        RUN bun install
+        COPY . .
+
+        CMD ["bun", "run", "start"]
+        ```
+    </Tab>
+</Tabs>
+
 
 Crie um arquivo `.dockerignore` na raiz do projeto com o seguinte conteúdo:
 

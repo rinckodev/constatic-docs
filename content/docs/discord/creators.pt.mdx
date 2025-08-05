@@ -2,6 +2,7 @@
 title: Criadores
 icon: MdFactory
 description: Principais estruturas da base para criação de comandos e sistemas
+tag: updated 
 ---
 import icons from "@/lib/icons";
 
@@ -21,12 +22,12 @@ Essa função recebe opções e retorna os criadores de comandos, eventos e resp
 import { createCommand, createEvent, createResponder } from "#base";
 ```
 
-## Opções de comandos [#commandoptions]
+## Opções de comandos [#command-options]
 
 Você pode definir algumas opções de comandos na função `setupCreators`:
 
 <Tabs updateAnchor items={["Permissões padrões", "Guildas", "middleware", "onError", "onNotFound", "verbose"]}>
-  <Tab value="Permissões padrões">
+  <Tab id="commands-default-permissions" value="Permissões padrões">
     Defina quais serão as permissões padrões de todos os comandos, caso não seja definida nenhuma com a opção `defaultMemberPermissions` (É o mesmo array de permissões do comando).
 
     ```ts
@@ -51,13 +52,15 @@ Você pode definir algumas opções de comandos na função `setupCreators`:
     })
     ```
   </Tab>
-  <Tab id="tab-command-guilds" value="Guildas">
+  <Tab id="commands-guilds" value="Guildas">
     Você pode definir vários IDs de guildas que deseja registrar os comandos do seu bot com a opção `guilds`.
 
     ```ts
+    import { env } from "#env";
+
     /* ... */ setupCreators({
         commands: {
-            guilds: [process.env.MAIN_GUILD_ID, "537817462272557057"]
+            guilds: [env.MAIN_GUILD_ID, "537817462272557057"]
         },
     });
     ```
@@ -164,7 +167,7 @@ Você pode definir algumas opções de comandos na função `setupCreators`:
   </Tab>
 </Tabs>
 
-## Opções de Responders
+## Opções de Responders [#responder-options]
 
 Você pode definir algumas opções de responders na função `setupCreators`:
 
@@ -255,7 +258,7 @@ Você pode definir algumas opções de responders na função `setupCreators`:
   </Tab>
 </Tabs>
 
-## Opções de Eventos
+## Opções de Eventos [#event-options]
 
 Você pode definir algumas opções de eventos na função `setupCreators`:
 

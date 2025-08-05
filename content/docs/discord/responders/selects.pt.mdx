@@ -2,6 +2,7 @@
 title: Menus de seleção
 icon: HiOutlineSelector
 description: Como responder menus de seleção do discord com a estrutura Responder
+tag: updated
 ---
 
 ## Criando Responder para menu de seleção
@@ -12,7 +13,7 @@ description: Como responder menus de seleção do discord com a estrutura Respon
 // ...
 const row = createRow(
     new StringSelectMenuBuilder({
-        customId: "select/fruits",
+        customId: "/select/fruits",
         placeholder: "Select fruits",
         options: [
             { emoji: "🍎", label: "Maçã", value: "apple" },
@@ -28,7 +29,7 @@ Acima está o código para enviar um menu de seleção comum como resposta do co
 
 ```ts title="responder.ts"
 createResponder({
-    customId: "select/fruits",
+    customId: "/select/fruits",
     // [!code word:StringSelect]
     types: [ResponderType.StringSelect], cache: "cached",
     async run(interaction) {
@@ -42,7 +43,7 @@ Você pode combinar diversos tipos de menus de seleção diferentes:
 
 ```ts title="responder.ts"
 createResponder({
-    customId: "ban/user", cache: "cached",
+    customId: "/ban/user", cache: "cached",
     types: [
         ResponderType.StringSelect,
         ResponderType.UserSelect,
@@ -80,7 +81,7 @@ Abaixo estão todos os tipos de menus de seleção:
 
 ```ts title="responder.ts"
 createResponder({
-    customId: "menus/main", cache: "cached",
+    customId: "/menus/main", cache: "cached",
     types: [
         ResponderType.Button,
         ResponderType.StringSelect,

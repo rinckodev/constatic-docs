@@ -2,10 +2,10 @@
 title: Params
 icon: PiBracketsCurlyFill
 description: Transform customId of components and modals into http routes with parameters
+tag: updated 
 ---
 
 import icons from "@/lib/icons";
-
 
 ## What are CustomID params?
 
@@ -25,19 +25,19 @@ createCommand({
         const embed = new EmbedBuilder({ description: `Manage ${targetUser}` });
         const row = createRow(
             new ButtonBuilder({ 
-                customId: `manage/user/${targetUser.id}/kick`, 
+                customId: `/manage/user/${targetUser.id}/kick`, 
                 label: "Kick", style: ButtonStyle.Secondary 
             }),
             new ButtonBuilder({ 
-                customId: `manage/user/${targetUser.id}/ban`, 
+                customId: `/manage/user/${targetUser.id}/ban`, 
                 label: "Ban", style: ButtonStyle.Danger 
             }),
             new ButtonBuilder({ 
-                customId: `manage/user/${targetUser.id}/timeout`, 
+                customId: `/manage/user/${targetUser.id}/timeout`, 
                 label: "Timeout", style: ButtonStyle.Danger 
             }),
             new ButtonBuilder({ 
-                customId: `manage/user/${targetUser.id}/alert`, 
+                customId: `/manage/user/${targetUser.id}/alert`, 
                 label: "Alert", style: ButtonStyle.Primary 
             })
         );
@@ -53,19 +53,19 @@ createCommand({
     // ...
     // [!code word:/]
     new ButtonBuilder({ 
-        customId: `manage/user/${targetUser.id}/kick`,  // [!code highlight]
+        customId: `/manage/user/${targetUser.id}/kick`,  // [!code highlight]
         label: "Kick", style: ButtonStyle.Secondary 
     }),
     new ButtonBuilder({ 
-        customId: `manage/user/${targetUser.id}/ban`, // [!code highlight]
+        customId: `/manage/user/${targetUser.id}/ban`, // [!code highlight]
         label: "Ban", style: ButtonStyle.Danger 
     }),
     new ButtonBuilder({ 
-        customId: `manage/user/${targetUser.id}/timeout`, // [!code highlight]
+        customId: `/manage/user/${targetUser.id}/timeout`, // [!code highlight]
         label: "Timeout", style: ButtonStyle.Danger 
     }),
     new ButtonBuilder({ 
-        customId: `manage/user/${targetUser.id}/alert`, // [!code highlight]
+        customId: `/manage/user/${targetUser.id}/alert`, // [!code highlight]
         label: "Alert", style: ButtonStyle.Primary 
     })
     // ...
@@ -75,10 +75,10 @@ createCommand({
 
 With this we can create a `Responder` that expects any button component that follows this pattern in the customId.
 
-It should start with `manage/user` and then have two more parameter segments separated by `/` and starting with `:`, where the first will be the user id and the second will be an action.
+It should start with `/manage/user` and then have two more parameter segments separated by `/` and starting with `:`, where the first will be the user id and the second will be an action.
 
 <Callout type="info">
-    It would look like this: `manage/user/:userId/:action`
+    It would look like this: `/manage/user/:userId/:action`
 </Callout>
 
 So we can define this pattern and any button where the customId follows it, will be responded by the defined function. You can get the parameters in the second argument of the function.
@@ -87,7 +87,7 @@ So we can define this pattern and any button where the customId follows it, will
 ```ts title="src/discord/responders/manage.ts"
 // Dynamic button component function
 createResponder({
-    customId: "manage/user/:userId/:action",
+    customId: "/manage/user/:userId/:action",
     types: [ComponentType.Button], cache: "cached",
     async run(interaction, params) {
         const { action, userId } = params;
@@ -133,17 +133,17 @@ The `createResponder` function has an option where you can specify a way to tran
 
     ```ts title="Botão"
     new Button({
-        customId: `count/1`,
+        customId: "/count/1",
         label: "Count", 
         style: ButtonStyle.Primary 
     })
     ```
     ```ts title="Responder"
     createResponder({
-        customId: "count/:value", cache: "cached",
+        customId: "/count/:value", cache: "cached",
         types: [ComponentType.Button],
         parse: params => ({ // [!code highlight]
-            value: Number(params.value) // [!code highlight]
+            value: Number.parseInt(params.value) // [!code highlight]
         }), // [!code highlight]
         async run(interaction, { value }) {
             console.log(value + 1); // 2
@@ -157,7 +157,7 @@ The `createResponder` function has an option where you can specify a way to tran
 
     ```ts title="Botão"
     new Button({
-        customId:`remind/${new Date().toISOString()}`
+        customId:`/remind/${new Date().toISOString()}`
         // customId: `remind/2025-1-2T22:04:53.523Z`,
         label: "Remind", 
         style: ButtonStyle.Success 
@@ -165,7 +165,7 @@ The `createResponder` function has an option where you can specify a way to tran
     ```
     ```ts title="Responder"
     createResponder({
-        customId: "remind/:date", cache: "cached",
+        customId: "/remind/:date", cache: "cached",
         types: [ComponentType.Button],
         parse: params => ({ // [!code highlight]
             date: new Date(params.date) // [!code highlight]
@@ -183,14 +183,14 @@ The `createResponder` function has an option where you can specify a way to tran
 
     ```ts title="Botão"
     new Button({
-        customId:`embeds/1/title/create`
+        customId:`/embeds/1/title/create`
         label: "Create", 
         style: ButtonStyle.Success 
     });
     ```
     ```ts title="Responder"
     createResponder({
-        customId: "embeds/:index/:menu/:action", cache: "cached",
+        customId: "/embeds/:index/:menu/:action", cache: "cached",
         types: [ComponentType.Button],
         parse: params => ({ // [!code highlight]
             ...params, // [!code highlight]
@@ -211,7 +211,7 @@ The `createResponder` function has an option where you can specify a way to tran
 
     ```ts title="Botão"
     new Button({
-        customId:`menus/${user.id}/channels/create`
+        customId:`/menus/${user.id}/channels/create`
         label: "Create new channel", 
         style: ButtonStyle.Success 
     });
@@ -220,7 +220,7 @@ The `createResponder` function has an option where you can specify a way to tran
     import { z } from "zod"; // [!code highlight]
 
     createResponder({
-        customId: "menus/:userId/:menu/:action",
+        customId: "/menus/:userId/:menu/:action",
         types: [ResponderType.Button], cache: "cached",
         parse: z.object({ // [!code highlight]
             userId: z.string(), // [!code highlight]
@@ -245,21 +245,21 @@ You can also use wildcards if you want to respond to routes with more or less se
     Use `**` to represent any pattern of segments after the `/` (slash)
     
     ```md title="CustomIds that will be responded to"
-    - "giveway"
-    - "giveway/users"
-    - "giveway/gifts/nitro"
-    - "giveway/gifts/account/creator/expiresAt"
+    - "/giveway"
+    - "/giveway/users"
+    - "/giveway/gifts/nitro"
+    - "/giveway/gifts/account/creator/expiresAt"
     ```
 
     ```ts title="Responder"
     createResponder({
-        customId: "giveway/**", cache: "cached",
+        customId: "/giveway/**", cache: "cached",
         types: [ComponentType.Button],
         async run(interaction, { _ }) {
-            // giveway _: ""
-            // giveway/users _: "users"
-            // giveway/gifts/nitro _:"gifts/nitro"
-            // giveway/gifts/account/creator/expiresAt _:"gifts/account/creator/expiresAt"
+            // /giveway _: ""
+            // /giveway/users _: "users"
+            // /giveway/gifts/nitro _:"gifts/nitro"
+            // /giveway/gifts/account/creator/expiresAt _:"gifts/account/creator/expiresAt"
         }
     });
     ```
@@ -268,19 +268,19 @@ You can also use wildcards if you want to respond to routes with more or less se
     Give a name to the wildcard instead of `_`, use `:` to define a name:
     
     ```md title="CustomIds that will be responded to"
-    - "giveway/users"
-    - "giveway/gifts/nitro"
-    - "giveway/gifts/account/creator/expiresAt"
+    - "/giveway/users"
+    - "/giveway/gifts/nitro"
+    - "/giveway/gifts/account/creator/expiresAt"
     ```
 
     ```ts title="Responder"
     createResponder({
-        customId: "giveway/**:args", cache: "cached",
+        customId: "/giveway/**:args", cache: "cached",
         types: [ComponentType.Button],
         async run(interaction, { args }) {
-            // giveway/users args: "users"
-            // giveway/gifts/nitro args:"gifts/nitro"
-            // giveway/gifts/account/creator/expiresAt args:"gifts/account/creator/expiresAt"
+            // /giveway/users args: "users"
+            // /giveway/gifts/nitro args:"gifts/nitro"
+            // /giveway/gifts/account/creator/expiresAt args:"gifts/account/creator/expiresAt"
         }
     });
     ```
@@ -292,24 +292,24 @@ You can also use wildcards if you want to respond to routes with more or less se
     You can use the `parse` method to transform the wildcard into whatever you want, for example an array.
     
     ```md title="CustomIds that will be responded to"
-    - "giveway"
-    - "giveway/users"
-    - "giveway/gifts/nitro"
-    - "giveway/gifts/account/creator/expiresAt"
+    - "/giveway"
+    - "/giveway/users"
+    - "/giveway/gifts/nitro"
+    - "/giveway/gifts/account/creator/expiresAt"
     ```
 
     ```ts title="Responder"
     createResponder({
-        customId: "giveway/**", cache: "cached",
+        customId: "/giveway/**", cache: "cached",
         types: [ComponentType.Button],
         parse: params => ({
             args: params._.split("/").filter(Boolean)
         }),
         async run(interaction, { args }) {
-            // giveway args: []
-            // giveway/users args: ["users"]
-            // giveway/gifts/nitro args: ["gifts", "nitro"]
-            // giveway/gifts/account/creator/expiresAt args: ["gifts", "account", "creator", "expiresAt"]
+            // /giveway args: []
+            // /giveway/users args: ["users"]
+            // /giveway/gifts/nitro args: ["gifts", "nitro"]
+            // /giveway/gifts/account/creator/expiresAt args: ["gifts", "account", "creator", "expiresAt"]
         }
     });
     ```
@@ -319,4 +319,3 @@ You can also use wildcards if you want to respond to routes with more or less se
 <Callout type="info">
     The examples on this page were all with buttons, but this feature can be used with any type of responder!
 </Callout>
-

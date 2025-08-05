@@ -2,6 +2,7 @@
 title: MongoDB
 icon: BiLogoMongodb
 description: Veja como usar a predefinição de banco de dados MongoDB
+tag: updated
 ---
 
 <Callout type="info">
@@ -32,7 +33,8 @@ O arquivo `index.ts` da pasta `src/database` deve fazer a conexão com o banco d
 import mongoose, { InferSchemaType, model } from "mongoose";
 import { guildSchema } from "./schemas/guild.js";
 import { memberSchema } from "./schemas/member.js";
-import { logger, env } from "#settings";
+import { logger } from "#base";
+import { env } from "#env";
 import chalk from "chalk";
 
 try {

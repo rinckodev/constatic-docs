@@ -132,6 +132,68 @@ export const CliMenus = {
       },
     ]} />
   },
+  Databases({ lang, ...props }: DefaultCliMenuProps) {
+    const txt = createUiMessage(lang);
+
+
+
+    return <CliMenu {...props} items={[
+      { 
+        icon: "◆", color: "cyan",
+        label: txt({ en: "🧰 Database preset", pt: "🧰 Predefinição de banco de dados" }),  
+      },
+      { 
+        color: "red", id: "none",
+        label: txt({ en: "None", pt: "Nenhum" })
+      },
+      { 
+        icon: "🍃", color: "white", id: "mongoose",
+        label: "MongoDb (mongoose)" 
+      },
+      { 
+        icon: "🧊", color: "white", id: "quickdb" ,
+        label: "QuickDB (better-sqlite3)", 
+      },
+      { 
+        icon: "🦕", color: "white", id: "typesaurus" ,
+        label: "Firestore (typesaurus)", 
+      },
+      { 
+        icon: "🔥", color: "white", id: "firelord" ,
+        label: "Firestore (firelord)", 
+      },
+      { 
+        icon: "🐬", color: "white", id: "mysql" ,
+        label: "MySQL (sql)", 
+      },
+      { 
+        icon: "🦭", color: "white", id: "mariadb" ,
+        label: "MariaDb (sql)", 
+      },
+      { 
+        icon: "💎", color: "white", id: "prisma" ,
+        label: "Prisma (orm)", 
+      },
+    ]} />
+  },
+  Servers({ lang, ...props }: DefaultCliMenuProps) {
+    const txt = createUiMessage(lang);
+
+    return <CliMenu {...props} items={[
+      { 
+        icon: "◆", color: "cyan",
+        label: txt({ en: "🌐 API Server", pt: "🌐 Servidor API" }),  
+      },
+      { 
+        icon: "🐅", color: "green", id: "fastify",
+        label: "Fastify (fastify)" 
+      },
+      { 
+        icon: "🦎", color: "green", id: "express" ,
+        label: "ExpressJS (express)", 
+      },
+    ]} />
+  },
   Presets({ lang, ...props }: DefaultCliMenuProps) {
     const txt = createUiMessage(lang);
 

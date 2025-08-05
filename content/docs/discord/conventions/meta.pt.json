@@ -7,6 +7,6 @@
         "intents",
         "imports",  
         "env", 
-        "global"
+        "constants"
     ]
 }

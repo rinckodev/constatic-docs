@@ -15,18 +15,29 @@ export function BaseStructure() {
         <Folder name="src">
             <Folder name="discord">
                 <Folder name="base">
-                    <Folder name="utils">
-                        <File name="URLStore.ts" icon={<TbBrandTypescript />}/>
-                        <File name="Store.ts" icon={<TbBrandTypescript />} />
+                    <Folder name="commands">
+                        <File name="handlers.ts" icon={<TbBrandTypescript />} />
+                        <File name="manager.ts" icon={<TbBrandTypescript />} />
+                        <File name="types.ts" icon={<TbBrandTypescript />} />
                     </Folder>
-                    <File name="base.app.ts" icon={<TbBrandTypescript />} />
-                    <File name="base.command.ts" icon={<TbBrandTypescript />} />
-                    <File name="base.creators.ts" icon={<TbBrandTypescript />} />
-                    <File name="base.event.ts" icon={<TbBrandTypescript />} />
-                    <File name="base.responder.ts" icon={<TbBrandTypescript />} />
-                    <File name="base.storage.ts" icon={<TbBrandTypescript />} />
-                    <File name="base.types.d.ts" icon={<TbBrandTypescript />} />
+                    <Folder name="events">
+                        <File name="handlers.ts" icon={<TbBrandTypescript />} />
+                        <File name="manager.ts" icon={<TbBrandTypescript />} />
+                        <File name="types.ts" icon={<TbBrandTypescript />} />
+                    </Folder>
+                    <Folder name="responders">
+                        <File name="handlers.ts" icon={<TbBrandTypescript />} />
+                        <File name="manager.ts" icon={<TbBrandTypescript />} />
+                        <File name="types.ts" icon={<TbBrandTypescript />} />
+                    </Folder>
+                    <File name="app.ts" icon={<TbBrandTypescript />} />
+                    <File name="base.env.ts" icon={<TbBrandTypescript />} />
+                    <File name="base.error.ts" icon={<TbBrandTypescript />} />
+                    <File name="base.logger.ts" icon={<TbBrandTypescript />} />
                     <File name="base.version.ts" icon={<TbBrandTypescript />} />
+                    <File name="bootstrap.ts" icon={<TbBrandTypescript />} />
+                    <File name="constants.ts" icon={<TbBrandTypescript />} />
+                    <File name="creators.ts" icon={<TbBrandTypescript />} />
                     <File name="index.ts" icon={<TbBrandTypescript />} />
                 </Folder>
                 <Folder name="commands">
@@ -50,14 +61,7 @@ export function BaseStructure() {
             <Folder name="functions">
                 <File name="index.ts" icon={<TbBrandTypescript />} />
             </Folder>
-            <Folder name="settings">
-                <File name="env.schema.ts" icon={<TbBrandTypescript />} />
-                <File name="env.validate.ts" icon={<TbBrandTypescript />} />
-                <File name="error.ts" icon={<TbBrandTypescript />} />
-                <File name="global.ts" icon={<TbBrandTypescript />} />
-                <File name="index.ts" icon={<TbBrandTypescript />} />
-                <File name="logger.ts" icon={<TbBrandTypescript />} />
-            </Folder>
+            <File name="env.ts" icon={<TbBrandTypescript />} />
             <File name="index.ts" icon={<TbBrandTypescript />} />
         </Folder>
         <File name=".env" icon={<PiFileLockFill />} />

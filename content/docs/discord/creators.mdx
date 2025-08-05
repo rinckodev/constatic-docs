@@ -2,10 +2,9 @@
 title: Creators
 icon: MdFactory
 description: Main base structures for creating commands and systems
+tag: updated 
 ---
 import icons from "@/lib/icons";
-
-import { File, Files, Folder } from "fumadocs-ui/components/files";
 
 On this base, to create commands and systems you must use the creator functions, which are `createCommand`, `createEvent` and `createResponder`.
 
@@ -24,12 +23,12 @@ This function receives options and returns the creators of commands, events and 
 import { createCommand, createEvent, createResponder } from "#base";
 ```
 
-## Command Options
+## Command Options [#command-options]
 
 You can set some command options in the `setupCreators` function:
 
 <Tabs items={["Default permissions", "Guilds", "middleware", "onError", "onNotFound"]}>
-  <Tab value="Default permissions">
+  <Tab id="commands-default-permissions" value="Default permissions">
     Set what the default permissions will be for all commands, if none are defined with the `defaultMemberPermissions` option (It is the same permissions array as the command).
 
     ```ts
@@ -54,13 +53,15 @@ You can set some command options in the `setupCreators` function:
     })
     ```
   </Tab>
-  <Tab value="Guilds">
+  <Tab id="commands-guilds" value="Guilds">
     You can set multiple guild IDs that you want to register your bot's commands with the `guilds` option.
 
     ```ts
+    import { env } from "#env";
+
     /* ... */ setupCreators({
         commands: {
-            guilds: [process.env.MAIN_GUILD_ID, "537817462272557057"]
+            guilds: [env.MAIN_GUILD_ID, "537817462272557057"]
         },
     });
     ```
@@ -167,7 +168,7 @@ You can set some command options in the `setupCreators` function:
   </Tab>
 </Tabs>
 
-## Responder Options
+## Responder Options [#responder-options]
 
 You can set some responder options in the `setupCreators` function:
 
@@ -258,7 +259,7 @@ You can set some responder options in the `setupCreators` function:
   </Tab>
 </Tabs>
 
-## Event options
+## Event options [#event-options]
 
 You can set some event options in the `setupCreators` function:
 

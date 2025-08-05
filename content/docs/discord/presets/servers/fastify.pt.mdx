@@ -1,6 +1,7 @@
 ---
 title: Fastify
 icon: SiFastify
+tag: updated 
 ---
 import icons from "@/lib/icons";
 
@@ -11,193 +12,92 @@ A predefinição de servidor de API usando fastify já vem com algumas configura
     É necessário conhecer o framework fastify para utilizar da melhor forma, leia a documentação: https://fastify.dev/
 </Callout>
 
-## Função de entrada
+## Iniciar o servidor
 
-Assim como na base do projeto temos a função **boostrap** para carregar os módulos e iniciar o bot, temos também a função **startServer** que fica no arquivo `src/server/index.ts`. Essa função é exportada para ser chamada assim que o bot estiver pronto:
+O arquivo que contém o código para iniciar o servidor fica localizado em `src/server/index.ts`. O servidor só será iniciado depois que o bot estiver pronto! Então um evento `ready` do bot é usado para iniciar o servidor, confira:
 
-```ts title="src/index.ts"
-import { bootstrap } from "#base";
-import { startServer } from "#server";
+```ts title="src/server/index.ts"
+import { createEvent, logger } from "#base";
+import { env } from "#env";
+import cors from "@fastify/cors";
+import ck from "chalk";
+import fastify from "fastify";
+import { registerRoutes } from "./routes/index.js";
 
-await bootstrapApp({ 
-    meta: import.meta,
-    whenReady: startServer
+const app = fastify();
+app.register(cors, { origin: "*" });
+
+createEvent({
+    name: "Start Fastify Server",
+    event: "ready", once: true,
+    async run(client) {
+        registerRoutes(app, client);
+
+        const port = env.SERVER_PORT ?? 3000;
+
+        await app.listen({ port, host: "0.0.0.0" })
+        .then(() => {
+            logger.log(ck.green(
+                `● ${ck.underline("Fastify")} server listening on port ${port}`
+            ));
+        })
+        .catch(err => {
+            logger.error(err);
+            process.exit(1);
+        });
+    },
 });
 ```
 
-<Accordions>
-  <Accordion title="Caso você queira executar outras coisas no método whenReady">
-    ```ts title="src/index.ts"
-    import { bootstrap } from "#base";
-    import { startServer } from "#server";
+Dessa forma basta importar este arquivo em `src/index.ts` que o evento será registrado:
 
-    await bootstrap({ 
-        meta: import.meta,
-        whenReady(client){
-            // executar outras coisas
-            startServer(client);
-        }
-    });
-    ```
-  </Accordion>
-</Accordions>
+```ts title="src/index.ts"
+import { bootstrap } from "#base";
+import "#server";
 
-Com isso o servidor fastify irá iniciar logo após o bot ficar online, assim recebendo o Client como argumento.
+await bootstrapApp({ meta: import.meta });
+```
+
+Então o servidor fastify irá iniciar logo após o bot ficar online, assim tendo `Client<true>` (instância de Client quando já está online) para poder ser usado nas rotas.
 
 ## Variáveis de ambiente
 
 O schema zod para validar o env é alterado para permitir novas variávies de ambiente
 
-```ts title="src/settings/env.ts"
+```ts title="src/env.ts"
+import { validateEnv } from "#base";
 import { z } from "zod";
 
-const envSchema = z.object({
-    BOT_TOKEN: z.string({ description: "Discord Bot Token is required" }).min(1),
-    WEBHOOK_LOGS_URL: z.string().url().optional(),
-    SERVER_PORT: z.number({ coerce: true }).optional(), // [!code highlight]
-    // Env vars...
-});
-
-type EnvSchema = z.infer<typeof envSchema>;
-
-export { envSchema, type EnvSchema };
+export const env = validateEnv(z.object({
+    BOT_TOKEN: z.string("Discord Bot Token is required").min(1),
+    WEBHOOK_LOGS_URL: z.url().optional(),
+    SERVER_PORT: z.coerce.number().optional(), // [!code highlight]
+}));
 ```
 
-Isso significa que você pode alterar a **PORTA** do servidor fasitfy usando essa variável no arquivo `.env`
+Isso significa que você pode alterar a **porta** do servidor fasitfy usando essa variável no arquivo `.env`
 
 ```properties title=".env"
 BOT_TOKEN=yourtoken
 SERVER_PORT=8080
 ```
 
-## Carregamento e registro automático
-
-Por padrão, esta predefinição vem com o plugin `@fastify/autoload` instalado, com isso podemos configurar uma pasta com manipuladores de rotas que serão definidos automáticamente:
-
-```ts title="src/server/index.ts"
-import fastify, { type FastifyInstance } from "fastify";
-import autoload from "@fastify/autoload";
-import type { Client } from "discord.js";
-import path from "node:path";
-// ...
-
-export async function startServer(client: Client<true>){
-    // ...
-    // [!code word:autoload]
-    app.register(autoload, { // [!code highlight]
-        dir: path.join(import.meta.dirname, "routes"), // [!code highlight]
-        routeParams: true, // [!code highlight]
-    // [!code word:client]
-        options: client, // [!code highlight]
-    }); // [!code highlight]
-    // ...
-}
-```
-
-Essa configuração vai importar e registrar os manipuladores de rota de todos os arquivos da pasta `src/server/routes`.
-
-<Callout type="warn">
-  Por isso é muito importante que todos os arquivos da pasta routes tenham uma exportação padrão de uma função que recebe a instância do fastify, o client do discord e a função done do fastify
-</Callout>
-
-Veja um exemplo da rota raiz retornando algumas informações:
-
-```ts title="src/server/routes/home.ts"
-import { defineRoutes } from "#server";
-import { StatusCodes } from "http-status-codes";
-
-export default defineRoutes((app, client) => {
-    app.get("/", (_, res) => {
-        return res.status(StatusCodes.OK).send({
-            message: `🍃 Online on discord as ${client.user.username}`,
-            guilds: client.guilds.cache.size,
-            users: client.users.cache.size
-        });
-    });
-});
-```
-
-<Accordions>
-  <Accordion title="Outras maneiras de definir as rotas">
-    <Callout type="info">
-    No exemplo acima foi utilizado uma função utilitária que já vem na predefinição, para definir as rotas, mas se você preferir pode apenas exportar uma função tipando os parâmetros corretamente
-    </Callout>
-
-    ```ts title="src/server/routes/home.ts"
-    import type { FastifyInstance } from "fastify";
-    import type { Client } from "discord.js";
-    import { StatusCodes } from "http-status-codes";
-
-    export default function homeRoute(app: FastifyInstance, client: Client<true>, done: Function){
-        // ...
-        // [!code word:done]
-        done(); // [!code highlight]
-    };
-    ```
-    <Callout type="warn">
-    Caso for exportar dessa maneira não esqueça de executar a função done no final
-    </Callout>
-
-    Você pode usar o tipo exportado da predefinição também:
-
-     ```ts title="src/server/routes/home.ts"
-    import type { RouteHandler } from "#server";
-    import { StatusCodes } from "http-status-codes";
-
-    export default ((app, client, done) => {
-        // ...
-        done()
-    }) satisfies RouteHandler
-    ```
-  </Accordion>
-</Accordions>
-
-O plugin `@fastify/autoload` importa módulos de subpastas e transforma o caminho em uma rota:
-
-Crie um arquivo em `src/server/routes/users`:
-```ts title="src/server/routes/users/route.ts"
-import { defineRoutes } from "#server";
-import { StatusCodes } from "http-status-codes";
-
-export default defineRoutes((app, client) => {
-    app.get("/", (_, res) => {
-        return res.status(StatusCodes.OK).send({
-            message: "Retorna todos os usuários",
-        });
-    });
-
-    app.get("/:id", (req, res) => {
-        const { id } = req.params as { id: string };
-
-        return res.status(StatusCodes.OK).send({
-            message: "Retorna um usuário pelo id",
-        });
-    });
-});
-```
-
-No exemplo acima, será registrado duas rotas, a primeira sendo `/users` e a segunda sendo `/users/:id`.
-<Callout type="info">
-    Leia a documentação completa do plugin para entender os melhores casos de uso: https://github.com/fastify/fastify-autoload
-</Callout>
-
 ## Cors
 
 Nesta predefinição, o plugin de cors já vem instalado e com uma configuração básica:
 
 ```ts title="src/server/index.ts"
-import fastify, { type FastifyInstance } from "fastify";
+import { createEvent, logger } from "#base";
+import { env } from "#env";
 import cors from "@fastify/cors";
-import type { Client } from "discord.js";
-import path from "node:path";
+import ck from "chalk";
+import fastify from "fastify";
+import { registerRoutes } from "./routes/index.js";
 // ...
 
-export async function startServer(client: Client<true>){
-    // ...
-    // [!code word:cors]
-    app.register(cors, { origin: "*" }); // [!code highlight]
-    // ...
-}
+app.register(cors, { origin: "*" }); // [!code highlight]
+
+// ...
 ```
 
 <Callout type="info">
