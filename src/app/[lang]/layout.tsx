@@ -1,16 +1,17 @@
 import "../global.css";
 import { Translations } from "fumadocs-ui/contexts/i18n";
 import { RootProvider } from "fumadocs-ui/provider";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 
 const inter = Inter({
   subsets: ["latin"],
 });
 
-const cn: Partial<Translations> = {
-  search: "Translated Content",
-  // other translations
-};
+const codefont = JetBrains_Mono({
+  subsets: ["latin"]
+});
+
+codefont;
 
 const locales = [
   {
