@@ -65,9 +65,9 @@ export async function generateMetadata({ params }: {
   
   const images = {
     alt: "Banner",
-    url: `/${lang}/docs-og/${slug.join("/")}/image.png`,
-    width: 1200,
-    height: 630
+    url: `/${lang}/og/${slug.join("/")}/image.png`,
+    width: 1430,
+    height: 660,
   };
 
   return {
