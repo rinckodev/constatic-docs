@@ -37,7 +37,7 @@ export default async function Page(props: PageProps) {
             <div className="flex flex-col gap-4 md:border-l md:p-4 text-sm lg:w-[250px]">
                 <div>
                     <p className="font-medium text-muted-foreground">
-                        {new Date(page.data.date ?? page.file.name).toLocaleDateString()}
+                        {new Date(page.data.date ?? page.path).toLocaleDateString()}
                     </p>
                 </div>
                 <InlineTOC items={page.data.toc} defaultOpen />

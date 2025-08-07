@@ -18,8 +18,10 @@ export default async function Layout({ children, params }: {
     {...baseOptions}
       tree={source.pageTree[lang]} 
       nav={{ ...baseOptions.nav, mode: "top" }}
-      sidebar={{ prefetch: false }} 
-      >
+      sidebar={{
+        prefetch: false, 
+      }} 
+    >
       {children}
       <GridPattern
         width={60}

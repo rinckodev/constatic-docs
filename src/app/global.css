@@ -6,7 +6,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-.fd-codeblock code {
+pre code {
     font-family: "JetBrains Mono";
 }
 

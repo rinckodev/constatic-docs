@@ -23,8 +23,8 @@ export const source = loader({
     attachFile(node, file) {
       if (!file) return node;
 
-      if (file.data.data.tag){
-        const iconTag = file.data.data.tag === "new" 
+      if (file.data.tag){
+        const iconTag = file.data.tag === "new" 
         ? <HiMiniSparkles className="text-green-500"/> 
         : <PiMagicWandFill className="text-yellow-500" /> 
         node.name = (

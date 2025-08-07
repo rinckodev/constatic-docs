@@ -33,11 +33,11 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ...inlineComponents,
     ...stepsComponents,
     Tab, Tabs,
-    pre: ({ ref: _ref, ...props }) => (
-      <codeblockComponents.CodeBlock {...props}>
-        <codeblockComponents.Pre>{props.children}</codeblockComponents.Pre>
-      </codeblockComponents.CodeBlock>
-    ),
+    // pre: ({ ref: _ref, ...props }) => (
+    //   <codeblockComponents.CodeBlock {...props}>
+    //     <codeblockComponents.Pre>{props.children}</codeblockComponents.Pre>
+    //   </codeblockComponents.CodeBlock>
+    // ),
     a: props => <Link {...props}/>, Link,
   };
 }

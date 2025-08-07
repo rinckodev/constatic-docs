@@ -16,7 +16,7 @@ export const docs = defineDocs({
   dir: "content/docs",
   docs: {
     schema: frontmatterSchema.extend({
-      tag: z.enum(["new", "updated"] as const).optional()
+      tag: z.enum(["new", "updated"]).optional()
     }),
   },
   meta: {
@@ -27,7 +27,7 @@ export const docs = defineDocs({
 export const blogCollection = defineCollections({
   dir: "content/blog",
   schema: frontmatterSchema.extend({
-    date: z.string().date().or(z.date()).optional(),
+    date: z.coerce.date().or(z.date()).optional(),
     tags: z.array(z.string()).optional(),
   }),
   type: "doc"
@@ -47,7 +47,7 @@ export default defineConfig({
       transformers: [
         ...(rehypeCodeDefaultOptions.transformers??[]),
         transformerTwoslash({
-          typesCache: createFileSystemTypesCache()
+          typesCache: createFileSystemTypesCache(),
         })
       ]
     }

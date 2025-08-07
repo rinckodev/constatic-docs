@@ -18,7 +18,6 @@ export const baseOptions: BaseLayoutProps = {
   githubUrl: "https://github.com/rinckodev/constatic",
   nav: {
     title: <ConstaticTitle/>,
-    
   },
   links: [
     {
