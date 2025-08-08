@@ -1,11 +1,12 @@
-import { ConstaticFlare } from "@/components/constatic/ConstaticFlare";
-import { GithubButton } from "@/components/constatic/GithubButton";
-import { ReadDocsButton } from "@/components/constatic/ReadDocsButton";
-import { GridPattern } from "@/components/decoration/GridPattern";
-import { CliCommand } from "@/components/display/CliCommand";
+import { ConstaticFlare } from "@/components/constatic/flare";
+import { GridPattern } from "@/components/constatic/grid";
+import { CliCommand } from "@/components/constatic/cli/command";
 import { cn } from "@/lib/cn";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
+import Link from "next/link";
+import { FaGithub, FaStar } from "react-icons/fa";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 const poppins = Poppins({ subsets: ["latin"], weight: "500" });
 
@@ -14,8 +15,8 @@ export default function HomePage() {
     <main className="flex flex-1 flex-col z-10 items-center justify-center text-center gap-12">
       <ConstaticFlare />
       <div className="flex flex-col md:flex-row justify-center items-center motion-preset-expand motion-delay-[200ms]">
-        <Image src={"/constatic.svg"} alt="logo" width={124} height={124}/>
-        <h1 
+        <Image src={"/constatic.svg"} alt="logo" width={124} height={124} />
+        <h1
           className={`${poppins.className} text-3xl lg:text-6xl uppercase bg-gradient-to-r 
             dark:from-white from-black dark:to-neutral-400 to-neutral-500 bg-clip-text text-transparent
         `}>Constatic</h1>
@@ -25,11 +26,25 @@ export default function HomePage() {
       </span>
       <div className="flex flex-col w-fit">
         <div className="flex flex-col lg:flex-row gap-4 lg:gap-2 items-center justify-center motion-preset-expand motion-delay-[400ms]">
-          <GithubButton/>
-          <ReadDocsButton/>
+          <Link href={"https://github.com/rinckodev/constatic"}
+            target="_blank"
+            className="flex items-center group border rounded-2xl px-3 py-1 gap-2"
+          >
+            <FaGithub className="size-4" />
+            <span>Star on GitHub</span>
+            <div className="flex items-center gap-1 text-sm md:flex">
+              <FaStar className="size-4 text-gray-500 transition-all duration-300 group-hover:text-yellow-300" />
+            </div>
+          </Link>
+          <Link href={"/docs"}
+            className="flex items-center group border rounded-2xl px-3 py-1 gap-2"
+          >
+            <span className="">📄 Read the docs</span>
+            <FaArrowRightLong size={10} />
+          </Link>
         </div>
-        <CliCommand 
-          packageName="constatic@latest" 
+        <CliCommand
+          packageName="constatic@latest"
           className="border-dashed"
         />
       </div>

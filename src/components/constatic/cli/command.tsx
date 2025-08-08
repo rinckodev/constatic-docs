@@ -1,8 +1,8 @@
 import { FaNodeJs } from "react-icons/fa";
 import { SiBun, SiPnpm } from "react-icons/si";
 import { TbBrandYarn } from "react-icons/tb";
-import { CodeBlock, Pre } from "../codeblock";
-import { Tab, Tabs } from "../tabs";
+import { CodeBlock, Pre } from "../../codeblock";
+import { Tab, Tabs } from "../../tabs";
 
 interface CliCommandProps {
     packageName: string;

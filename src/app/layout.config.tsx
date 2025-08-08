@@ -1,4 +1,4 @@
-import { ConstaticTitle } from "@/components/constatic/ConstaticTitle";
+import { ConstaticTitle } from "@/components/constatic/title";
 import { i18n } from "@/lib/i18n";
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 import { FaBook } from "react-icons/fa";

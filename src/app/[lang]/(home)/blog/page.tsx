@@ -1,4 +1,4 @@
-import { BlogPosts } from "@/components/sections/blog/BlogPosts";
+import { BlogPosts } from "@/components/features/blog/BlogPosts";
 import { blog } from "@/lib/source";
 import path from "node:path";
 import { FaNewspaper } from "react-icons/fa6";

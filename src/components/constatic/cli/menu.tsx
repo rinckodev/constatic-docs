@@ -1,5 +1,10 @@
+import { JetBrains_Mono } from "next/font/google";
 import { FaRegWindowMinimize } from "react-icons/fa6";
 import { LuSquare, LuX } from "react-icons/lu";
+
+const font = JetBrains_Mono({
+  subsets: ["latin"]
+});
 
 type ChalkColor =
   | "black" | "red" | "green" | "yellow"
@@ -56,7 +61,7 @@ const styleToTailwindMap: Record<TextStyle, string> = {
 export function CliMenu(props: CLIMenuProps) {
   const { hidden=[], selected=[], items } = props;
   return (
-    <div className={`w-full flex flex-col border-2 code-font items-start rounded-md bg-neutral-950`}>
+    <div className={`${font.className} w-full flex flex-col border-2 items-start rounded-md bg-neutral-950`}>
       <div className="flex justify-end w-full p-1 bg-neutral-900 rounded-t-sm">
         <span className="flex flex-row gap-2">
           <FaRegWindowMinimize size={14} />
@@ -64,7 +69,7 @@ export function CliMenu(props: CLIMenuProps) {
           <LuX size={16} />
         </span>
       </div>
-      <div className={`w-full flex flex-col code-font rounded-b-sm items-start p-2 bg-neutral-950`}>
+      <div className={`${font.className} w-full flex flex-col rounded-b-sm items-start p-2 bg-neutral-950`}>
         {items.filter(item => !hidden.includes(item.id??"")).map((item, key) => {
           const textColorClass = item.color ? chalkToTailwindMap[item.color] : "";
           const iconColorClass = item.iconColor

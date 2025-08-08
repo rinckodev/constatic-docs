@@ -1,4 +1,4 @@
-import { BlogTag } from "@/components/sections/blog/BlogTag";
+import { BlogTag } from "@/components/features/blog/BlogTag";
 import { buttonVariants } from "@/components/ui/button";
 import { blog } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";

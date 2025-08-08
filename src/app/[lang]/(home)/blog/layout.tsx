@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { HomeLayout } from "fumadocs-ui/layouts/home";
 import { baseOptions } from "@/app/layout.config";
 import { cn } from "@/lib/cn";
-import { GridPattern } from "@/components/decoration/GridPattern";
+import { GridPattern } from "@/components/constatic/grid";
 
 export default function Layout({
   children,
