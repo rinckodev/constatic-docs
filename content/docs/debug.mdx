@@ -4,6 +4,10 @@ icon: TiHome
 description: Debug page
 ---
 
+import icons from "@/lib/icons"
+
+text
+
 # H1 title
 
 ## H2 title
@@ -22,15 +26,31 @@ List:
 
 ---
 
+<div className="flex flex-col gap-1">
+  <DiscordSlashCommand name="ping" />
+  <DiscordSlashCommand 
+    name="gerenciar"
+    group="canais"
+    subcommand="criar"
+    description="Crie um novo canal do discord"
+    options={[
+      {
+        name: "nome",
+        description: "Digite o novo nome do canal",
+        type: "text"
+      }
+    ]}
+  />
+</div>
+
 ```ts title="index.ts"
 console.log("hello world");
 ```
 
-```js title="index.js"
+```js tab="Exemplo 1" title="index.js"
 console.log("hello world");
 ```
-
-```json title="index.json"
+```json tab="Exemplo 2" title="index.json"
 {
     "hello": "world"
 }
@@ -44,10 +64,63 @@ console.log("hello world"); // [!code highlight]
 console.log("hello world"); 
 ```
 
+```ts title="index.ts"
+console.log("hello world");
+console.log("hello world"); // [!code focus]
+console.log("hello world");
+console.log("hello world"); 
+```
+
 ```properties title=".properties"
 BOT_TOKEN=mytoken
 PORT=3000
 ```
+
+
+```ts title="buttons.ts"
+const row = createRow(
+  new ButtonBuilder({
+      customId: "a",
+      label: "Action", 
+      style: ButtonStyle.Success
+  }),
+  new ButtonBuilder({
+      customId: "b",
+      label: "Action", 
+      style: ButtonStyle.Primary
+  }),
+  new ButtonBuilder({
+      customId: "c",
+      label: "Action", 
+      style: ButtonStyle.Secondary
+  }),
+  new ButtonBuilder({
+      customId: "d",
+      label: "Action", 
+      style: ButtonStyle.Danger
+  }),
+  new ButtonBuilder({
+      url: RouteBases.api,
+      label: "Action", 
+      style: ButtonStyle.Link
+  }),
+)
+```
+
+<div className="flex flex-col gap-2">
+<DiscordActionRow>
+  <DiscordButton label="Action" style="success" icon={<icons.IoMdPersonAdd/>} />
+  <DiscordButton label="Action" style="danger" icon={<icons.IoMdPersonAdd/>} />
+  <DiscordButton label="Action" style="primary" icon={<icons.IoMdPersonAdd/>} />
+  <DiscordButton label="Action" style="secondary" icon={<icons.IoMdPersonAdd/>} />
+</DiscordActionRow>
+<DiscordActionRow>
+  <DiscordButton label="Action" style="success" icon={<icons.IoMdPersonAdd/>} disabled />
+  <DiscordButton label="Action" style="danger" icon={<icons.IoMdPersonAdd/>} disabled />
+  <DiscordButton label="Action" style="primary" icon={<icons.IoMdPersonAdd/>} disabled />
+  <DiscordButton label="Action" style="secondary" icon={<icons.IoMdPersonAdd/>} disabled />
+</DiscordActionRow>
+</div>
 
 ```bash title="start.sh"
 npm run dev
