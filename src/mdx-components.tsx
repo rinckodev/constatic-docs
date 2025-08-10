@@ -19,7 +19,6 @@ import { DiscordButton } from "./components/discord/button";
 import { DiscordActionRow } from "./components/discord/row";
 import { DiscordSlashCommand } from "./components/discord/slash";
 
-// use this function to get MDX components, you will need it for rendering MDX
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
     ...defaultMdxComponents,

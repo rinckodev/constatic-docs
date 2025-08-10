@@ -71,6 +71,9 @@ export async function generateMetadata({ params }: {
   };
 
   return {
+    metadataBase: process.env.NODE_ENV === "development"
+      ? new URL("http://localhost:3000")
+      : new URL("https://constatic-docs.vercel.app"),
     title: page.data.title,
     description: page.data.description,
     openGraph: {
