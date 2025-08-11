@@ -18,6 +18,7 @@ import { Link } from "./components/Link";
 import { DiscordButton } from "./components/discord/button";
 import { DiscordActionRow } from "./components/discord/row";
 import { DiscordSlashCommand } from "./components/discord/slash";
+import { CodeBlock, Pre, } from "./components/codeblock";
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -35,17 +36,17 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ...imageComponents,
     ...inlineComponents,
     ...stepsComponents,
-    ...codeComponents,
+    // ...codeComponents,
     Tab, Tabs,
     a: props => <Link {...props}/>, Link,
     DiscordButton,
     DiscordActionRow,
     DiscordSlashCommand,
-    // pre: ({ ref: _ref, ...props }) => (
-    //   <codeComponents.CodeBlock {...props}>
-    //     <codeComponents.Pre>{props.children}</codeComponents.Pre>
-    //   </codeComponents.CodeBlock>
-    // ),
+    pre: ({ ref: _ref, ...props }) => (
+      <CodeBlock {...props}>
+        <Pre>{props.children}</Pre>
+      </CodeBlock>
+    ),
   };
 }
 
