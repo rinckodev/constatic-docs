@@ -16,10 +16,10 @@ export default async function Layout({ children, params }: {
   return (
     <DocsLayout 
     {...baseOptions}
-      tree={source.pageTree[lang]} 
-      nav={{ ...baseOptions.nav, mode: "top" }}
+      tree={source.pageTree[lang]}
       sidebar={{
-        prefetch: false, 
+        collapsible: false,
+        prefetch: false,
       }} 
     >
       {children}
