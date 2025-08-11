@@ -1,46 +1,109 @@
+"use client";
+
+import { JSX, useState } from "react";
 import { FaNodeJs } from "react-icons/fa";
-import { SiBun, SiPnpm } from "react-icons/si";
 import { TbBrandYarn } from "react-icons/tb";
-import { CodeBlock, Pre } from "../../codeblock-legacy";
-import { Tab, Tabs } from "../../tabs";
+import { SiBun, SiPnpm } from "react-icons/si";
+import { FiCopy, FiCheck } from "react-icons/fi";
+import { JetBrains_Mono } from "next/font/google";
+import { cn } from "@/lib/utils";
 
-interface CliCommandProps {
+const font = JetBrains_Mono({
+    subsets: ["latin"]
+});
+
+type Props = {
     packageName: string;
-    className?: string;
-}
-export function CliCommand({ packageName, className }: CliCommandProps){
-    return <>
-        <Tabs items={[
-        { value: "node", icon: <FaNodeJs size={18}/> },
-        { value: "bun", icon: <SiBun size={18}/> },
-        { value: "yarn", icon: <TbBrandYarn size={18}/> },
-        { value: "pnpm", icon: <SiPnpm size={18}/> },
-      ]} className={className}>
-        <Tab value="node">
-            <Code text={`npx ${packageName}`}/>
-        </Tab>
-        <Tab value="bun">
-            <Code text={`bunx ${packageName}`}/>
-        </Tab>
-        <Tab value="yarn">
-            <Code text={`yarn dlx ${packageName}`}/>
-        </Tab>
-        <Tab value="pnpm">            
-            <Code text={`pnpm dlx ${packageName}`}/>
-        </Tab>
-      </Tabs>
-    </>
-}
+};
 
-interface CodeProps {
-    text: string;
-}
-function Code({ text }: CodeProps){
-    return <CodeBlock lang="bash">
-        <Pre className="text-start" lang="bash">
-            <code>
-                {text}
-            </code>
-        </Pre>
-    </CodeBlock>
+type Tab = {
+    id: string;
+    label: string;
+    icon: JSX.Element;
+    command: (name: string) => string;
+};
+
+const tabs: Tab[] = [
+    {
+        id: "node",
+        label: "node.js",
+        icon: <FaNodeJs size={18} />,
+        command: name => `npx ${name}`
+    },
+    {
+        id: "bun",
+        label: "bun",
+        icon: <SiBun size={18} />,
+        command: name => `bunx ${name}`
+    },
+    {
+        id: "yarn",
+        label: "yarn",
+        icon: <TbBrandYarn size={18} />,
+        command: name => `yarn dlx ${name}`
+    },
+    {
+        id: "pnpm",
+        label: "pnpm",
+        icon: <SiPnpm size={18} />,
+        command: name => `pnpm dlx ${name}`
+    }
+];
+
+export function CliCommand({ packageName: name }: Props) {
+    const [activeTab, setActiveTab] = useState(tabs[0].id);
+    const [copied, setCopied] = useState(false);
+
+    const active = tabs.find(t => t.id === activeTab)!;
+    const command = active.command(name);
+
+    const handleCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(command);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch {}
+    };
+
+    return (
+        <div className={`${font.className} w-full border rounded-lg shadow overflow-clip my-2`}>
+            <div className="flex border-b bg-fd-background px-2 overflow-auto">
+                {tabs.map(tab => (
+                    <button
+                        key={tab.id}
+                        onClick={() => setActiveTab(tab.id)}
+                        className={cn(
+                            "flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors",
+                            "hover:cursor-pointer",
+                            activeTab === tab.id
+                                ? "border-b-2 border-fd-primary text-fd-primary"
+                                : "text-fd-muted-foreground hover:text-fd-foreground"
+                        )}
+                    >
+                        {tab.icon}
+                        {tab.label}
+                    </button>
+                ))}
+            </div>
+            <div className="p-2 flex items-center justify-between gap-2 bg-fd-card">
+                <code className={cn(
+                    "not-prose px-3 py-2 rounded block font-mono text-sm",
+                    font.className,
+                )}>
+                    {command}
+                </code>
+                <button
+                    onClick={handleCopy}
+                    className="p-2 rounded hover:bg-fd-accent transition-colors
+                    hover:cursor-pointer"
+                >
+                    {copied ? (
+                        <FiCheck className="text-green-600" />
+                    ) : (
+                        <FiCopy className="text-fd-muted-foreground" />
+                    )}
+                </button>
+            </div>
+        </div>
+    );
 }

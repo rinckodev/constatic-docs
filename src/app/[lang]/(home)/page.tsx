@@ -1,6 +1,6 @@
+import { CliCommand } from "@/components/constatic/cli/command";
 import { ConstaticFlare } from "@/components/constatic/flare";
 import { GridPattern } from "@/components/constatic/grid";
-import { CliCommand } from "@/components/constatic/cli/command";
 import { cn } from "@/lib/cn";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
@@ -24,11 +24,11 @@ export default function HomePage() {
       <span className="justify-center items-center text-center text-sm lg:text-2xl px-24 max-w-screen-lg font-light text-wrap motion-preset-expand motion-delay-[300ms]">
         Creating modern and <span className="font-bold">awesome</span> projects has never been easier
       </span>
-      <div className="flex flex-col w-fit">
-        <div className="flex flex-col lg:flex-row gap-4 lg:gap-2 items-center justify-center motion-preset-expand motion-delay-[400ms]">
+      <div className="flex flex-col gap-2">
+        <div className="flex flex-col w-full lg:flex-row gap-2 lg:gap-2 items-center justify-center motion-preset-expand motion-delay-[400ms]">
           <Link href={"https://github.com/rinckodev/constatic"}
             target="_blank"
-            className="flex items-center group border rounded-2xl px-3 py-1 gap-2"
+            className="flex w-full items-center group border rounded-2xl px-3 py-1 gap-2"
           >
             <FaGithub className="size-4" />
             <span>Star on GitHub</span>
@@ -37,7 +37,7 @@ export default function HomePage() {
             </div>
           </Link>
           <Link href={"/docs"}
-            className="flex items-center group border rounded-2xl px-3 py-1 gap-2"
+            className="flex w-full items-center group border rounded-2xl px-3 py-1 gap-2"
           >
             <span className="">📄 Read the docs</span>
             <FaArrowRightLong size={10} />
@@ -45,7 +45,6 @@ export default function HomePage() {
         </div>
         <CliCommand
           packageName="constatic@latest"
-          className="border-dashed"
         />
       </div>
       <GridPattern
