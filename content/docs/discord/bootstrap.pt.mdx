@@ -86,7 +86,7 @@ Você você pode executar um código antes dos diretórios serem carregados e re
 await bootstrap({ 
     meta: import.meta,
     async beforeLoad(client) {
-        console.log(client.application) // null;
+        console.log(client.application); // null;
         console.log("Isso ocorre antes do carregamento dos diretórios")
     },
 });

@@ -116,10 +116,10 @@ createResponder({
     ```ts title="responder.ts"
     createResponder({
         customId: "/form/modal",
-        // [!code word:ModalComponent]
-        // [!code word:Modal]
         types: [
+        // [!code word:Modal:1]
             ResponderType.Modal,
+        // [!code word:ModalComponent]
             ResponderType.ModalComponent
         ], cache: "cached",
         async run(interaction) {

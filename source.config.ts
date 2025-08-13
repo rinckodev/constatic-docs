@@ -33,10 +33,15 @@ export const blogCollection = defineCollections({
   type: "doc"
 });
 
+
 export default defineConfig({
   mdxOptions: {
     rehypeCodeOptions: {
       lazy: true,
+      colorReplacements: {
+        "#6a9955": "#445176",
+        "#d4d4d4": "#7f8592",
+      },
       themes: {
         light: "light-plus",
         dark: "dark-plus"

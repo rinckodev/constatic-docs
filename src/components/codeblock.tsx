@@ -106,16 +106,16 @@ export function CodeBlock({
       dir="ltr"
       {...props}
       className={cn(
-        isTab ? [bg, "rounded-md shadow-sm"] : "my-4 rounded-md bg-fd-card",
-        "shiki relative border outline-none not-prose overflow-hidden text-sm",
+        isTab ? [bg, "rounded-md shadow-sm"] : "border my-4 rounded-md bg-fd-card",
+        "shiki relative outline-none not-prose overflow-hidden text-sm",
         props.className,
       )}
     >
       {title ? (
         <div
           className={cn(font.className,
-            "flex text-fd-muted-foreground items-center gap-2 ps-3 h-9.5",
-            isTab && "border-b",
+            "flex text-fd-muted-foreground items-center border-b gap-2 ps-3 h-9.5",
+            // isTab && "border-b",
           )}
         >
           {typeof icon === "string" ? (

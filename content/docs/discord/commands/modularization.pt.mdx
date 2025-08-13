@@ -5,6 +5,7 @@ description: Como criar comandos de barra do discord
 tag: new
 ---
 import icons from "@/lib/icons";
+import { TsIcon } from "@/public/icons/files";
 
 <Callout type="warn">
     Este é um recurso exclusivo de [comandos de barra!](/docs/discord/commands/slash)
@@ -322,13 +323,18 @@ Com isso em mente, vamos quebrar aquele comando gigante e separar em arquivos di
 
 <Callout type="hint">
     É recomendado criar uma pasta exclusiva para o seu comando gigante! Neste exemplo vamos criar a pasta **manage**. O caminho no projeto ficaria em `./src/discord/commands/manage/`
-
-    ```md
-    src/
-    └─ discord/
-        └─ commands/
-            └─ manage/
-    ```
+    
+    <Files>
+        <Folder name="src" defaultOpen>
+            <Folder name="discord" defaultOpen>
+                <Folder name="commands" defaultOpen>
+                    <Folder name="manage" defaultOpen>
+                        <File name="command.ts" icon={<TsIcon />}/>
+                    </Folder>
+                </Folder>
+            </Folder>
+        </Folder>
+    </Files>
 </Callout>
 
 ```ts title="src/discord/commands/manage/command.ts"
@@ -344,21 +350,23 @@ export default createCommand({
 
 Agora dentro da pasta **manage** vamos criar outras pastas para os grupos de sub comandos. A estrutura deve ficar parecida com isso:
 
-```md
-<!-- Caminho relativo a partir da pasta manage/ -->
-manage/
-├─ channels/
-│   ├─ create.ts
-│   ├─ delete.ts
-│   ├─ group.ts
-│   └─ move.ts
-├─ roles/
-│   ├─ create.ts
-│   ├─ delete.ts
-│   ├─ group.ts
-│   └─ permissions.ts
-└─ command.ts
-```
+<Files>
+    <Folder name="manage" defaultOpen>
+        <Folder name="channels" defaultOpen>
+            <File name="create.ts" icon={<TsIcon />}/>
+            <File name="delete.ts" icon={<TsIcon />}/>
+            <File name="group.ts" icon={<TsIcon />}/>
+            <File name="move.ts" icon={<TsIcon />}/>
+        </Folder>
+        <Folder name="roles" defaultOpen>
+            <File name="create.ts" icon={<TsIcon />}/>
+            <File name="delete.ts" icon={<TsIcon />}/>
+            <File name="group.ts" icon={<TsIcon />}/>
+            <File name="permissions.ts" icon={<TsIcon />}/>
+        </Folder>
+        <File name="command.ts" icon={<TsIcon />}/>
+    </Folder>
+</Files>
  
 Como exportamos o retorno da função `createCommando` usando `export default`, podemos importar nos arquivos `group.ts` das pastas **channels** e ** roles** para definir os grupos de sub comandos:
 
@@ -714,7 +722,6 @@ import command from "./command.js";
 import { codeBlock } from "discord.js";
 
 // [!code word:data]
-
 command.subcommand({
     name: "setup",
     async run(interaction, data /* StoreDocument */) {
