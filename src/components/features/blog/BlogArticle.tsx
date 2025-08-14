@@ -1,8 +1,8 @@
 import type { BlogPost } from "@/lib/source";
 import Link from "next/link";
-import { BlogTag } from "./BlogTag";
 import { IoFlameSharp } from "react-icons/io5";
-import { cn } from "@/lib/cn";
+import { BlogTag } from "./BlogTag";
+import { cn } from "@/lib/utils";
 
 interface BlogArticleProps {
     post: BlogPost,

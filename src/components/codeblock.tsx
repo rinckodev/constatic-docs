@@ -1,5 +1,7 @@
 "use client";
+import { useCopyButton } from "fumadocs-ui/utils/use-copy-button";
 import { Check, Copy } from "lucide-react";
+import { JetBrains_Mono } from "next/font/google";
 import {
   type ComponentProps,
   createContext,
@@ -10,17 +12,15 @@ import {
   useMemo,
   useRef,
 } from "react";
-import { cn } from "../lib/cn";
-import { useCopyButton } from "fumadocs-ui/utils/use-copy-button";
-import { buttonVariants } from "./ui/button";
+import { mergeRefs } from "../lib/merge-refs";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from "./tabs.unstyled";
-import { mergeRefs } from "../lib/merge-refs";
-import { JetBrains_Mono } from "next/font/google";
+import { buttonVariants } from "./ui/button";
+import { cn } from "@/lib/utils";
 
 const font = JetBrains_Mono({
   subsets: ["latin"]

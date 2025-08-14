@@ -5,14 +5,14 @@ import {
   File as FileIcon
 } from "lucide-react";
 import { type HTMLAttributes, type ReactNode, useState } from "react";
-import { cn } from "../lib/cn";
+import { FaFolder } from "react-icons/fa";
+import { FaFolderOpen } from "react-icons/fa6";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "./ui/collapsible";
-import { FaFolder } from "react-icons/fa";
-import { FaFolderOpen } from "react-icons/fa6";
+import { cn } from "@/lib/utils";
 
 const itemVariants = cva(
   "flex flex-row items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-fd-accent hover:text-fd-accent-foreground [&_svg]:size-4",

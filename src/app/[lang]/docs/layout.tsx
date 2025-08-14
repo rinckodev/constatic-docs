@@ -1,8 +1,8 @@
-import { DocsLayout } from "fumadocs-ui/layouts/notebook";
 import { baseOptions } from "@/app/layout.config";
-import { source } from "@/lib/source";
 import { GridPattern } from "@/components/constatic/grid";
-import { cn } from "@/lib/cn";
+import { source } from "@/lib/source";
+import { cn } from "@/lib/utils";
+import { DocsLayout } from "fumadocs-ui/layouts/notebook";
 
 export default async function Layout({ children, params }: {
   params: Promise<{

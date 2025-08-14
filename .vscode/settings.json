@@ -1,3 +1,9 @@
 {
-    "window.zoomLevel": 2.6
+    "window.zoomLevel": 2.6,
+    "editor.codeActionsOnSave": {
+        "source.sortImports": "explicit",
+        "source.organizeImports": "explicit",
+        "source.removeUnusedImports": "always",
+        "source.addMissingImports.ts": "explicit",
+    }
 }

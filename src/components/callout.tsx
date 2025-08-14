@@ -1,4 +1,4 @@
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 import { BsExclamationCircle } from "react-icons/bs";
